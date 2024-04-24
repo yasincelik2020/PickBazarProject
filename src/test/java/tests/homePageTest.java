@@ -11,6 +11,8 @@ public class homePageTest {
         Driver.getDriver().get(ConfigReader.getProperty("pick"));
 
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Pick"));
+        System.out.println("Degisiklikler yapildi Beyza");
+        System.out.println("degisiklik2");
 
         System.out.println("Degisiklikler yapildi Nuray");
 
