@@ -9,6 +9,7 @@ public class homePageTest {
     @Test
     public void testHomePage() throws Exception {
         Driver.getDriver().get(ConfigReader.getProperty("pick"));
+
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Pick"));
 
 
