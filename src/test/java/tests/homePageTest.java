@@ -16,10 +16,15 @@ public class homePageTest {
 
         System.out.println("Degisiklikler yapildi Nuray");
 
-        System.out.println("degisikli yapildi Rasit");
+        System.out.println("degisikli yapildi Rasit hocam");
         System.out.println("asd");
         System.out.println("asdqw");
         System.out.println("asdqwqw e");
+        System.out.println("degisiklik");
+
+
+
+
 
 
     }
