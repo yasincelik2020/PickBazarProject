@@ -24,7 +24,7 @@ import java.time.Duration;
 
 public class Driver {
     // create a private static WebDriver object
-    private static WebDriver driver;
+    public static WebDriver driver;
 
     //singleton driver yapmak için constructorımızı private yapıyoruzki bu classın dışından new anahtarıyla
     // driver object üretilemesin. Peki kim driver üretecek? getDriver() metodumuz.

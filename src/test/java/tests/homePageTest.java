@@ -1,26 +1,30 @@
 package tests;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
+import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
+import pages.homePage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
 public class homePageTest {
+    @Description("Kayitsiz kullanici olarak ana sayfanin elementlerinin dogru sekilde geldigi görüntülenmelidir ; \"PickBazar\" butonu görüntülenmeli    ")
+    @Test (groups ={ "Smoke","No role"})
+    public void TC_01_01(@Optional("chrome")String browser) {
 
-    public homePageTest() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+
+        Assert.assertEquals(Driver.getDriver().getCurrentUrl(),ConfigReader.getProperty("pickUrl"));
+
+        homePage homePage=new homePage();
+       Assert.assertTrue( homePage.PickBazarButon.isDisplayed());
+
+       Driver.closeDriver();
+
+
     }
 
-    @Test
-    public void testHomePage() throws Exception {
-        Driver.getDriver().get(ConfigReader.getProperty("pick"));
-        Assert.assertTrue(Driver.getDriver().getTitle().contains("Pick"));
 
-    }
-
-    @FindBy(id = "headlessui-menu-button-1")
-    WebElement grocery;
 }
