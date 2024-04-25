@@ -30,7 +30,6 @@ public class dailyneedsPage {
         homePage.homePageDropDownMenu.click();
         homePage.dailyNeedsDropDownMenu.click();
     }
-
-    //Aranan ürün Daily Needs ile ilgili ise ve sitede varsa gelmelidir
-
 }
+
+

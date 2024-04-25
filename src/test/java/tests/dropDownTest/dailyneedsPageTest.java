@@ -44,6 +44,8 @@ public class dailyneedsPageTest {
         dailyneedsPage.dailyNeedsPage();// daily Needs sayfsaina gitmek icin method
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(dailyneedsPage.dailyNeedsWeSearchFrame.getText().equals("search"));
+        softAssert.assertTrue(dailyneedsPage.dailyNeedsYouDeserve.getText().contains("You Deserve"));
         Driver.closeDriver();
     }
+
 }
