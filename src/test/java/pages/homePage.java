@@ -5,6 +5,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+
+
+
+
+
 public class homePage {
 
     public homePage() {
@@ -15,4 +20,9 @@ public class homePage {
 
     @FindBy(xpath = "//span[.=\"Daily Needs\"]")
     public WebElement dailyNeedsDropDownMenu;
+
+    @FindBy(xpath = "//img[@alt='Pickbazar']")
+    public WebElement PickBazarButon ;
+
+
 }
