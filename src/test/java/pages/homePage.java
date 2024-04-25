@@ -25,4 +25,27 @@ public class homePage {
     public WebElement PickBazarButon ;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @FindBy(xpath = "//a[.='Offers']")
+    public WebElement offersButon ;
+    @FindBy(xpath = "//a[.='FAQ']")
+    public WebElement faqButon ;
+    @FindBy(xpath = "//a[.='Contact']")
+    public WebElement contactButon ;
+    @FindBy(xpath = "//img[@alt='user name']")
+    public WebElement profilresmiButon ;
+
+
 }
