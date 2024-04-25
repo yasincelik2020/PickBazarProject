@@ -6,5 +6,9 @@ import utilities.ConfigReader;
 import utilities.Driver;
 
 public class homePageTest {
+    @Test
+    public void testHomePage() throws Exception {
+
+    }
 
     }
