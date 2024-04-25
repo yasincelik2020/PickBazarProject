@@ -1,5 +1,7 @@
 package tests.dropDownTest;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import jdk.jfr.Description;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
@@ -12,17 +14,38 @@ import utilities.Driver;
 import java.io.ObjectInputFilter;
 
 public class dailyneedsPageTest {
-    @Description("Ekranda; \"You deserve to eat fresh\" yazisi görüntülenir ")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Ekranda; \"You Deserve to eat fresh\" yazisi görüntülenir ")
     @Test
-    public void TC_14_01(){
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
-        homePage homePage = new homePage();
-        homePage.homePageDropDownMenu.click();
-        homePage.dailyNeedsDropDownMenu.click();
-        SoftAssert softAssert = new SoftAssert();
-
+    public void TC_14_01() {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
-        softAssert.assertTrue(dailyneedsPage.dailyNeedsText.getText().contains("We source"));
+        dailyneedsPage.dailyNeedsPage();// daily Needs sayfsaina gitmek icin method
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(dailyneedsPage.dailyNeedsYouDeserve.getText().contains("You Deserve"));
         Driver.closeDriver();
     }
+
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Ekranda; We source the best healthy foods for you.\" yazisi görüntülenir. ")
+    @Test(groups ={"Regression","No role"})
+    public void TC_14_02() {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
+        dailyneedsPage.dailyNeedsPage();// daily Needs sayfsaina gitmek icin method
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(dailyneedsPage.dailyNeedsWeSourse.getText().contains("We source"));
+        Driver.closeDriver();
+    }
+
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Search secenegi olan frame görüntülenir.")
+    @Test(groups ={"Regression","No role"})
+    public void TC_14_03() {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
+        dailyneedsPage.dailyNeedsPage();// daily Needs sayfsaina gitmek icin method
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(dailyneedsPage.dailyNeedsWeSearchFrame.getText().equals("search"));
+        softAssert.assertTrue(dailyneedsPage.dailyNeedsYouDeserve.getText().contains("You Deserve"));
+        Driver.closeDriver();
+    }
+
 }
