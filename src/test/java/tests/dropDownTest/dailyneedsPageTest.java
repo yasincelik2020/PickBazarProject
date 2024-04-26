@@ -19,7 +19,7 @@ public class dailyneedsPageTest {
     @DataProvider
     public static Object[][] data() {
         return new Object[][]{{"Vegetables"},
-                {"Snack"},
+                {"Snacks"},
                 {"Rice & Pulse"},
                 {"Meat"},
                 {"Fruits"},
@@ -109,7 +109,7 @@ public class dailyneedsPageTest {
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
         WebElement kategoriLocater = Driver.getDriver().findElement(By.xpath("//h3[.='" + kategoriAdi + "']"));
-        SoftAssert softAssert = new SoftAssert();
+        SoftAssert softAssert = new SoftAssert();// hatayi bulacak ama test devam edecek.
         softAssert.assertEquals(kategoriLocater.getText(), kategoriAdi);
         Driver.closeDriver();
     }
