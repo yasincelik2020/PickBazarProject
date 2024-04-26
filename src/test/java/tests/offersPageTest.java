@@ -3,30 +3,44 @@ package tests;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.homePage;
 import pages.offersPage;
-import utilities.ConfigReader;
 import utilities.Driver;
 
 
 public class offersPageTest {
+    @DataProvider
+    public static Object[][] dataCopied() {
+        return new Object[][]{{"$2 OFF"},
+                {"($8 OFF"},
+                {"$12 OFF"},
+                {"$15 OFF"},
+                {"$18 OFF"},
+                {"$20 OFF"},
+                {"$10 OFF"},
+                {"$6 OFF"},
+                {"$5 OFF"},
+                {"$4 OFF"},};
+    }
 
     @Description("Kayitsiz kullanici offers bolumunde  20$ indirim kuponunu \"Copy\" secenegi ile kopyalayabilmelidir.")
     @Severity(SeverityLevel.NORMAL)
-    @Test(groups = {"Regression", "No role"})
-    public void TC_05_01() throws InterruptedException {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
-        homePage homePage = new homePage();
-       // homePage.offersButon.click();
-        //offersPage.offersGiris();
-        offersPage offersPage = new offersPage();
-        offersPage.copy20$.click();
-        //ReusableMethods.takeScreenshot()
+    @Test(dataProvider = "dataCopied", groups = {"Regression", "No role"})
+    public void TC_05_01(String copiedKupon) throws InterruptedException {
+        offersPage.offersGiris();
         SoftAssert softAssert = new SoftAssert();
+        WebElement offersCpoiedLocater = Driver.getDriver().findElement(By.xpath("//div[starts-with(@class,'w-11/12')]"));
+//        for (WebElement offersCpoiedLocaterList : offersCpoiedLocater) {
+//
+//        }
+        offersCpoiedLocater.click();
         Thread.sleep(3000);
-        softAssert.assertTrue(offersPage.copied20$.getText().contains("Copied!"));
+        System.out.println("text : "+offersCpoiedLocater.getText());
+        softAssert.assertTrue(offersCpoiedLocater.getText().contains("Copied!"));
         Driver.closeDriver();
     }
 
