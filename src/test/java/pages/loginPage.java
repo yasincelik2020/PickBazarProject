@@ -26,10 +26,6 @@ public class loginPage {
     @FindBy(xpath = "//button[.=\"Login\"]")
     public WebElement loginButton;
 
-    @FindBy(css = "img[alt=\"user name\"]")
-    public WebElement profilFotoSekmesi;
-
-
     public void loginMethod() throws InterruptedException {
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         Thread.sleep(3000);
@@ -37,6 +33,7 @@ public class loginPage {
         eMail.sendKeys(ConfigReader.getProperty("eposta"));
         password.sendKeys(ConfigReader.getProperty("password"));
         loginButton.click();
+
     }
 
 
