@@ -30,5 +30,6 @@ public class offersPage {
     public WebElement copied12$;
     public static  void offersGiris() {
 
+
     }
 }
