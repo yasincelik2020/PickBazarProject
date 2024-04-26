@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.ConfigReader;
 import utilities.Driver;
 
 public class offersPage {
@@ -13,23 +14,26 @@ public class offersPage {
     //"We source the best healthy foods for you." locater
     @FindBy(xpath = "(//span[.='Copy'])[6]")
     public WebElement copy20$;
-    @FindBy(xpath = "(//span[.='Copied!'])[6]")
+    @FindBy(xpath = "(//div[starts-with(@class,'w-11/12')])[6]")
     public WebElement copied20$;
     @FindBy(xpath = "(//span[.='Copy'])[1]")
     public WebElement copy2$;
-    @FindBy(xpath = "(//*[.='Copied!'])[1]")
+    @FindBy(xpath = "//*[.='Copied!']")
     public WebElement copied2$;
 
     @FindBy(xpath = "(//span[.='Copy'])[9]")
     public WebElement copy5$;
-    @FindBy(xpath = "(//span[.='Copied!'])[9]")
+    @FindBy(xpath = "//*[.='Copied!']")
     public WebElement copied5$;
     @FindBy(xpath = "(//span[.='Copy'])[4]")
     public WebElement copy12$;
-    @FindBy(xpath = "(//span[.='Copied!'])[4]")
+    @FindBy(xpath = "//*[.='Copied!']")
     public WebElement copied12$;
-    public static  void offersGiris() {
 
+    public static  void offersGiris() {
+        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        homePage homePage = new homePage();
+        homePage.offersButon.click();
 
     }
 }
