@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.dropDown.dailyneedsPage;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 
 public class dailyneedsPageTest {
@@ -107,7 +108,7 @@ public class dailyneedsPageTest {
     public void TC_14_08(String kategoriAdi) throws InterruptedException {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
-        Thread.sleep(3000);
+        ReusableMethods.waitForPageToLoad(3);// sayfanin yüklenmesini icin.
         WebElement kategoriLocater = Driver.getDriver().findElement(By.xpath("//h3[.='" + kategoriAdi + "']"));
         SoftAssert softAssert = new SoftAssert();// hatayi bulacak ama test devam edecek.
         softAssert.assertEquals(kategoriLocater.getText(), kategoriAdi);
