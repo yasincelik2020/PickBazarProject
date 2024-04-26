@@ -24,12 +24,22 @@ public class dailyneedsPage {
     @FindBy(id = "search")
     public WebElement dailyNeedsWeSearchFrame;
 
-    public void dailyNeedsPage() {
+    public void dailyNeedsPageGit() {// page methodu
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         homePage.dailyNeedsDropDownMenu.click();
     }
+
+    //Arama yapmak icin  "Search" butonu görülür,
+    @FindBy(xpath = "//button[contains(text(),'Search')]")
+    public WebElement dailyNeedsWeSearchButton;
+
+    //Search alaninda DailyNeds kategorisinden bir ürün aranmdi
+    @FindBy(xpath = "//span[.=\"Sekka grain rice 2lb\"]")
+    public WebElement sekkaGrainRiceUrunu;
+
+
 }
 
 
