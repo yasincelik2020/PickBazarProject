@@ -18,6 +18,9 @@ import pages.homePage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.JavaScriptExecutorUtils;
+import utilities.ReusableMethods;
+
+import java.io.IOException;
 
 import static utilities.Driver.driver;
 
@@ -259,7 +262,7 @@ public class homePageTest {
     @Description("Kayitsiz kullanici olarak ana sayfada scroll down yapildiginda;\n" +
             "Ekranin Sol tarafinda \"Grocery\"nin alt menüleri gelmeli")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_01_15() {
+    public void TC_01_15() throws IOException {
 
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
 
@@ -269,10 +272,14 @@ public class homePageTest {
         actions.sendKeys(Keys.PAGE_DOWN).perform();
 
         homePage homePage = new homePage();
+        int i=0;
 
         for (WebElement listElement : homePage.groceryAltMenuUrunleriHomePage) {
+            System.out.println(homePage.groceryAltMenuUrunleriHomePage.get(i).getText());
             Assert.assertTrue(listElement.isDisplayed());
+            i++;
         }
+        ReusableMethods.takeScreenshot("Grocery alt menu" );
 
         Driver.closeDriver();
 

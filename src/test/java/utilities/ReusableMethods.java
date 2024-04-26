@@ -25,11 +25,13 @@ public class ReusableMethods {
         //WebDriverManager.firefoxdriver().setup();
         //driver = new ChromeDriver();
         // TakesScreenshot is an interface of selenium that takes the screenshot
+        driver=Driver.getDriver();
+
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
 
         // naming the screenshot with the current date to avoid duplication
-        String date = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd-hh-mm").format(new Date());
 
         // full path to the screenshot location
         // String target = System.getProperty("user.dir") + "/target/Screenshots/" + name + fileName + ".png";  -> for mac

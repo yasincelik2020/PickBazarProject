@@ -38,3 +38,4 @@ build/
 ### Mac OS ###
 .DS_Store
 /allure-results/
+/test-output/
