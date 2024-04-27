@@ -15,6 +15,8 @@ import pages.dropDown.dailyneedsPage;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
+import java.io.IOException;
+
 
 public class dailyneedsPageTest {
     @DataProvider
@@ -65,10 +67,11 @@ public class dailyneedsPageTest {
     @Severity(SeverityLevel.NORMAL)
     @Description("Search secenegi olan frame görüntülenir.")
     @Test(groups = {"Regression", "No role", "Failed"})
-    public void TC_14_05() throws InterruptedException {
+    public void TC_14_05() throws InterruptedException, IOException {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
+        ReusableMethods.takeScreenshot("Bug_TC_14_05____");
         Assert.assertTrue(dailyneedsPage.dailyNeedsWeSearchButton.isDisplayed());
         Driver.closeDriver();
     }
@@ -92,7 +95,8 @@ public class dailyneedsPageTest {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
-        dailyneedsPage.dailyNeedsWeSearchFrame.sendKeys("Mango Self Striped A Line Dress", Keys.ENTER);//"Kullanici "Clothing"" kategorisindeki" Mango Self Striped A Line Dress"  adli ürünü search sekmesinde arar.
+        //"Kullanici "Clothing"" kategorisindeki" Mango Self Striped A Line Dress"  adli ürünü search sekmesinde arar.
+        dailyneedsPage.dailyNeedsWeSearchFrame.sendKeys("Mango Self Striped A Line Dress", Keys.ENTER);
         try {
             WebElement farkliKategorideliUrun = Driver.getDriver().findElement(By.xpath("//*[.=\"Mango Self Striped A Line Dress\"]"));
             Assert.assertFalse(farkliKategorideliUrun.isDisplayed());
