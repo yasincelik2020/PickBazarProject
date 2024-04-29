@@ -1,12 +1,14 @@
 package pages.profile;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.loginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.time.Duration;
 import java.util.List;
 
 public class profilPage {
@@ -97,7 +99,6 @@ public class profilPage {
         profilPage profilPage = new profilPage();
         loginPage.loginMethod();
         profilPage.profilFotoSekmesi.click();
-        Thread.sleep(3000);
         profilPage.profileKategorisi.click();
     }
 
@@ -141,7 +142,7 @@ public class profilPage {
         Thread.sleep(3000);
         profilPage.profileKategorisi.click();
         profilPage.myRefundsKategorisi.click();
-        Thread.sleep(5000);
+        Thread.sleep(3000);
     }
 
     public void kasaApplesUrununuEkleme() throws InterruptedException {
