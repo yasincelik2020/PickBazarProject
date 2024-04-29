@@ -33,7 +33,6 @@ public class loginPage {
         eMail.sendKeys(ConfigReader.getProperty("eposta"));
         password.sendKeys(ConfigReader.getProperty("password"));
         loginButton.click();
-
     }
 
 
