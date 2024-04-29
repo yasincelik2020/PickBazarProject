@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import pages.loginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 import java.time.Duration;
 import java.util.List;
@@ -94,9 +95,33 @@ public class profilPage {
     @FindBy(xpath = "//button[.='Remove']")
     public List<WebElement> myWishRemoveListe;
 
+    @FindBy(xpath = "//span[text()='1 Item']")
+    public WebElement itemButton;
+
+    @FindBy(xpath = "(//span[.='$1.60'])[1]")
+    public WebElement applesFiyat;
+
+    @FindBy(xpath = "//span[.='Checkout']")
+    public WebElement checkOut;
+
+    @FindBy(xpath = "(//section[@class='relative flex h-full flex-col']//button)[1]")
+    public WebElement closeEklenenUrunSayfa;
+
+    @FindBy(xpath = "//a[.='Greddy Love']")
+    public WebElement eklenenUrunMyOrder;
+
+    @FindBy(xpath = "//th[.='ID']")
+    public WebElement idLocater;
+
+    @FindBy(xpath = "//th[.='Reason']")
+    public WebElement reasonLocater;
+
+    @FindBy(xpath = "//th[.='Status']")
+    public WebElement statusLocater;
+
     public void goToProfilPage() throws InterruptedException {
-        loginPage loginPage = new loginPage();
         profilPage profilPage = new profilPage();
+        loginPage loginPage = new loginPage();
         loginPage.loginMethod();
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
@@ -107,9 +132,7 @@ public class profilPage {
         profilPage profilPage = new profilPage();
         loginPage.loginMethod();
         profilPage.profilFotoSekmesi.click();
-        Thread.sleep(3000);
         profilPage.myOrderKategorisi.click();
-        Thread.sleep(5000);
     }
 
     public void goToDownloadsPage() throws InterruptedException {
@@ -117,10 +140,8 @@ public class profilPage {
         profilPage profilPage = new profilPage();
         loginPage.loginMethod();
         profilPage.profilFotoSekmesi.click();
-        Thread.sleep(3000);
         profilPage.profileKategorisi.click();
         profilPage.downloadsKategorisi.click();
-        Thread.sleep(5000);
     }
 
     public void goToMyWishLists() throws InterruptedException {
@@ -128,10 +149,9 @@ public class profilPage {
         profilPage profilPage = new profilPage();
         loginPage.loginMethod();
         profilPage.profilFotoSekmesi.click();
-        Thread.sleep(3000);
         profilPage.profileKategorisi.click();
         profilPage.myWishlistsKategorisi.click();
-        Thread.sleep(5000);
+
     }
 
     public void goToMyRefunds() throws InterruptedException {
@@ -139,10 +159,8 @@ public class profilPage {
         profilPage profilPage = new profilPage();
         loginPage.loginMethod();
         profilPage.profilFotoSekmesi.click();
-        Thread.sleep(3000);
         profilPage.profileKategorisi.click();
         profilPage.myRefundsKategorisi.click();
-        Thread.sleep(3000);
     }
 
     public void kasaApplesUrununuEkleme() throws InterruptedException {
