@@ -35,11 +35,9 @@ public class dailyneedsPage {
     @FindBy(xpath = "//button[contains(text(),'Search')]")
     public WebElement dailyNeedsWeSearchButton;
 
-    //Search alaninda DailyNeds kategorisinden bir ürün arandi
+    //Search alaninda DailyNeds kategorisinden bir ürün aranmdi
     @FindBy(xpath = "//span[.=\"Sekka grain rice 2lb\"]")
     public WebElement sekkaGrainRiceUrunu;
-
-
 }
 
 
