@@ -88,6 +88,11 @@
             <version>3.2.5</version>
         </dependency>
 
+             <dependency>
+  <groupId>org.projectlombok</groupId>
+  <artifactId>lombok</artifactId>
+  <version>1.18.28</version>  </dependency>
+
     </dependencies>
 
     <build>
@@ -110,6 +115,13 @@
                     </argLine>
                 </configuration>
             </plugin>
+                 <plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-compiler-plugin</artifactId>
+  <configuration>
+    <compilerArgument>--module-path=NONE</compilerArgument>
+  </configuration>
+</plugin>
         </plugins>
     </build>
 
