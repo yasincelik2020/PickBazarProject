@@ -41,6 +41,7 @@ public class groceryPageTest {
         Driver.closeDriver();
     }
 
+
     @Severity(SeverityLevel.NORMAL)
     @Description ("NEGATIF TEST: Aranan ürün Grocery ile ilgili değil ise ve sitede yoksa gelmedigi dogrulanmalidir")
     @Test(groups = {"Regression", "No role"})
@@ -49,7 +50,7 @@ public class groceryPageTest {
         Thread.sleep(3000);
         groceryPage.groceryWeSearchFrame.sendKeys("Tomates", Keys.ENTER);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(groceryPage.tomatesUrunu.isDisplayed());
+        softAssert.assertEquals(homePage.groceryDropDownMenu.getText(),"Sorry, No Product Found");
         Driver.closeDriver();
     }
     @Severity(SeverityLevel.NORMAL)

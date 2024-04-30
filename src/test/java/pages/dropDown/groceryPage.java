@@ -7,6 +7,8 @@ import pages.homePage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.util.List;
+
 public class groceryPage {
     public groceryPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -28,6 +30,11 @@ public class groceryPage {
 
     @FindBy(xpath = "//h3[.=\"Tomates\"]")
     public WebElement tomatesUrunu;
+
+    @FindBy (xpath = "//h3")
+    public List<WebElement> groceryPageUrunler;
+
+
 
 
 
