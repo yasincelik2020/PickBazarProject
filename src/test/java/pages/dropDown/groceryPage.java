@@ -17,11 +17,19 @@ public class groceryPage {
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
     }
+
+    @FindBy(id = "search")
+    public WebElement groceryWeSearchFrame;
     @FindBy(xpath = "//button[contains(text(),'Search')]")
     public WebElement groceryWeSearchButton;
 
-    @FindBy(xpath = "//span[.=\"Clementines\"]")
+    @FindBy(xpath = "//h3[.=\"Clementines\"]")
     public WebElement clementinesUrunu;
+
+    @FindBy(xpath = "//h3[.=\"Tomates\"]")
+    public WebElement tomatesUrunu;
+
+
 
 
 }
