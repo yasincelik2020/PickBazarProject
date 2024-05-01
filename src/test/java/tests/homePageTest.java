@@ -308,6 +308,7 @@ public class homePageTest {
     public void TC_15_01 () {
         homePage homePage=new homePage();
 
+
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
