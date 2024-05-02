@@ -195,8 +195,7 @@ public class homePage {
 
 
 
-    @FindBy(xpath = "(//span[@class='whitespace-nowrap'])[1]")
-    public WebElement groceryDropDownMenuHomePage;
+
 
     @FindBy(xpath = "//a[.='Shops']")
     public WebElement shopsButtonHomePage;
@@ -216,7 +215,7 @@ public class homePage {
     @FindBy(xpath = "//button[.='Join']")
     public WebElement joinButtonHomePage;
 
-    @FindBy(xpath = "//img[@alt='902']")
+    @FindBy(xpath = "(//div[@class='swiper-slide swiper-slide-active'])[2]")
     public WebElement expressDeliveryFrameHomePage;
 
     @FindBy(xpath = "//img[@alt='903']")
@@ -228,16 +227,14 @@ public class homePage {
            " transform overflow-hidden rounded border border-border-200 bg-light shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow']")
     public List<WebElement> groceryUrunleriHomePage;
 
-
-
-    @FindBy(xpath = "//li[@class='rounded-md py-1']")
+   @FindBy(xpath = "//li[@class='rounded-md py-1']")
     public List<WebElement> groceryAltMenuUrunleriHomePage;
 
     @FindBy(xpath = "//h1[@class='text-2xl font-bold tracking-tight text-heading lg:text-4xl xl:text-5xl']")
     public WebElement groceriesDeliveredIn90MinuteText;
 
     @FindBy(xpath = "//h3[.='All Shops']")
-    public WebElement allShopsShopsPage;
+    public WebElement allShopsTextShopsPage;
 
     public void pickBazarButonClickMethod() throws InterruptedException, IOException {
 
@@ -249,6 +246,37 @@ public class homePage {
 
     @FindBy(xpath = "//h1[.='FAQ']")
     public WebElement faqTextFAQPage;
+
+    @FindBy(xpath = "//div[@class='order-2 w-full shrink-0 bg-light p-5 md:order-1 md:w-72 lg:w-96']")
+    public  WebElement contactImgContactPage;
+
+    @FindBy(xpath = "(//div[@role='menuitem'])[3]")   ////div[@id='headlessui-menu-item-39']
+    public WebElement makeUpDropDownMenu;
+
+   /* @FindBy(xpath = "(//div[@role='menuitem'])[8]")   ////div[@id='headlessui-menu-item-39']
+    public WebElement booksDropDownMenu;*/
+
+    @FindBy(xpath = "//div[@class='relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300']")
+    public List<WebElement> allShopsShopsPage;
+
+    @FindBy(xpath = "(//div[@role='menuitem'])[2]")
+    public WebElement bakeryDropDownAltMenu;
+
+    @FindBy(xpath = "(//span[.='Grocery'])[1]")
+    public WebElement dropDownGroceryMain;
+
+    @FindBy(xpath = "(//div[@role='menuitem'])[1]")
+    public WebElement dropDownGroceryMainAlt;
+
+    @FindBy(xpath = "//p[@class='mb-2 text-sm leading-relaxed text-center text-body']")
+    public List <WebElement> shopsInformation;
+
+    @FindBy(linkText = "https://www.facebook.com/")   //a[@href='https://www.facebook.com/']
+    public WebElement facebookIcon;
+
+    @FindBy(xpath = "//*[@data-name='Group 96']")   //a[@href='https://www.facebook.com/']
+    public List <WebElement> instagramIcon;
+
 
 
 
