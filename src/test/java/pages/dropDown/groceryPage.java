@@ -31,8 +31,7 @@ public class groceryPage {
     @FindBy(xpath = "//h3[.=\"Tomates\"]")
     public WebElement tomatesUrunu;
 
-    @FindBy (xpath = "//h3")
-    public List<WebElement> groceryPageUrunler;
+
 
 
 

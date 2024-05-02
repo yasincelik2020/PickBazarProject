@@ -7,6 +7,8 @@ import pages.homePage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.util.List;
+
 public class bakeryPage {
     public bakeryPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -32,11 +34,12 @@ public class bakeryPage {
     @FindBy(xpath = "//button[contains(text(),'Search')]")
     public WebElement bakeryWeSearchButton;
 
-    @FindBy(xpath = "//h3[.=\"Raspberry Crumble Cookies\"]")
+    @FindBy(xpath = "//h3[.=\"Raspberry Crumble Cookies 300g\"]")
     public WebElement raspberryCrumbleCookiesUrunu;
 
     @FindBy(xpath = "//h3[.=\"Pears\"]")
     public WebElement pearsUrunu;
+
 
 
 
