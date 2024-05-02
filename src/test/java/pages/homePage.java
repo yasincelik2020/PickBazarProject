@@ -280,17 +280,40 @@ public class homePage {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @FindBy(xpath = "(//span[.='Add'])[1]")
     public WebElement applesAddButton;
     //article[20]//header[1]//button[1]//span[1]
     @FindBy(xpath = "(//span[.='Add'])[1]")
     public WebElement spinachAddButton;
-
-
-
-
-
-
     @FindBy(xpath = "//span[@class='bg-light rounded w-full py-2 px-2 text-accent mt-3']")
     public WebElement chartButtonAtrightPrice;
     //div[starts-with(@class,'flex-grow pt')]
@@ -301,35 +324,6 @@ public class homePage {
     public void chartAddFunctions(){
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @FindBy(xpath = "//span[starts-with(@class,'flex ltr')]")
     public WebElement itemsNumber;
     @FindBy(xpath = "(//span[starts-with(@class,'text-sm ')])[1]")
@@ -346,12 +340,21 @@ public class homePage {
     @FindBy(xpath = "//span[@class='flex ltr:ml-2 rtl:mr-2']")
     public WebElement chartButtonAtrightItemCount;
 
-
-
     public double valueEvuloation (WebElement apples, WebElement spinach){
         double total = Double.parseDouble(apples.getText().substring(1))+Double.parseDouble(spinach.getText().substring(1));
         return total;
     }
+
+    @FindBy(xpath = "//button[@class='hidden product-cart lg:flex relative']//*[name()='svg']")
+    public WebElement dailyNeedsChartIkon;
+
+    @FindBy(xpath = "//button[.='Checkout as guest']")
+    public WebElement checkoutAsGuestButton;
+
+
+    @FindBy(xpath = "//input[@placeholder='1 (702) 123-4567']")
+    public WebElement telefonNumberBox;
+
 
 
 
