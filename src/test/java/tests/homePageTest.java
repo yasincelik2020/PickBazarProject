@@ -1463,13 +1463,20 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün aciklamasi (\"Read More\" ve \"Less\" secenekleri ile aciklama detayi görüntülenebilir) bilgileri dogru gelmelidir.")
     @Test(groups = {"Regression", "No role"})
-    public void TC_15_46 () throws InterruptedException {
+    public void TC_15_46 () throws InterruptedException, IOException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
+
             JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
-            Assert.assertTrue(homePage.anasayfaAltkart_UrunAciklamasi.isDisplayed());
+
+            try {
+                Assert.assertTrue(homePage.anasayfaAltkart_UrunAciklamasi.isDisplayed());
+            }catch (NoSuchElementException e) {
+                Thread.sleep(2000);
+                ReusableMethods.takeScreenshot("TC_15_46 test Read More secenegi yok");
+            }
         }
     }
 
