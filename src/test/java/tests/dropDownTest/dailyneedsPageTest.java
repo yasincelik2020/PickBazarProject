@@ -15,12 +15,10 @@ import org.testng.asserts.SoftAssert;
 import pages.dropDown.dailyneedsPage;
 import utilities.Driver;
 import utilities.ReusableMethods;
-
 import java.io.IOException;
 
 
 public class dailyneedsPageTest {
-    dailyneedsPage dailyneedsPage = new dailyneedsPage();
 
     @DataProvider
     public static Object[][] data() {
@@ -38,6 +36,7 @@ public class dailyneedsPageTest {
     @Description("Ekranda; \"You Deserve to eat fresh\" yazisi görüntülenir ")
     @Test
     public void TC_14_01() {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(dailyneedsPage.dailyNeedsYouDeserve.getText().contains("You Deserve"));
@@ -48,6 +47,7 @@ public class dailyneedsPageTest {
     @Description("Ekranda; 'We source the best healthy foods for you' yazisi görüntülenir. ")
     @Test(groups = {"Regression", "No role"})
     public void TC_14_02() {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(dailyneedsPage.dailyNeedsWeSourse.getText().contains("We source"));
@@ -58,6 +58,7 @@ public class dailyneedsPageTest {
     @Description("Search secenegi olan frame görüntülenir.")
     @Test(groups = {"Regression", "No role"})
     public void TC_14_03() {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(dailyneedsPage.dailyNeedsWeSearchFrame.getText().equals("search"));
@@ -68,6 +69,7 @@ public class dailyneedsPageTest {
     @Description("Arama yapmak icin 'Search' butonu görülür,")
     @Test(groups = {"Regression", "No role", "Failed"})
     public void TC_14_05() throws InterruptedException, IOException {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
         ReusableMethods.takeScreenshot("Bug_TC_14_05_SearchButtonYok_");
@@ -79,6 +81,7 @@ public class dailyneedsPageTest {
     @Description("Aranan ürün Daily Needs ile ilgili ise ve sitede varsa gelmelidir")
     @Test(groups = {"Regression", "No role"})
     public void TC_14_06() throws InterruptedException {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
         dailyneedsPage.dailyNeedsWeSearchFrame.sendKeys("Rice", Keys.ENTER);
@@ -90,6 +93,7 @@ public class dailyneedsPageTest {
     @Description("NEGATIF TEST: Aranan ürün Daily Needs ile ilgili degil ise ve sitede varsa gelmemelidir")
     @Test(groups = {"Regression", "No role"})
     public void TC_14_07() throws InterruptedException {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
         //"Kullanici "Clothing"" kategorisindeki" Mango Self Striped A Line Dress"  adli ürünü search sekmesinde arar.
@@ -107,6 +111,7 @@ public class dailyneedsPageTest {
     @Description("Tüm alt kategorilerin görünür oldugu test edilecek")
     @Test(dataProvider = "data", groups = {"Regression", "No role"})
     public void TC_14_08(String kategoriAdi) throws InterruptedException {
+        dailyneedsPage dailyneedsPage = new dailyneedsPage();
         dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         ReusableMethods.waitForPageToLoad(3);// sayfanin yüklenmesini icin.
         WebElement kategoriLocater = Driver.getDriver().

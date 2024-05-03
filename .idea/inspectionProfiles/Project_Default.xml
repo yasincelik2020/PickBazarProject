@@ -5,9 +5,8 @@
       <option name="groups">
         <value>
           <list size="3">
-          <list size="1">
-            <item index="0" class="java.lang.String" itemvalue="Regression" />
-            <item index="1" class="java.lang.String" itemvalue="Customer" />
+            <item index="0" class="java.lang.String" itemvalue="Customer" />
+            <item index="1" class="java.lang.String" itemvalue="Regression" />
             <item index="2" class="java.lang.String" itemvalue="Failed" />
           </list>
         </value>
