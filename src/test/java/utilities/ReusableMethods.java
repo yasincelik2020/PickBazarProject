@@ -31,7 +31,7 @@ public class ReusableMethods {
         File source = ts.getScreenshotAs(OutputType.FILE);
 
         // naming the screenshot with the current date to avoid duplication
-        String date = new SimpleDateFormat("yyyy-MM-dd-hh-mm").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss").format(new Date());
 
         // full path to the screenshot location
         // String target = System.getProperty("user.dir") + "/target/Screenshots/" + name + fileName + ".png";  -> for mac
