@@ -30,12 +30,12 @@ import static utilities.Driver.getDriver;
 public class homePageTest {
 
 
-    @AfterMethod
+    @AfterMethod (groups = {"Smoke", "Regression","No role","US_15"})
     public void afterMethod() {
         Driver.closeDriver();
     }
 
-    @BeforeMethod
+    @BeforeMethod (groups = {"Smoke", "Regression","No role","US_15"})
     public void beforeMethod() {
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
     }
@@ -1222,7 +1222,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Kullanici anasayfada Shelf dropdown menudeki seceneklerden birini sectiginde ürün ismi görüntülenmeli")
-    @Test (groups ={ "Regression","No role"})
+    @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_01 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1234,7 +1234,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Kullanici anasayfada Shelf dropdown menudeki seceneklerden birini sectiginde ürün image görüntülenmeli")
-    @Test (groups ={ "Regression","No role"})
+    @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_02 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1245,7 +1245,7 @@ public class homePageTest {
     }
     @Severity(SeverityLevel.NORMAL)
     @Description("Kullanici anasayfada Shelf dropdown menudeki seceneklerden birini sectiginde ürün fiyati görüntülenmeli")
-    @Test (groups ={ "Regression","No role"})
+    @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_03 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1256,7 +1256,7 @@ public class homePageTest {
     }
     @Severity(SeverityLevel.NORMAL)
     @Description("Kullanici anasayfada Shelf dropdown menudeki seceneklerden birini sectiginde ürün indirim orani (bu kisim zorunlu degildir) görüntülenmeli")
-    @Test (groups ={ "Regression","No role"})
+    @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_04 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1268,7 +1268,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Kullanici anasayfada maksimumum 30 adet ürün görüntülendigini dogrulamali")
-    @Test (groups ={ "Regression","No role"})
+    @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_05 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1285,7 +1285,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Kullanici anasayfada Shelf dropdown menudeki seceneklerden birini (Grocery) sectikten sonra \"Load More\" butonu tiklandiginda daha fazla ürün yüklendigi dogrulamali")
-    @Test ( groups ={ "Regression","No role"})
+    @Test ( groups ={ "Regression","No role","US_15"})
     public void TC_15_13 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1305,7 +1305,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün eklemek icin, ürün daha önce ekli degilse \"Add\" ve \"+\"butonu aktif olmalidir. ")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_16 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1317,7 +1317,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description(" Ürün eklemek icin, daha önce eklenmis ürün ise \"+\" secenegi ile tekrardan yeni bir ürün eklenmeli.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_17 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1340,7 +1340,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description(" Ürün eklemek icin, daha önce eklenmis ürün ise \"-\" secenegi ile ürün  cikarma islemi yapilmali.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_18 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1369,7 +1369,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün image bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_40 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1382,7 +1382,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün ismi dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_41 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1395,7 +1395,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün miktari bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_42 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1413,7 +1413,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün fiyati bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_43 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1426,7 +1426,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün indirim orani (bu kisim zorunlu degildir) bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_44 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1439,7 +1439,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen like butonu (basta bos sekilde, secildiginde dolu olmali, sadece müsteriler secebilir) bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_45 () throws InterruptedException, IOException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1462,7 +1462,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün aciklamasi (\"Read More\" ve \"Less\" secenekleri ile aciklama detayi görüntülenebilir) bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_46 () throws InterruptedException, IOException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1482,7 +1482,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen available ürün sayisi bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_47 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1495,7 +1495,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün kategori bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_48 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1508,7 +1508,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün satici bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_49 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1521,7 +1521,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen \"Details\" kisminda ürün detay bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_50 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1534,7 +1534,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün puani  bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_51 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1548,7 +1548,7 @@ public class homePageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında secilen ürün bilgilerinden \"Related Products\" kisminda ürünle ilgili diger ürünler image leri, fiyati ve ekleme butonu dogru gelmelidir;")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_52 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
@@ -1562,7 +1562,7 @@ public class homePageTest {
     }
     @Severity(SeverityLevel.NORMAL)
     @Description("Ürün alt kartında cikis yapabilmek icin, ana sayfa alanina tiklamak gereklidir.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_53 () throws InterruptedException {
         homePage homePage = new homePage();
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
