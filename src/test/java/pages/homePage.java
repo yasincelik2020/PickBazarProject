@@ -2,7 +2,9 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -62,9 +64,7 @@ public class homePage {
 
     @FindBy(xpath = "//img[@alt=\"Apples\"]")
     public WebElement groceryApples;
-    @FindBy(xpath = "//div[starts-with(@class,'grid grid-cols')]/article")
-    // bize anasayfadaki ürünlerin bir Listesi döner,
-    public List<WebElement> anasayfaUrunList;      // Bulunamadiginda bos liste
+
     @FindBy(xpath = "//button[.='Load More']")
     public WebElement loadMoreButton;
 
@@ -84,22 +84,12 @@ public class homePage {
     public WebElement addToShoppingCartButton;
 
 
-
     @FindBy(xpath = "//div[starts-with(@class,'flex flex-1 items-center')]")
     public WebElement sepeteEklenenUrunSayisi;
     @FindBy(xpath = "(//div[starts-with(@class,'flex flex-1 items-center')])[3]")
     public WebElement altKartsepeteEklenenUrunSayisi;
-    @FindBy(xpath = "(//div[starts-with(@class,'flex flex-1 items-center')])[2]")
-    public WebElement clothingSepeteEklenenUrunSayisi;
-
-
-
     @FindBy(xpath = "//span[starts-with(@class,'grid h-7 w-7')]")
     public WebElement groceryArtiButton;
-    @FindBy(xpath = "//button[starts-with(@class,'flex h-7 w-7 ')]")
-    public WebElement bakeryaArtiButton;
-    @FindBy(xpath = "//button[contains(@class,'w-7')]")
-    public WebElement clothingArtiButton;
 
 
     @FindBy(xpath = "((//div[starts-with(@class,'-mb-1.5 flex w-full')])[3]/div)[1]")  // Clothin menusunde ürün
@@ -108,32 +98,53 @@ public class homePage {
     public WebElement clothingUrunSize;      //
 
     @FindBy(xpath = "//*[@id=\"productGallery\"]")  // - ürün image (1 ve daha fayla sayida olabilir)
-    public WebElement groceryAltkart_UrunImg;      //
-    @FindBy(xpath = "//div[starts-with(@class,'flex w-full items-start')]/h1")  //
-    public WebElement groceryAltkart_UrunIsmi;      ////*[@id="headlessui-dialog-panel-7"]/article/article/div[1]/div[2]/div[1]/div[4]/div/div/div
+    public WebElement anasayfaAltkart_UrunImg;      //
+    @FindBy(xpath = "//div[starts-with(@class,'w-full')]/div/h1")  //
+    public WebElement anasayfaAltkart_UrunIsmi;      ////*[@id="headlessui-dialog-panel-7"]/article/article/div[1]/div[2]/div[1]/div[4]/div/div/div
     @FindBy(xpath = "(//div[starts-with(@class,'flex flex-1 items-center')])[3]")  //***
-    public WebElement groceryAltkart_UrunMiktari;      //
+    public WebElement anasayfaAltkart_UrunMiktari;      //
     @FindBy(xpath = "//span[starts-with(@class,'my-5 flex items')]/ins")  //
-    public WebElement groceryAltkart_UrunFiyati;      //
+    public WebElement anasayfaAltkart_UrunFiyati;      //
     @FindBy(xpath = "//div[starts-with(@class,'rounded-full bg-yellow')]")  //- *** ürün indirim orani (bu kisim zorunlu degildir)
-    public WebElement groceryAltkart_UrunIndirimOrani;      //
+    public WebElement anasayfaAltkart_UrunIndirimOrani;      //
     @FindBy(xpath = "//button[starts-with(@class,'mt-0.5 flex h-10')]")  //- *** like butonu (basta bos sekilde, secildiginde dolu olmali, sadece müsteriler secebilir)
-    public WebElement groceryAltkart_UrunLikeButtonu;      //
-    @FindBy(xpath = "//div[starts-with(@class,'inline-flex shrink-0')]")  //
-    public WebElement groceryAltkart_UrunPuani;      //
+    public WebElement anasayfaAltkart_UrunLikeButtonu;      //
+    @FindBy(xpath = "//*[starts-with(@class,'inline-flex shrink-0')]")  //
+    public WebElement anasayfaAltkart_UrunPuani;      //
     @FindBy(xpath = "//button[.='Read more']")  // ürün aciklamasi ("Read More" ve "Less" secenekleri ile aciklama detayi görüntülenebilir)
-    public WebElement groceryAltkart_UrunAciklamasi;      //
+    public WebElement anasayfaAltkart_UrunAciklamasi;      //
     @FindBy(xpath = "//span[starts-with(@class,'whitespace-nowrap text-base')]")  //
-    public WebElement groceryAltkart_AvailableUrunSayisi;      //
-    @FindBy(xpath = "//div[starts-with(@class,'flex flex-row flex-wrap')]")  //
-    public WebElement groceryAltkart_UrunKategoriBilgisi;      //
-    @FindBy(xpath = "//button[starts-with(@class,'text-sm tracking-wider')]")  //
-    public WebElement groceryAltkart_UrunSaticiBilgileri;      //
+    public WebElement anasayfaAltkart_AvailableUrunSayisi;      //
+    @FindBy(xpath = "//div[starts-with(@class,'flex flex-row flex-wrap')]")
+    public WebElement anasayfaAltkart_UrunKategoriBilgisi;
+    @FindBy(xpath = "//button[starts-with(@class,'text-sm tracking-wider')]")
+    public WebElement anasayfaAltkart_UrunSaticiBilgileri;
     @FindBy(xpath = "//p[@class='text-sm text-body']")  // "Details" kisminda ürün detaylari
-    public WebElement groceryAltkart_DetailsKismindaUrunDetaylari;      //
+    public WebElement anasayfaAltkart_DetailsKismindaUrunDetaylari;      //
+    @FindBy(xpath = "//div[starts-with(@class,'fixed inset-0 h-full')]")  // "Details" kisminda ürün detaylari
+    public WebElement altkartdanHomePageGecis;      //
 
     @FindBy(xpath = "")  //**** "Related Products" kisminda ürünle ilgili diger ürünler image leri, fiyati ve ekleme butonu ile
-    public WebElement groceryAltkart_UrunRelatedProductsKismi;      //
+    public WebElement anasayfaAltkart_UrunRelatedProductsKismi;      //
+    @FindBy(xpath = "//div[starts-with(@class,'grid grid-cols-1 md:grid')]/article/div")  // anasayfaAltkart_IlgiliDigerUrunlerImg listesini dönderir,
+    public List<WebElement> anasayfaAltkart_IlgiliDigerUrunlerImgList;      //Bulunamadiginda bos liste
+    @FindBy(xpath = "//div[starts-with(@class,'grid grid-cols-1')]/article/header/div/span")  //  anasayfaAltkart_IlgiliDigerUrunlerFiyat listesini dönderir,
+    public List<WebElement> anasayfaAltkart_IlgiliDigerUrunlerFiyatList;      // Bulunamadiginda bos liste
+    @FindBy(xpath = "//div[starts-with(@class,'grid grid-cols-1')]/article/header/button")  //  anasayfaAltkart_IlgiliDigerUrunlerFiyat listesini dönderir,
+    public List<WebElement> anasayfaAltkart_IlgiliDigerUrunlerEklemeButtonuList;      // Bulunamadiginda bos liste
+
+
+
+
+    public void likeButtonuIcinLoginMethodu() {// page methodu
+        Actions actions = new Actions(Driver.getDriver());
+        loginPage loginPage = new loginPage();
+        loginPage.eMail.sendKeys("abc@gmail.com");
+        loginPage.password.sendKeys("abc123");
+        loginPage.loginButton.click();
+
+    }
+
 
 
     @FindBy(xpath = "//h3[contains(@class,'text')]")  // bize anasayfadaki (DaiyNeeds ve books haric) ürünlerin isim listesini dönderir,
@@ -142,23 +153,9 @@ public class homePage {
     public List<WebElement> anasayfaGroceryUrunIsimList;      // Bulunamadiginda bos liste
     @FindBy(xpath = "//h3[contains(@class,'text')]")  // bize anasayfadaki Bakery ürünlerin isim listesini dönderir,
     public List<WebElement> anasayfaBakeryUrunIsimList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//h3[contains(@class,'text')]")  // bize anasayfadaki Makeup ürünlerin isim listesini dönderir,
-    public List<WebElement> anasayfaMakeupUrunIsimList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//h3[contains(@class,'text')]")  // bize anasayfadaki Bags ürünlerin isim listesini dönderir,
-    public List<WebElement> anasayfaBagsUrunIsimList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//h3[contains(@class,'text')]")  // bize anasayfadaki Furniture ürünlerin isim listesini dönderir,
-    public List<WebElement> anasayfaClothingUrunIsimList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//h3[contains(@class,'text')]")  // bize anasayfadaki Furniture ürünlerin isim listesini dönderir,
-    public List<WebElement> anasayfaFurnitureUrunIsimList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//header[starts-with(@class,'flex shrink')]/a")  // bize anasayfadaki Books ürünlerin isim listesini dönderir,
-    public List<WebElement> anasayfaBooksIsimList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'flex flex-col')]/h3")  // bize anasayfadaki DaiyNeeds ürünlerin isim listesini dönderir,
-    public List<WebElement> anasayfaDaiyNeedsUrunIsimList;      // Bulunamadiginda bos liste
 
     @FindBy(xpath = "//img[starts-with(@class,'product-image')]")  // bize anasayfadaki (DaiyNeeds haric) ürünlerin img listesini dönderir,
     public List<WebElement> anasayfaImgList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'absolute bottom')]/span/img")  // bize anasayfadaki DaiyNeeds e ait ürünlerin img listesini dönderir,
-    public List<WebElement> anasayfaDaiyNeedsImgList;      // Bulunamadiginda bos liste
 
 
     @FindBy(xpath = "//div[starts-with(@class,'mb-2 flex items-')]/span")  // bize anasayfadaki ürünlerin Fiyat listesini dönderir,
@@ -167,41 +164,13 @@ public class homePage {
     public List<WebElement> anasayfaGrocerFiyatList;      // Bulunamadiginda bos liste
     @FindBy(xpath = "//div[starts-with(@class,'mb-2 flex items-')]/span")  // bize anasayfadaki ürünlerin Fiyat listesini dönderir,
     public List<WebElement> anasayfaBakeryFiyatList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'relative mt-7')]/div/span")  // bize anasayfadaki Makeup ürünlerin Fiyat listesini dönderir,
-    public List<WebElement> anasayfaMakeupFiyatList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//span[starts-with(@class,'text-sm font-semibold')]")  // bize anasayfadaki ürünlerin Fiyat listesini dönderir,
-    public List<WebElement> anasayfaBagsFiyatList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//header[starts-with(@class,'p-3 md:p-6')]/div")  // bize anasayfadaki Clothing ürünlerin Fiyat listesini dönderir,
-    public List<WebElement> anasayfaClothingFiyatList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'flex items-center')]/span")  // bize anasayfadaki ürünlerin Fiyat listesini dönderir,
-    public List<WebElement> anasayfaFurnitureFiyatList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'flex shrink-')]")  // bize anasayfadaki Books ürünlerin Fiyat listesini dönderir,
-    public List<WebElement> anasayfaBooksFiyatList;      // Bulunamadiginda bos liste
 
     @FindBy(xpath = "//div[starts-with(@class,'absolute top-3 rounded')]")  // bize anasayfadaki ürünlerin ürün indirim orani  listesini dönderir,
     public List<WebElement> anasayfaUrunIndirimOraniList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'absolute top-3 rounded')]")  // bize anasayfadaki ürünlerin ürün indirim orani  listesini dönderir,
-    public List<WebElement> anasayfaGrocerUrunIndirimOraniList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'absolute top-3 rounded')]")  // bize anasayfadaki ürünlerin ürün indirim orani  listesini dönderir,
-    public List<WebElement> anasayfaBakeryUrunIndirimOraniList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'absolute top-3 rounded')]")  // bize anasayfadaki ürünlerin ürün indirim orani  listesini dönderir,
-    public List<WebElement> anasayfaMakeupUrunIndirimOraniList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'absolute top-3 rounded')]")  // bize anasayfadaki ürünlerin ürün indirim orani  listesini dönderir,
-    public List<WebElement> anasayfaBagsUrunIndirimOraniList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'absolute top-3 rounded')]")  // bize anasayfadaki ürünlerin ürün indirim orani  listesini dönderir,
-    public List<WebElement> anasayfaClothingUrunIndirimOraniList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'absolute top-3 rounded')]")  // bize anasayfadaki Furniture ürünlerin ürün indirim orani listesini dönderir,
-    public List<WebElement> anasayfaFurnitureUrunIndirimOraniList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'text-xs text-accent')]")  // bize anasayfadaki ürünlerin ürün indirim orani  listesini dönderir,
-    public List<WebElement> anasayfaBooksUrunIndirimOraniList;      // Bulunamadiginda bos liste
-
 
     @FindBy(xpath = "//div[starts-with(@id,'headlessui-menu-')]")  // bize anasayfadaki Shelf dropdown menu deki 8 kategorinin listesini dönderir,
     public List<WebElement> anasayfaShelfDropdownMenuList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//div[starts-with(@class,'flex flex-col')]/h3")  // dailyNeeds menu altinda deki 8 kategorinin listesini dönderir,
-    public List<WebElement> dailyNeedsMenuUrunList;      // Bulunamadiginda bos liste
-    @FindBy(xpath = "//a[starts-with(@class,'text-sm font-semibold text-heading')]")  // books menu altinda deki ürünlerin isim listesini dönderir,
-    public List<WebElement> booksMenuUrunList;      // Bulunamadiginda bos liste
+
 
 
 
