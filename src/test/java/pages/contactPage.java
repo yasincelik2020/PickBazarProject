@@ -1,14 +1,8 @@
 package pages;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import utilities.ConfigReader;
 import utilities.Driver;
 
 public class contactPage {
@@ -33,4 +27,5 @@ public class contactPage {
     public WebElement instagramButton;
     @FindBy(xpath = "(//a[@class='text-muted transition-colors duration-300 focus:outline-none ltr:mr-8 ltr:last:mr-0 rtl:ml-8 rtl:last:ml-0 hover:undefined'])[3]")
     public WebElement twitterButton;
+
 }
