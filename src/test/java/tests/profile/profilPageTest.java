@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
 import pages.profile.profilPage;
 import utilities.Driver;
 import utilities.JavaScriptExecutorUtils;
@@ -16,11 +15,11 @@ import java.io.IOException;
 
 public class profilPageTest {
 
-    SoftAssert softAssert = new SoftAssert();
     @AfterMethod
     public void afterMethod() {
         Driver.closeDriver();
     }
+
     @Severity(SeverityLevel.NORMAL)
     @Description("Total kac puana sahip oldugu görüntülenmeli")
     @Test(groups = {"Regression", "Customer"})
@@ -28,7 +27,7 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
         ReusableMethods.waitForVisibility(profilPage.total, 3);
-        softAssert.assertTrue(profilPage.total.isDisplayed());
+        Assert.assertTrue(profilPage.total.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -37,7 +36,7 @@ public class profilPageTest {
     public void TC_22_02() throws InterruptedException {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
-        softAssert.assertTrue(profilPage.used.isDisplayed());
+        Assert.assertTrue(profilPage.used.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -47,7 +46,7 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
         ReusableMethods.waitForVisibility(profilPage.available, 3);
-        softAssert.assertTrue(profilPage.available.isDisplayed());
+        Assert.assertTrue(profilPage.available.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -57,7 +56,7 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
         ReusableMethods.waitForVisibility(profilPage.image, 3);
-        softAssert.assertTrue(profilPage.image.isDisplayed());
+        Assert.assertTrue(profilPage.image.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -67,7 +66,7 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
         ReusableMethods.waitForVisibility(profilPage.name, 3);
-        softAssert.assertTrue(profilPage.name.isDisplayed());
+        Assert.assertTrue(profilPage.name.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -77,7 +76,7 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
         ReusableMethods.waitForVisibility(profilPage.bio, 3);
-        softAssert.assertTrue(profilPage.bio.isDisplayed());
+        Assert.assertTrue(profilPage.bio.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -90,7 +89,6 @@ public class profilPageTest {
         ReusableMethods.takeScreenshot("Bug_TC_22_07_ProfildeEmailYOK_");
         // Eğer email olmadigi icin kendimiz fail oluşturduk
         Assert.fail("Email tab is present, but it shouldn't be.");
-
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -100,7 +98,7 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
         ReusableMethods.waitForVisibility(profilPage.contactNumber, 3);
-        softAssert.assertTrue(profilPage.contactNumber.isDisplayed());
+        Assert.assertTrue(profilPage.contactNumber.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -122,7 +120,7 @@ public class profilPageTest {
         ReusableMethods.waitForVisibility(profilPage.changePasswordSekme, 3);
         profilPage.changePasswordSekme.click();
         ReusableMethods.waitForVisibility(profilPage.oldPassword, 3);
-        softAssert.assertTrue(profilPage.oldPassword.isDisplayed());
+        Assert.assertTrue(profilPage.oldPassword.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -131,10 +129,11 @@ public class profilPageTest {
     public void TC_22_11() throws InterruptedException {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
-        ReusableMethods.waitForVisibility(profilPage.changePasswordSekme,3);
+        ReusableMethods.waitForVisibility(profilPage.changePasswordSekme, 3);
         profilPage.changePasswordSekme.click();
-        ReusableMethods.waitForVisibility(profilPage.newPassword,3);
-        softAssert.assertTrue(profilPage.newPassword.isDisplayed());
+        ReusableMethods.waitForVisibility(profilPage.newPassword, 3);
+        Assert.assertFalse(profilPage.newPassword.isDisplayed());
+
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -143,9 +142,9 @@ public class profilPageTest {
     public void TC_22_12() throws InterruptedException {
         profilPage profilPage = new profilPage();
         profilPage.goToProfilPage();
-        ReusableMethods.waitForVisibility(profilPage.changePasswordSekme,3);
+        ReusableMethods.waitForVisibility(profilPage.changePasswordSekme, 3);
         profilPage.changePasswordSekme.click();
-        ReusableMethods.waitForVisibility(profilPage.confirmPassword,3);
+        ReusableMethods.waitForVisibility(profilPage.confirmPassword, 3);
         Assert.assertTrue(profilPage.confirmPassword.isDisplayed());
     }
 
@@ -157,7 +156,7 @@ public class profilPageTest {
         profilPage.goToProfilPage();
         Thread.sleep(3000);
         profilPage.changePasswordSekme.click();
-        ReusableMethods.waitForVisibility(profilPage.submit,3);
+        ReusableMethods.waitForVisibility(profilPage.submit, 3);
         Assert.assertTrue(profilPage.submit.getText().contains("mit"));
     }
 
@@ -189,7 +188,7 @@ public class profilPageTest {
         ReusableMethods.waitForVisibility(profilPage.eklenenUrunMyOrder, 3);
         ReusableMethods.takeScreenshot("Bug_TC_22_16_KasadaApplesUrunYok_");
         System.out.println("profilPage.eklenenUrunMyOrder.getText() = " + profilPage.eklenenUrunMyOrder.getText());
-        Assert.assertEquals(profilPage.eklenenUrunMyOrder.getText(),"Apples");
+        Assert.assertEquals(profilPage.eklenenUrunMyOrder.getText(), "Apples");
     }
 
     @DataProvider
@@ -214,7 +213,7 @@ public class profilPageTest {
         profilPage.goToMyOrderPage();
         WebElement elementLocater = Driver.getDriver().
                 findElement(By.xpath("(//span[.='" + detayString + "'])[1]"));
-        softAssert.assertTrue(elementLocater.isDisplayed());
+        Assert.assertTrue(elementLocater.isDisplayed());
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -224,7 +223,8 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToDownloadsPage();
         for (WebElement webElement : profilPage.kitapUrunListe) {
-            softAssert.assertTrue(webElement.isDisplayed());
+            ReusableMethods.waitForVisibility(webElement,10);
+            Assert.assertTrue(webElement.isDisplayed());
         }
     }
 
@@ -235,7 +235,7 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToDownloadsPage();
         int downloadSayisi = profilPage.downloadButtonListe.size();
-        softAssert.assertEquals(downloadSayisi, 10);
+        Assert.assertEquals(downloadSayisi, 10);
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -245,7 +245,8 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToMyWishLists();
         for (WebElement webElement : profilPage.myWishImageListe) {
-            softAssert.assertTrue(webElement.isDisplayed());
+            ReusableMethods.waitForVisibility(webElement,10);
+            Assert.assertTrue(webElement.isDisplayed());
         }
     }
 
@@ -256,7 +257,8 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToMyWishLists();
         for (WebElement webElement : profilPage.myWishFiyatListe) {
-            softAssert.assertTrue(webElement.isDisplayed());
+            ReusableMethods.waitForVisibility(webElement,10);
+            Assert.assertTrue(webElement.isDisplayed());
         }
     }
 
@@ -267,7 +269,8 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToMyWishLists();
         for (WebElement webElement : profilPage.myWishAddToCardListe) {
-            softAssert.assertTrue(webElement.isDisplayed());
+            ReusableMethods.waitForVisibility(webElement,10);
+            Assert.assertTrue(webElement.isDisplayed());
         }
     }
 
@@ -279,7 +282,8 @@ public class profilPageTest {
         profilPage profilPage = new profilPage();
         profilPage.goToMyWishLists();
         for (WebElement webElement : profilPage.myWishRemoveListe) {
-            softAssert.assertTrue(webElement.isDisplayed());
+            ReusableMethods.waitForVisibility(webElement,10);
+            Assert.assertTrue(webElement.isDisplayed());
         }
     }
 
@@ -290,7 +294,7 @@ public class profilPageTest {
     public void TC_22_35() throws InterruptedException {
         profilPage profilPage = new profilPage();
         profilPage.goToMyRefunds();
-        softAssert.assertTrue(profilPage.idLocater.isDisplayed());
+        Assert.assertTrue(profilPage.idLocater.isDisplayed());
     }
 
     //@Parameters("reosan")
@@ -300,7 +304,7 @@ public class profilPageTest {
     public void TC_22_36() throws InterruptedException {
         profilPage profilPage = new profilPage();
         profilPage.goToMyRefunds();
-        softAssert.assertTrue(profilPage.reasonLocater.isDisplayed());
+        Assert.assertTrue(profilPage.reasonLocater.isDisplayed());
     }
 
     //@Parameters("status")
@@ -310,7 +314,7 @@ public class profilPageTest {
     public void TC_22_37() throws InterruptedException {
         profilPage profilPage = new profilPage();
         profilPage.goToMyRefunds();
-        softAssert.assertTrue(profilPage.statusLocater.isDisplayed());
+        Assert.assertTrue(profilPage.statusLocater.isDisplayed());
     }
 
     @DataProvider
@@ -330,6 +334,38 @@ public class profilPageTest {
         profilPage.goToMyRefunds();
         WebElement elementLocater = Driver.getDriver().
                 findElement(By.xpath("//th[.='" + element + "']"));
-        softAssert.assertTrue(elementLocater.isDisplayed());
+        Assert.assertTrue(elementLocater.isDisplayed());
     }
+
+    @Severity(SeverityLevel.NORMAL)
+    @Description("My Reports da Raporlar görülür")
+    @Test(groups = {"Regression", "Customer"})
+    public void TC_22_42() throws InterruptedException {
+        profilPage profilPage = new profilPage();
+        profilPage.goToMyReports();
+        Assert.assertTrue(profilPage.myRapor.isDisplayed());
+    }
+
+    @Severity(SeverityLevel.NORMAL)
+    @Description("FAQ ekranina yönlendirir")
+    @Test(groups = {"Regression", "Customer"})
+    public void TC_22_44() throws InterruptedException {
+        profilPage profilPage = new profilPage();
+        profilPage.goToNeedHelp();
+        Assert.assertTrue(profilPage.FAQ.isDisplayed());
+    }
+
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Uygulamadan cikis yapilmali")
+    @Test(groups = {"Regression", "Customer"})
+    public void TC_22_45() throws InterruptedException, IOException {
+        profilPage profilPage = new profilPage();
+        profilPage.goToProfilPage();
+        profilPage.logout1.click();
+        ReusableMethods.waitFor(3);
+        ReusableMethods.takeScreenshot("TC_22_45_CikisYapilamiyor");
+       // Driver.getDriver().navigate().refresh();
+        Assert.assertTrue(profilPage.loginLogout.isDisplayed());
+    }
+
 }

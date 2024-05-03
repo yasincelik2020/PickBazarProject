@@ -35,6 +35,12 @@ public class profilPage {
     @FindBy(xpath = "//a[.='My Refunds']")
     public WebElement myRefundsKategorisi;
 
+    @FindBy(xpath = "//a[.='My Reports']")
+    public WebElement myReportsKategorisi;
+
+    @FindBy(xpath = "//a[.='Need Help']")
+    public WebElement needHelpKategorisi;
+
     @FindBy(xpath = "//span[.='Total']")
     public WebElement total;
 
@@ -119,6 +125,36 @@ public class profilPage {
     @FindBy(xpath = "//th[.='Status']")
     public WebElement statusLocater;
 
+    @FindBy(xpath = "//td[.='xvcgfdgdfg']")
+    public WebElement myRapor;
+
+    @FindBy(xpath = "//h1[.='FAQ']")
+    public WebElement FAQ;
+
+    @FindBy(xpath = "//button[.='Logout']")
+    public WebElement logout1;
+
+    @FindBy(xpath = "//button[.='Login']")
+    public WebElement loginLogout;
+
+
+    public void kasaApplesUrununuEkleme() throws InterruptedException {
+        loginPage loginPage = new loginPage();
+        profilPage profilPage = new profilPage();
+        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        loginPage.loginMethod();
+        profilPage.applesAddButton.click();// elma eklendi
+    }
+
+    public void goToMyRefunds() throws InterruptedException {
+        loginPage loginPage = new loginPage();
+        profilPage profilPage = new profilPage();
+        loginPage.loginMethod();
+        profilPage.profilFotoSekmesi.click();
+        profilPage.profileKategorisi.click();
+        profilPage.myRefundsKategorisi.click();
+    }
+
     public void goToProfilPage() throws InterruptedException {
         profilPage profilPage = new profilPage();
         loginPage loginPage = new loginPage();
@@ -151,25 +187,24 @@ public class profilPage {
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
         profilPage.myWishlistsKategorisi.click();
-
     }
 
-    public void goToMyRefunds() throws InterruptedException {
+    public void goToMyReports() throws InterruptedException {
         loginPage loginPage = new loginPage();
         profilPage profilPage = new profilPage();
         loginPage.loginMethod();
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
-        profilPage.myRefundsKategorisi.click();
+        profilPage.myReportsKategorisi.click();
     }
 
-    public void kasaApplesUrununuEkleme() throws InterruptedException {
+    public void goToNeedHelp() throws InterruptedException {
         loginPage loginPage = new loginPage();
         profilPage profilPage = new profilPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         loginPage.loginMethod();
-        profilPage.applesAddButton.click();// elma eklendi
+        profilPage.profilFotoSekmesi.click();
+        profilPage.profileKategorisi.click();
+        profilPage.needHelpKategorisi.click();
     }
-
 
 }
