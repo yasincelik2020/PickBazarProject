@@ -51,55 +51,33 @@ public class offersPage {
     public WebElement applyButton;
     @FindBy(xpath = "//span[@class='text-base font-semibold text-heading']")
     public WebElement totalPrice;
+    @FindBy(xpath = "(//span[@class='text-sm text-body'])[8]")
+    public WebElement discount;
 
     public static  void offersGiris() {
+
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.offersButon.click();//offers gidildi
 
     }
     public void sepetUrunEkleme() throws InterruptedException {
+
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         chickenBreastAddButton.click();//sepete ürün eklendi
         breefSteakAddButton.click();
-//        itemButton.click();//sepete gidildi
-//        checkoutButton.click();
-//        checkoutAsQuestButton.click();
-//        checkAvailabilityButton.click();
-//        doYouHaveCouponButton.click();
-//        enterCouponCodeButton.click();
-//        applyButton.click();
-//        Actions actions = new Actions(Driver.getDriver());
-//        actions.click(chickenBreastAddButton)
-//                .click(breefSteakAddButton).perform();
-//                .click(itemButton)
-//                .click(checkoutButton)
-//                .click(checkoutAsQuestButton)
-//                .click(checkAvailabilityButton)
-//                .click(doYouHaveCouponButton)
-//                .click(enterCouponCodeButton)
-//                .click(applyButton)
+
     }
     public void kuponKullanma() throws InterruptedException {
-        Actions actions = new Actions(Driver.getDriver());
-//        actions.click(itemButton)
-//                .click(checkoutButton)
-//                .click(checkoutAsQuestButton)
-//                .click(checkAvailabilityButton)
-//                .click(doYouHaveCouponButton)
-//                .contextClick(enterCouponCodeButton)
-//                .click(applyButton).perform();
-
 
         itemButton.click();//sepete gidildi
         Thread.sleep(2000);
-        checkoutButton.click();Thread.sleep(2000);
-        checkoutAsQuestButton.click();Thread.sleep(2000);
-        checkAvailabilityButton.click();Thread.sleep(2000);
-        doYouHaveCouponButton.click();Thread.sleep(2000);
+        checkoutButton.click();
+        checkoutAsQuestButton.click();
+        checkAvailabilityButton.click();
+        doYouHaveCouponButton.click();
         enterCouponCodeButton.sendKeys(Keys.CONTROL,"v");
-
-        enterCouponCodeButton.click();Thread.sleep(2000);
+        enterCouponCodeButton.click();
         applyButton.click();
 
     }

@@ -343,7 +343,7 @@ public class homePage {
     public WebElement checkoutButtonArea;
     @FindBy(xpath = "//span[starts-with(@class,'flex h-full flex-1 ')]")
     public WebElement checkoutButton;
-    public void chartAddFunctions(){
+    public void gohomePageUrl(){
         Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
     }
     @FindBy(xpath = "//span[starts-with(@class,'flex ltr')]")
@@ -373,9 +373,65 @@ public class homePage {
     @FindBy(xpath = "//button[.='Checkout as guest']")
     public WebElement checkoutAsGuestButton;
 
+    @FindBy(xpath = "//input[@id='email']")
+    public WebElement eMailBox;
+
+    @FindBy(xpath = "//input[@id='password']")
+    public WebElement passswordBox;
+
+    @FindBy(xpath = "//button[.=\"Login\"]")
+    public WebElement loginButton;
+
+    @FindBy(xpath = "//button[@class='flex items-center text-sm font-semibold transition-colors duration-200 text-accent hover:text-accent-hover focus:text-accent-hover focus:outline-none']")
+    public WebElement contactNumberAddButton;
 
     @FindBy(xpath = "//input[@placeholder='1 (702) 123-4567']")
     public WebElement telefonNumberBox;
+
+    @FindBy(xpath = "(//button[starts-with(@class,'inline-flex ')])[3]")
+    public WebElement addContactButton;
+
+    @FindBy(xpath = " (//span[.='No Address Found'])[1]")
+    public WebElement billingAddressNoAdressFound;
+
+    @FindBy(xpath = " (//span[.='No Address Found'])[2]")
+    public WebElement shippingAddressNoAdressFound;
+
+    @FindBy(xpath = " (//div[@class='flag us']")
+    public WebElement flagIcon;
+
+    @FindBy(xpath = " (//button[.='Add'])[2]")
+    public WebElement billingAddressAddButton;
+
+    @FindBy(xpath = " (//button[.='Add'])[3]")
+    public WebElement shippingAddressAddButton;
+
+    @FindBy(xpath = " //input[@id='title']")
+    public WebElement titleButton;
+
+
+    @FindBy(xpath = " //p[@class='text-sm text-sub-heading']")
+    public WebElement billingAddressAdded;
+
+    @FindBy(xpath = " //p[@class='text-sm text-sub-heading']")
+    public WebElement shippingAddressAdded;
+
+    @FindBy(xpath = "//span[.='90 min express delivery']")
+    public WebElement expressDelivery;
+
+    @FindBy(xpath = "//span[.='8.00 AM - 11.00 AM']")
+    public WebElement morning;
+
+    @FindBy(xpath = "//span[.='11.00 AM - 2.00 PM']")
+    public WebElement noon;
+
+    @FindBy(xpath = "//span[.='2.00 PM - 5.00 PM']")
+    public WebElement afternoon;
+
+    @FindBy(xpath = "//span[.='5.00 PM - 8.00 PM']")
+    public WebElement evening;
+
+
 
 
 
