@@ -29,7 +29,7 @@ public class offersPageTest {
         offersPage.offersGiris();
         SoftAssert softAssert = new SoftAssert();
         for (int i = 1; i < 11; i++) {
-            if (i == 2||i==5||i==8){
+            if (i == 2 || i == 5 || i == 8) {
                 continue;
             }
             WebElement offersCpoiedKupons = Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
@@ -41,30 +41,43 @@ public class offersPageTest {
         Driver.closeDriver();
         softAssert.assertAll();
     }
+
     @Description("Kayitsiz kullanici offers bolumunde kopyaladigi indirim kuponunlarini  kullanabilmelidir.")
     @Severity(SeverityLevel.NORMAL)
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role", "Failed"})
     public void TC_05_11() throws InterruptedException {
 
-        offersPage offersPage=new offersPage();
+        offersPage offersPage = new offersPage();
         offersPage.sepetUrunEkleme();
 
         SoftAssert softAssert = new SoftAssert();
-        Actions actions = new Actions(Driver.getDriver());
-        for (int i = 1; i < 10; i++) {
-            if (i == 2||i==5||i==8){
+
+        for (int i = 1; i < 11; i++) {
+            if (i == 2 || i == 5 || i == 8) {
                 continue;
-            }offersPage.offersGiris();
+            }
+            offersPage.offersGiris();
             WebElement offersCopiedKupons = Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
-            String kuponAdi = offersCopiedKupons.getText().substring(0,3);
-            String kaynakKod = Driver.getDriver().getPageSource();
-            System.out.println("********"+kaynakKod);
-            System.out.println("+++++++"+kuponAdi);
+
             offersCopiedKupons.click();
 
             offersPage.kuponKullanma();
+            if (i == 1) {
+                softAssert.assertEquals(offersPage.discount.getText().substring(1), "2");
 
-            Assert.assertTrue(kaynakKod.contains(kuponAdi));
+            } else if (i == 3) {
+                softAssert.assertEquals(offersPage.discount.getText().substring(1), "12");
+            } else if (i == 4) {
+                softAssert.assertEquals(offersPage.discount.getText().substring(1), "15");
+            } else if (i == 6) {
+                softAssert.assertEquals(offersPage.discount.getText().substring(1), "20");
+            } else if (i == 7) {
+                softAssert.assertEquals(offersPage.discount.getText().substring(1), "10");
+            } else if (i == 9) {
+                softAssert.assertEquals(offersPage.discount.getText().substring(1), "5");
+            } else if (i == 10) {
+                softAssert.assertEquals(offersPage.discount.getText().substring(1), "4");
+            }
 
         }
         Driver.closeDriver();
