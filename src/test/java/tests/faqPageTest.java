@@ -5,6 +5,8 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -15,6 +17,17 @@ import utilities.Driver;
 
 public class faqPageTest {
 
+    @BeforeMethod(groups = {"dataSorular","Regression", "No role"})
+    public void beforeMethod() {
+        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+    }
+
+    @AfterMethod(groups = {"dataSorular","Regression", "No role"})
+    public void afterMethod() {
+        Driver.closeDriver();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertAll();
+    }
 
     @DataProvider
     public static Object[][] dataSorular() {
@@ -29,15 +42,12 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_01() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         faqPage faqPage = new faqPage();
         homePage.faqButon.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqText.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Description("Sitede FAQ sekmesinde hazir sorulara(sikca sorulan sorulardan secilmis) erisim saglanmalidir")
@@ -45,7 +55,6 @@ public class faqPageTest {
     @Test(dataProvider = "dataSorular", groups = {"Regression", "No role"})
 
     public void TC_06_01(String soru) {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.faqButon.click();
 
@@ -55,9 +64,6 @@ public class faqPageTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(sorularLocater.getText(), soru);
 
-        Driver.closeDriver();
-        softAssert.assertAll();
-
     }
 
     @Description("Sıkca sorulan sorularin yaninda + sembolune basildiginda, sembol -'ye donusmeli ")
@@ -65,7 +71,6 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_03() throws InterruptedException {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         SoftAssert softAssert = new SoftAssert();
@@ -79,8 +84,7 @@ public class faqPageTest {
             Thread.sleep(2000);
 
         }
-        Driver.closeDriver();
-        softAssert.assertAll();
+
     }
 
     @Description("How to contact with Customer Service? sorusu görülmelidir.")
@@ -88,18 +92,12 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_02() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
-//        Actions actions = new Actions(Driver.getDriver());
-//        actions.click(homePage.faqButon)
-//                .click(faqPage.faqilkSoruIsareti).perform();
         homePage.faqButon.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqilkSoru.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Description("How to contact with Customer Service? sorusunun cevabi acilmalidir.")
@@ -107,19 +105,13 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_04() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
-//        Actions actions = new Actions(Driver.getDriver());
-//        actions.click(homePage.faqButon)
-//                .click(faqPage.faqilkSoruIsareti).perform();
         homePage.faqButon.click();
         faqPage.faqilkSoruIsareti.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqilkSoruCevap.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Description("App installation failed, how to update system information? sorusu görülmelidir.")
@@ -127,15 +119,12 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_05() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqIkinciSoru.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Description("App installation failed, how to update system information? sorusunun cevabi acilmalidir.")
@@ -143,7 +132,6 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_07() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
@@ -151,8 +139,6 @@ public class faqPageTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqIkinciSoruCevap.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Description("Website response taking time, how to improve? sorusu görülmelidir.")
@@ -160,15 +146,12 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_08() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqUcuncuSoru.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Description("Website response taking time, how to improve? sorusunun cevabi acilmalidir.")
@@ -176,7 +159,6 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_10() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
@@ -184,8 +166,6 @@ public class faqPageTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqUcuncuSoruCevap.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
 
     }
 
@@ -194,15 +174,12 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_11() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqDorduncuSoru.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Description("How do I create a account? sorusunun cevabi acilmalidir.")
@@ -210,7 +187,6 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_13() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
@@ -218,7 +194,5 @@ public class faqPageTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqDorduncuSoruCevap.isDisplayed());
 
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 }
