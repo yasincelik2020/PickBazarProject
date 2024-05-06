@@ -1,31 +1,38 @@
 package tests.dropDownTest;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.dropDown.bakeryPage;
-import pages.dropDown.groceryPage;
 import pages.homePage;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
-
 import java.io.IOException;
 
-import static utilities.Driver.driver;
 
 public class bakeryPageTest {
     @Parameters("browser")
+
+    @BeforeMethod(groups = {"Regression", "No role"})
+    public void beforeMethod(@Optional("chrome")String browser) {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+    }
+    @AfterMethod(groups = {"Regression", "No role"})
+    public void afterMethod() {
+        Driver.closeDriver();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertAll();
+    }
+
     @Severity(SeverityLevel.NORMAL)
     @Description(" Shelf dropdown menu tiklanir ve \"Bakery\" secilir.")
     @Test(groups = {"Regression", "No role"})
@@ -36,8 +43,6 @@ public class bakeryPageTest {
         homePage.bakeryDropDownMenu.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(homePage.bakeryDropDownMenu.getText(),"Bakery");
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
@@ -48,8 +53,6 @@ public class bakeryPageTest {
         bakeryPage.bakeryPageGit(browser);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(bakeryPage.bakeryGetYour.getText().contains("Get Your"));
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
@@ -61,8 +64,6 @@ public class bakeryPageTest {
         Thread.sleep(3000);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(bakeryPage.bakeryGetYourFavorite.getText().contains("Get your favorite"));
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -70,16 +71,13 @@ public class bakeryPageTest {
     @Parameters("browser")
     @Test(groups = {"Regression", "No role"})
     public void TC_09_04(@Optional("chrome")String browser) throws InterruptedException {
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         bakeryPage bakeryPage = new bakeryPage(browser);
         bakeryPage.bakeryPageGit(browser);
         Thread.sleep(3000);
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertAll();
         softAssert.assertTrue(bakeryPage.bakeryWeSearchFrame.getText().contains("Search"));
-        Driver.closeDriver();
-
     }
 
 
@@ -94,8 +92,6 @@ public class bakeryPageTest {
         bakeryPage.bakeryWeSearchFrame.sendKeys("Raspberry Crumble Cookies", Keys.ENTER);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(bakeryPage.raspberryCrumbleCookiesUrunu.isDisplayed());
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -109,10 +105,7 @@ public class bakeryPageTest {
         Thread.sleep(3000);
         bakeryPage.bakeryWeSearchFrame.sendKeys("Pears", Keys.ENTER);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertAll();
         softAssert.assertEquals(homePage.bakeryDropDownMenu.getText(),"Sorry, No Product Found");
-        Driver.closeDriver();
-
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -124,12 +117,7 @@ public class bakeryPageTest {
       Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
-        Thread.sleep(3000);
-
-        Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        SoftAssert softAssert = new SoftAssert();
+        Thread.sleep(2000);
 
         int i=0;
         for (WebElement listElement : homePage.anasayfaBakeryUrunIsimList) {
@@ -139,8 +127,7 @@ public class bakeryPageTest {
         }
         ReusableMethods.takeScreenshot("Bakery urun isimleri");
 
-        softAssert.assertAll();
-      Driver.getDriver(browser).close();
+
     }
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
@@ -151,12 +138,7 @@ public class bakeryPageTest {
       Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
-        Thread.sleep(3000);
-
-        Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-
-        SoftAssert softAssert = new SoftAssert();
+        Thread.sleep(2000);
 
         int i=0;
         for (WebElement listElement : homePage.anasayfaBakeryFiyatList) {
@@ -166,8 +148,7 @@ public class bakeryPageTest {
         }
         ReusableMethods.takeScreenshot("Bakery urun fiyatlari");
 
-        softAssert.assertAll();
-      Driver.getDriver(browser).close();
+
     }
 
 

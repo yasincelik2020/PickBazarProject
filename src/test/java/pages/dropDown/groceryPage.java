@@ -42,12 +42,11 @@ public class groceryPage {
     @FindBy(xpath = "//h3[.=\"Apples\"]")
     public WebElement applesUrunu;
 
-    @FindBy(xpath = "(//div[starts-with(@class,'product-gallery')])[2]")
-    public WebElement slideBar;
-
-
     @FindBy(xpath = "//h3[.=\"Lemon\"]")
     public WebElement lemonUrunu;
+
+    @FindBy(xpath = "(//div[starts-with(@class,'product-gallery')])[2]")
+    public WebElement slideBar;
 
     @FindBy (xpath = "//button//span[.=\"Fruits\"]")
     public WebElement fruitsAltBaslik;
@@ -192,16 +191,5 @@ public class groceryPage {
 
     @FindBy (xpath = "//button//span[.=\"Shaving Needs\"]")
     public WebElement shavingNeedsAltBaslik;
-
-
-
-
-
-
-
-
-
-
-
 
 }

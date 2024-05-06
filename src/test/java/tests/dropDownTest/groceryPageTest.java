@@ -1,14 +1,13 @@
 package tests.dropDownTest;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.dropDown.groceryPage;
@@ -17,14 +16,21 @@ import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.JavaScriptExecutorUtils;
 import utilities.ReusableMethods;
-
-import java.awt.*;
 import java.io.IOException;
 
-import static utilities.Driver.driver;
 
 public class groceryPageTest {
-
+    @Parameters("browser")
+    @BeforeMethod(groups = {"Regression", "No role"})
+    public void beforeMethod(@Optional("chrome")String browser){
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+    }
+    @AfterMethod(groups = {"Regression", "No role"})
+    public void afterMethod() {
+        Driver.closeDriver();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertAll();
+    }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
@@ -37,8 +43,6 @@ public class groceryPageTest {
         homePage.groceryDropDownMenu.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(homePage.groceryDropDownMenu.getText(), "Grocery");
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -52,8 +56,6 @@ public class groceryPageTest {
         groceryPage.groceryWeSearchFrame.sendKeys("Clementies", Keys.ENTER);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(groceryPage.clementinesUrunu.isDisplayed());
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
 
@@ -69,8 +71,6 @@ public class groceryPageTest {
         groceryPage.groceryWeSearchFrame.sendKeys("Tomates", Keys.ENTER);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(homePage.groceryDropDownMenu.getText(), "Sorry, No Product Found");
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -80,9 +80,6 @@ public class groceryPageTest {
     public void TC_08_10(@Optional("chrome")String browser) throws IOException {
         homePage homePage = new homePage(browser);
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
-
-        Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
 
         SoftAssert softAssert = new SoftAssert();
 
@@ -105,8 +102,6 @@ public class groceryPageTest {
         homePage homePage = new homePage(browser);
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
 
-        Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
 
         SoftAssert softAssert = new SoftAssert();
 
@@ -124,15 +119,13 @@ public class groceryPageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "       \"Fruits & Vegetables\" dropdown menu button,\n" +
-            "\"Fruits\" ve \"Vegetables\" alt basliklari geldigi doğrulanmalıdır.")
+    @Description("Fruits & Vegetables dropdown menu button,Fruits ve Vegetables alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_11(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.fruitandVegetablesbutton.click();
@@ -144,21 +137,16 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.vegetablesAltBaslik);
         softAssert.assertEquals(groceryPage.vegetablesAltBaslik.getText(),"Vegetables");
 
-       // Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "        \"Meat & Fish\" dropdown menu button, \n" +
-            "\"Fresh Fish\" ve \"Meat\" alt basliklari geldigi doğrulanmalıdır.")
+    @Description("Meat & Fish dropdown menu button,Fresh Fish ve Meat alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_12(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.meatandFishbutton.click();
@@ -170,23 +158,18 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.meatAltBaslik);
         softAssert.assertEquals(groceryPage.meatAltBaslik.getText(),"Meat");
 
-        // Driver.closeDriver();
-        softAssert.assertAll();
     }
 
 
     @Severity(SeverityLevel.NORMAL)
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "     \"Snacks\" dropdown menu button, \"Nuts&Biscuits\", \n" +
-            "\"Chocolates\",  \"Crisps\", \"Noodles&Pasta\", \n" +
-            "\"Sauce\" ve \"Soup\" alt basliklari geldigi doğrulanmalıdır.")
     @Parameters("browser")
+    @Description("Snacks dropdown menu button, Nuts&Biscuits, Chocolates, Crisps, Noodles&Pasta, Sauce ve Soup alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_13(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.snacksButton.click();
@@ -214,21 +197,17 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.soupAltBaslik);
         softAssert.assertEquals(groceryPage.soupAltBaslik.getText(),"Soup");
 
-        // Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "        \"Pet Care\" dropdown menu button, \n" +
-            "\"Cat Food\",  \"Dog Food\" ve \"Accessories\" alt basliklari geldigi doğrulanmalıdır")
+    @Description("Pet Care dropdown menu button, Cat Food, Dog Food ve Accessories alt basliklari geldigi doğrulanmalıdır")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_14(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.petCareButton.click();
@@ -243,22 +222,19 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),groceryPage.accessoriesAltBaslik);
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.accessoriesAltBaslik);
         softAssert.assertEquals(groceryPage.accessoriesAltBaslik.getText(),"Accessories");
-        // Driver.closeDriver();
-        softAssert.assertAll();
+
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "      Home & Cleaning\" dropdown menu button, \n" +
-            "\"Air Freshner\",  \"Cleaning  Products\",  \"Kitchen Accessories\"\n" +
-            "ve \"Laundry\" alt basliklari geldigi doğrulanmalıdır.")
+
+    @Description("Home & Cleaning dropdown menu button, Air Freshner,Cleaning  Products,Kitchen Accessories  ve Laundry alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_15(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.homeAndCleaningButton.click();
@@ -277,21 +253,19 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),groceryPage.laundryAltBaslik);
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.laundryAltBaslik);
         softAssert.assertEquals(groceryPage.laundryAltBaslik.getText(),"Laundry");
-        // Driver.closeDriver();
-        softAssert.assertAll();
+
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "        \"Dairy\" dropdown menu button, \"Milk\",  \"Butter\",  \"Egg\" ve\n" +
-            "\"Yogurt\" alt basliklari geldigi doğrulanmalıdır.")
+
+    @Description("Dairy dropdown menu button, Milk, Butter,Egg ve Yogurt alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_16(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.dairyButton.click();
@@ -310,21 +284,19 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),groceryPage.yogurtAltBaslik);
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.yogurtAltBaslik);
         softAssert.assertEquals(groceryPage.yogurtAltBaslik.getText(),"Yogurt");
-        // Driver.closeDriver();
-        softAssert.assertAll();
+
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "       \"Cooking\" dropdown menu button, \"Oil\", \"Rice\", \"Salt&Sugar\"\n" +
-            "ve \"Spices\"alt basliklari geldigi doğrulanmalıdır.")
+
+    @Description("Cooking dropdown menu button, Oil, Rice,Salt&Sugar ve Spices alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_17(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.cookingButton.click();
@@ -343,21 +315,18 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),groceryPage.spicesAltBaslik);
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.spicesAltBaslik);
         softAssert.assertEquals(groceryPage.spicesAltBaslik.getText(),"Spices");
-        // Driver.closeDriver();
-        softAssert.assertAll();
+
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "            \"Breakfast\" dropdown menu button, \"Bread\",  \"Cereal\" \n" +
-            "ve \"Jam\" alt basliklari geldigi doğrulanmalıdır.")
+    @Description("Breakfast dropdown menu button, Bread,Cereal ve Jam alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_18(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.berakfastButton.click();
@@ -373,21 +342,17 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.jamAltBaslik);
         softAssert.assertEquals(groceryPage.jamAltBaslik.getText(),"Jam");
 
-        // Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "      \"Beverage\" dropdown menu button,  \"Coffee\",  \"Energy Drinks\", \"Juice\", \n" +
-            "\"Fizzy Drinks\"  ve \"Tea\" alt basliklari geldigi doğrulanmalıdır.")
+    @Description("Beverage dropdown menu button,Coffee,Energy Drinks,Juice,Fizzy Drinks ve Tea alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_19(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.beverageButton.click();
@@ -410,22 +375,17 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),groceryPage.teaAltBaslik);
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.teaAltBaslik);
         softAssert.assertEquals(groceryPage.teaAltBaslik.getText(),"Tea");
-
-        // Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
-    @Description("Ekranin Sol tarafinda \"Grocery\" secili oldugu icin su sekilde gelmelidir;\n" +
-            "       \"Health & Beauty\" dropdown menu button,  \"Bath\",  \"Cream\", \"Deodorant\", \n" +
-            "\"Face Care\",  \"Oral Care\"  ve \"Shaving Needs\"  alt basliklari geldigi doğrulanmalıdır.")
+    @Description("Health & Beauty dropdown menu button, Bath,Cream,Deodorant, Face Care,Oral Care ve Shaving Needs alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_20(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.healthAndBeautyButton.click();
@@ -453,8 +413,6 @@ public class groceryPageTest {
         JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.shavingNeedsAltBaslik);
         softAssert.assertEquals(groceryPage.shavingNeedsAltBaslik.getText(),"Shaving Needs");
 
-        // Driver.closeDriver();
-        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -462,22 +420,20 @@ public class groceryPageTest {
     @Description("Ürün alt kartında ürün imglerinde slide barın çalıştığını doğrulamalıdır.")
     @Test(groups = {"Regression", "No role"})
 
-    public void TC_08_27(@Optional("chrome")String browser) {
+    public void TC_08_27(@Optional("chrome")String browser) throws InterruptedException  {
         SoftAssert softAssert = new SoftAssert();
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.fruitandVegetablesbutton.click();
+        Thread.sleep(2000);
         groceryPage.applesUrunu.click();
-        groceryPage.slideBar.click();
+        Thread.sleep(2000);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),groceryPage.slideBar);
+       // groceryPage.slideBar.click();
 
         softAssert.assertTrue(groceryPage.slideBar.isDisplayed());
-
-        softAssert.assertAll();
-
-        Driver.closeDriver();
 
     }
 
