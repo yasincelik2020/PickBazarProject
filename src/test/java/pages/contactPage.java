@@ -33,6 +33,8 @@ public class contactPage {
     public WebElement instagramButton;
     @FindBy(xpath = "(//a[@class='text-muted transition-colors duration-300 focus:outline-none ltr:mr-8 ltr:last:mr-0 rtl:ml-8 rtl:last:ml-0 hover:undefined'])[3]")
     public WebElement twitterButton;
+    @FindBy(xpath = "//p[.='You must need to provide your name']")
+    public WebElement nameUyariYazisi;
 
     public void contactFormMethod(@Optional("chrome")String browser) {
         Actions actions = new Actions(Driver.getDriver(browser));

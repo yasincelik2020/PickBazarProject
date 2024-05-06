@@ -17,7 +17,9 @@ import pages.homePage;
 import pages.offersPage;
 import pages.profile.profilPage;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
+import java.io.IOException;
 import java.util.Collections;
 
 
@@ -59,7 +61,7 @@ public class offersPageTest {
                     }
                     offersPage.offersGiris(browser);
                     WebElement offersCopiedKupons = Driver.getDriver(browser).findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
-                    
+
                 offersCopiedKupons.click();
 
                 offersPage.kuponKullanma(browser);
