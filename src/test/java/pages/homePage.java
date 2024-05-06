@@ -10,9 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import org.testng.Assert;
 import utilities.ConfigReader;
-import utilities.ConfigReader;
-import org.testng.asserts.SoftAssert;
-import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
