@@ -33,7 +33,7 @@ public class orderPageTest {
     @Description("Anasayfada kücük ekranda sepet bilgisi gelmeli ")
     @Test(groups = {"Smoke", "No role"})
     public void TC_18_01() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.applesAddButton.click();
@@ -47,12 +47,12 @@ public class orderPageTest {
     @Description("Anasayfada kücük görüntüdeki sepet bilgilerinin ürün eklendiginde dogru bir sekilde güncellenmesi")
     @Test(groups = {"Smoke", "No role"})
     public void TC_18_02() throws InterruptedException {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         Thread.sleep(2000);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.spinachAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.spinachAddButton);
         double total = homePage.valueEvuloation(homePage.applesPriceValue, homePage.spinachPriceValue);
         System.out.println(total);
         String strTotal = String.valueOf(total);
@@ -69,9 +69,9 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.spinachAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButtonMinusSign);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.spinachAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButtonMinusSign);
         sa.assertTrue(homePage.chartButtonAtrightItemCount.getText().contains("1"));
         sa.assertTrue(homePage.chartButtonAtrightPrice.getText().contains(homePage.spinachPriceValue.getText()));
         sa.assertAll();
@@ -85,9 +85,10 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         sa.assertTrue(homePage.checkoutButtonArea.isEnabled());
+        sa.assertTrue(homePage.checkoutButtonArea.isDisplayed());
         sa.assertAll();
 
 
@@ -100,8 +101,9 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+       
         ReusableMethods.waitForVisibility(homePage.checkoutButton, 3);
         sa.assertTrue(homePage.checkoutButton.isDisplayed());
         sa.assertAll();
@@ -178,9 +180,9 @@ public class orderPageTest {
         homePage.dailyNeedsDropDownMenu.click();
         homePage.dailyNeedsChartIkon.click();
         homePage.checkoutButton.click();
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver("browser"), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(homePage.eMailBox));
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.eMailBox);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.eMailBox);
         homePage.eMailBox.sendKeys(ConfigReader.getProperty("eposta"));
         homePage.passswordBox.click();
         homePage.passswordBox.sendKeys(ConfigReader.getProperty("password"));
@@ -196,8 +198,8 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         sa.assertTrue(homePage.flagIcon.isEnabled());
@@ -210,8 +212,8 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.billingAddressNoAdressFound.click();
@@ -225,14 +227,14 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.billingAddressAddButton.click();
         homePage.titleButton.click();
         homePage.titleButton.sendKeys(ConfigReader.getProperty("firmName"));
-        Actions action = new Actions(Driver.getDriver());
+        Actions action = new Actions(Driver.getDriver("browser"));
         action
                 .sendKeys(Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("country"))
@@ -256,14 +258,14 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.billingAddressAddButton.click();
         homePage.titleButton.click();
         homePage.titleButton.sendKeys(ConfigReader.getProperty("firmName"));
-        Actions action = new Actions(Driver.getDriver());
+        Actions action = new Actions(Driver.getDriver("browser"));
         action
                 .sendKeys(Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("country"))
@@ -307,8 +309,8 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.shippingAddressNoAdressFound.click();
@@ -322,14 +324,14 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.shippingAddressAddButton.click();
         homePage.titleButton.click();
         homePage.titleButton.sendKeys(ConfigReader.getProperty("firmName"));
-        Actions action = new Actions(Driver.getDriver());
+        Actions action = new Actions(Driver.getDriver("browser"));
         action
                 .sendKeys(Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("country"))
@@ -353,8 +355,8 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         sa.assertTrue(homePage.telefonNumberBox.getText().isEmpty());
@@ -367,8 +369,8 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         sa.assertTrue(homePage.expressDelivery.getText().contains("90 min"));
@@ -385,8 +387,8 @@ public class orderPageTest {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
         homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), homePage.chartButtonAtrightPrice);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
 //        homePage.contactNumberAddButton.click();
@@ -395,7 +397,7 @@ public class orderPageTest {
         homePage.shippingAddressAddButton.click();
         homePage.titleButton.click();
         homePage.titleButton.sendKeys(ConfigReader.getProperty("firmName"));
-        Actions action = new Actions(Driver.getDriver());
+        Actions action = new Actions(Driver.getDriver("browser"));
         action
                 .sendKeys(Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("country"))

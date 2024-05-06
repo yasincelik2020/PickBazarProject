@@ -1,4 +1,5 @@
 package tests.dropDownTest;
+
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import jdk.jfr.Description;
@@ -9,13 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.dropDown.booksPage;
 import pages.homePage;
-import utilities.ConfigReader;
-import utilities.Driver;
-import utilities.JavaScriptExecutorUtils;
-import utilities.ReusableMethods;
+import utilities.*;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,14 +23,15 @@ import java.util.List;
 
 public class booksPageTest {
 
-    @AfterMethod
+    @AfterMethod(groups = {"Regression"})
     public void afterMethod() {
         Driver.closeDriver();
     }
 
-    @BeforeMethod
-    public void beforeMethod() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+    @BeforeMethod(groups = {"Regression"})
+    @Parameters ("browser")
+    public void beforeMethod(String browser) {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -42,7 +43,7 @@ public class booksPageTest {
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
         ReusableMethods.waitFor(1);
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("books"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("books"));
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -53,7 +54,9 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        Assert.fail("Book Sayfasinda 'Best Selling Products' alani yok ");
+        for (WebElement webElement : booksPage.booksBasliklar) {
+            Assert.assertTrue(webElement.getText().contains("Best Selling"));
+        }
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -64,7 +67,7 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), booksPage.popularProducts);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), booksPage.popularProducts);
         Assert.assertTrue(booksPage.popularProducts.isDisplayed());
     }
 
@@ -76,7 +79,7 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), booksPage.popularProducts);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), booksPage.popularProducts);
 
         for (int i = 0; i < booksPage.popularKitaplarImages.size() - 1; i++) {
             Assert.assertTrue(booksPage.popularKitaplarImages.get(i).isDisplayed());
@@ -100,7 +103,7 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), booksPage.popularProducts);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), booksPage.popularProducts);
         Assert.assertTrue(booksPage.popularKitaplarIsimler.getFirst().getText().contains("Agents"));
     }
 
@@ -112,7 +115,7 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), booksPage.whichBookHeader);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), booksPage.whichBookHeader);
         Assert.assertTrue(booksPage.whichBookHeader.isDisplayed());
     }
 
@@ -125,10 +128,10 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), booksPage.whichBookHeader);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), booksPage.whichBookHeader);
         List<String> whichBookIsimListesi = new ArrayList<>(Arrays.asList("Comic books", "Science Fiction", "Literature",
                 "Children's Literature", "Horror Fiction", "Novels", "Romantic Poetry", "Thriller"));
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver("browser"), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfAllElements(booksPage.whichBookHeader));
         System.out.println("Thriller = " + booksPage.whichBookList.getLast().getText());
         for (int i = 0; i < booksPage.whichBookList.size() - 1; i++) {
@@ -155,7 +158,7 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), booksPage.topAuthors);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), booksPage.topAuthors);
         Assert.assertTrue(booksPage.topAuthors.isDisplayed());
     }
 
@@ -167,7 +170,7 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), booksPage.topAuthors);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), booksPage.topAuthors);
         for (WebElement yazarImage : booksPage.yazarTumImages) {
             Dimension resimBoyutu = yazarImage.getSize();// bu class dan resmin yatay ve dikey uzunlugu aliniyor
             int genislik = resimBoyutu.getWidth();
@@ -186,7 +189,7 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage();
         booksPage.booksDropDown.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), booksPage.yazarTumImages.getFirst());
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), booksPage.yazarTumImages.getFirst());
         for (int i = 0; i < booksPage.yazarIsimleri.size(); i++) {
             try {
                 if (booksPage.yazarIsimleri.get(i).getText().isEmpty()) {
@@ -194,8 +197,8 @@ public class booksPageTest {
                 }
                 Assert.assertTrue(booksPage.yazarIsimleri.get(i).isDisplayed());
             } catch (Exception e) {
-                JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), booksPage.nextYazar);
-                ReusableMethods.waitForVisibility(booksPage.yazarIsimleri.get(i),10);
+                JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), booksPage.nextYazar);
+                ReusableMethods.waitForVisibility(booksPage.yazarIsimleri.get(i), 10);
                 Assert.assertTrue(booksPage.yazarIsimleri.get(i).isDisplayed());
             }
 

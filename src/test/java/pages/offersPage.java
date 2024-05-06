@@ -12,7 +12,7 @@ import utilities.Driver;
 
 public class offersPage {
     public offersPage(){
-        PageFactory.initElements(Driver.getDriver(),this);
+        PageFactory.initElements(Driver.getDriver("browser"),this);
     }
 
     //"We source the best healthy foods for you." locater
@@ -55,20 +55,47 @@ public class offersPage {
     public WebElement discount;
 
     public static  void offersGiris() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
 
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.offersButon.click();//offers gidildi
 
     }
     public void sepetUrunEkleme() throws InterruptedException {
 
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         chickenBreastAddButton.click();//sepete ürün eklendi
         breefSteakAddButton.click();
 
+//        itemButton.click();//sepete gidildi
+//        checkoutButton.click();
+//        checkoutAsQuestButton.click();
+//        checkAvailabilityButton.click();
+//        doYouHaveCouponButton.click();
+//        enterCouponCodeButton.click();
+//        applyButton.click();
+//        Actions actions = new Actions(Driver.getDriver("browser"));
+//        actions.click(chickenBreastAddButton)
+//                .click(breefSteakAddButton).perform();
+//                .click(itemButton)
+//                .click(checkoutButton)
+//                .click(checkoutAsQuestButton)
+//                .click(checkAvailabilityButton)
+//                .click(doYouHaveCouponButton)
+//                .click(enterCouponCodeButton)
+//                .click(applyButton)
     }
     public void kuponKullanma() throws InterruptedException {
+        Actions actions = new Actions(Driver.getDriver("browser"));
+//        actions.click(itemButton)
+//                .click(checkoutButton)
+//                .click(checkoutAsQuestButton)
+//                .click(checkAvailabilityButton)
+//                .click(doYouHaveCouponButton)
+//                .contextClick(enterCouponCodeButton)
+//                .click(applyButton).perform();
+
 
         itemButton.click();//sepete gidildi
         Thread.sleep(2000);

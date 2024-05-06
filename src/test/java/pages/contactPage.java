@@ -9,9 +9,8 @@ import utilities.ConfigReader;
 import utilities.Driver;
 
 public class contactPage {
-    public contactPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+    public contactPage(){
+        PageFactory.initElements(Driver.getDriver("browser"),this);}
 
     @FindBy(xpath = "(//input[starts-with(@class, 'flex w-full appearance-none')])[1]")
     public WebElement nameButton;
@@ -35,7 +34,7 @@ public class contactPage {
     public WebElement twitterButton;
 
     public void contactFormMethod() {
-        Actions actions = new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver("browser"));
         actions.sendKeys(nameButton, "Nuray", Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("eposta"), Keys.TAB)
                 .sendKeys("Sikayet", Keys.TAB)

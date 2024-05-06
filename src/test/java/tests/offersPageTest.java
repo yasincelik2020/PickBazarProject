@@ -32,7 +32,7 @@ public class offersPageTest {
             if (i == 2 || i == 5 || i == 8) {
                 continue;
             }
-            WebElement offersCpoiedKupons = Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
+            WebElement offersCpoiedKupons = Driver.getDriver("browser").findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
             offersCpoiedKupons.click();
             Thread.sleep(3000);
             System.out.println("text : " + offersCpoiedKupons.getText());
@@ -52,38 +52,38 @@ public class offersPageTest {
 
         SoftAssert softAssert = new SoftAssert();
 
-        for (int i = 1; i < 11; i++) {
-            if (i == 2 || i == 5 || i == 8) {
-                continue;
+                for (int i = 1; i < 11; i++) {
+                    if (i == 2 || i == 5 || i == 8) {
+                        continue;
+                    }
+                    offersPage.offersGiris();
+                    WebElement offersCopiedKupons = Driver.getDriver("browser").findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
+                    
+                offersCopiedKupons.click();
+
+                offersPage.kuponKullanma();
+                if (i == 1) {
+                    softAssert.assertEquals(offersPage.discount.getText().substring(1), "2");
+
+                } else if (i == 3) {
+                    softAssert.assertEquals(offersPage.discount.getText().substring(1), "12");
+                } else if (i == 4) {
+                    softAssert.assertEquals(offersPage.discount.getText().substring(1), "15");
+                } else if (i == 6) {
+                    softAssert.assertEquals(offersPage.discount.getText().substring(1), "20");
+                } else if (i == 7) {
+                    softAssert.assertEquals(offersPage.discount.getText().substring(1), "10");
+                } else if (i == 9) {
+                    softAssert.assertEquals(offersPage.discount.getText().substring(1), "5");
+                } else if (i == 10) {
+                    softAssert.assertEquals(offersPage.discount.getText().substring(1), "4");
+                }
+
             }
-            offersPage.offersGiris();
-            WebElement offersCopiedKupons = Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
-
-            offersCopiedKupons.click();
-
-            offersPage.kuponKullanma();
-            if (i == 1) {
-                softAssert.assertEquals(offersPage.discount.getText().substring(1), "2");
-
-            } else if (i == 3) {
-                softAssert.assertEquals(offersPage.discount.getText().substring(1), "12");
-            } else if (i == 4) {
-                softAssert.assertEquals(offersPage.discount.getText().substring(1), "15");
-            } else if (i == 6) {
-                softAssert.assertEquals(offersPage.discount.getText().substring(1), "20");
-            } else if (i == 7) {
-                softAssert.assertEquals(offersPage.discount.getText().substring(1), "10");
-            } else if (i == 9) {
-                softAssert.assertEquals(offersPage.discount.getText().substring(1), "5");
-            } else if (i == 10) {
-                softAssert.assertEquals(offersPage.discount.getText().substring(1), "4");
-            }
-
+            Driver.closeDriver();
+            softAssert.assertAll();
         }
-        Driver.closeDriver();
-        softAssert.assertAll();
     }
-}
 
 
 

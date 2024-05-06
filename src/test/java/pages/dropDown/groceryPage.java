@@ -11,10 +11,10 @@ import java.util.List;
 
 public class groceryPage {
     public groceryPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver("browser"), this);
     }
     public void groceryPageGit() {// page methodu
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();

@@ -1,10 +1,13 @@
 package utilities;
 
+import com.beust.jcommander.Parameter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
   /*
@@ -31,11 +34,12 @@ public class Driver {
     private Driver() { //constructor Driver
     }
     // create getDriver method to create and initiate the driver instance
-    public static WebDriver getDriver() {
+    @Parameters("browser")
+    public static WebDriver getDriver(@Optional("chrome") String browser) {
         if (driver == null) {
             //bu şekilde sadece bir driver object üretilmesini garantiliyoruz. daha önce driver üretilmişse null olmayacaktır ve
             //bu if bloğu çalışmayacak ve yeni driver üretilmeyecektir. Var olan (daha önce üretilmiş olan) driverı return edecektir.
-            switch (ConfigReader.getProperty("browser")) {
+            switch (browser) {
                 case "chrome":
                     driver = new ChromeDriver();
                     break;
