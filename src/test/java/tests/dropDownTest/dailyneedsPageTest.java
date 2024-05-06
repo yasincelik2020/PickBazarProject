@@ -9,16 +9,29 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.dropDown.dailyneedsPage;
+import pages.homePage;
+import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 import java.io.IOException;
 
 
 public class dailyneedsPageTest {
+
+    @BeforeMethod(groups = {"Regression"})
+    @Parameters("browser")
+    public void beforeMethod(String browser) {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+        homePage homePage = new homePage();
+        homePage.homePageDropDownMenu.click();
+        homePage.dailyNeedsDropDownMenu.click();
+    }
 
     @DataProvider
     public static Object[][] data() {
@@ -37,7 +50,6 @@ public class dailyneedsPageTest {
     @Test
     public void TC_14_01() {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
-        dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(dailyneedsPage.dailyNeedsYouDeserve.getText().contains("You Deserve"));
         Driver.closeDriver();
@@ -48,7 +60,6 @@ public class dailyneedsPageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_14_02() {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
-        dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(dailyneedsPage.dailyNeedsWeSourse.getText().contains("We source"));
         Driver.closeDriver();
@@ -59,7 +70,6 @@ public class dailyneedsPageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_14_03() {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
-        dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(dailyneedsPage.dailyNeedsWeSearchFrame.getText().equals("search"));
         Driver.closeDriver();
@@ -70,7 +80,6 @@ public class dailyneedsPageTest {
     @Test(groups = {"Regression", "No role", "Failed"})
     public void TC_14_05() throws InterruptedException, IOException {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
-        dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
         ReusableMethods.takeScreenshot("Bug_TC_14_05_SearchButtonYok_");
         Assert.assertTrue(dailyneedsPage.dailyNeedsWeSearchButton.isDisplayed());
@@ -82,7 +91,6 @@ public class dailyneedsPageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_14_06() throws InterruptedException {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
-        dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
         dailyneedsPage.dailyNeedsWeSearchFrame.sendKeys("Rice", Keys.ENTER);
         Assert.assertTrue(dailyneedsPage.sekkaGrainRiceUrunu.isDisplayed());
@@ -94,12 +102,11 @@ public class dailyneedsPageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_14_07() throws InterruptedException {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
-        dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         Thread.sleep(3000);
         //"Kullanici "Clothing"" kategorisindeki" Mango Self Striped A Line Dress"  adli ürünü search sekmesinde arar.
-        Actions actions = new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver("browser"));
         actions.sendKeys(dailyneedsPage.dailyNeedsWeSearchFrame, "Mango Self Striped A Line Dress",Keys.ENTER).perform();
-            WebElement gelenYazi = Driver.getDriver().findElement
+            WebElement gelenYazi = Driver.getDriver("browser").findElement
                     (By.xpath("//h3[.='No products found']"));
             Assert.assertTrue(gelenYazi.getText().contains("No products found"));
 
@@ -112,9 +119,8 @@ public class dailyneedsPageTest {
     @Test(dataProvider = "data", groups = {"Regression", "No role"})
     public void TC_14_08(String kategoriAdi) throws InterruptedException {
         dailyneedsPage dailyneedsPage = new dailyneedsPage();
-        dailyneedsPage.dailyNeedsPageGit();// daily Needs sayfsaina gitmek icin method
         ReusableMethods.waitForPageToLoad(3);// sayfanin yüklenmesini icin.
-        WebElement kategoriLocater = Driver.getDriver().
+        WebElement kategoriLocater = Driver.getDriver("browser").
                 findElement(By.xpath("//h3[.='" + kategoriAdi + "']"));
         SoftAssert softAssert = new SoftAssert();// hatayi bulacak ama test devam edecek.
         softAssert.assertEquals(kategoriLocater.getText(), kategoriAdi);

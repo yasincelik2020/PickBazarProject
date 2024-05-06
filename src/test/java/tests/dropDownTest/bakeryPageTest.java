@@ -29,7 +29,7 @@ public class bakeryPageTest {
     @Description(" Shelf dropdown menu tiklanir ve \"Bakery\" secilir.")
     @Test(groups = {"Regression", "No role"})
     public void TC_09_01(){
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
@@ -67,7 +67,7 @@ public class bakeryPageTest {
     @Description("Search secenegi olan frame görüntülenir.")
     @Test(groups = {"Regression", "No role"})
     public void TC_09_04() throws InterruptedException {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         bakeryPage bakeryPage = new bakeryPage();
         bakeryPage.bakeryPageGit();
         Thread.sleep(3000);
@@ -115,7 +115,7 @@ public class bakeryPageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_09_07() throws IOException, InterruptedException {
         homePage homePage = new homePage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
         Thread.sleep(3000);
@@ -134,14 +134,14 @@ public class bakeryPageTest {
         ReusableMethods.takeScreenshot("Bakery urun isimleri");
 
         softAssert.assertAll();
-        Driver.getDriver().close();
+        Driver.getDriver("browser").close();
     }
     @Severity(SeverityLevel.NORMAL)
     @Description ("Scroll down yapildiginda ekranin sag tarafinda ürünler 'Bakery' secili oldugu icin Bakery fiyatlari geldigi dogrulanmalidir.")
     @Test(groups = {"Regression", "No role"})
     public void TC_09_07_01() throws IOException, InterruptedException {
         homePage homePage = new homePage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
         Thread.sleep(3000);
@@ -160,7 +160,7 @@ public class bakeryPageTest {
         ReusableMethods.takeScreenshot("Bakery urun fiyatlari");
 
         softAssert.assertAll();
-        Driver.getDriver().close();
+        Driver.getDriver("browser").close();
     }
 
 

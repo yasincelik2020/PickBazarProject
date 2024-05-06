@@ -11,10 +11,10 @@ import java.util.List;
 
 public class bakeryPage {
     public bakeryPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver("browser"), this);
     }
     public void bakeryPageGit() {// page methodu
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();

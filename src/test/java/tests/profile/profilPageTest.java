@@ -184,7 +184,7 @@ public class profilPageTest {
         profilPage.closeEklenenUrunSayfa.click();
         profilPage.profilFotoSekmesi.click();
         profilPage.myOrderKategorisi.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(), profilPage.eklenenUrunMyOrder);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"), profilPage.eklenenUrunMyOrder);
         ReusableMethods.waitForVisibility(profilPage.eklenenUrunMyOrder, 3);
         ReusableMethods.takeScreenshot("Bug_TC_22_16_KasadaApplesUrunYok_");
         System.out.println("profilPage.eklenenUrunMyOrder.getText() = " + profilPage.eklenenUrunMyOrder.getText());
@@ -211,7 +211,7 @@ public class profilPageTest {
     public void TC_22_17_26(String detayString) throws InterruptedException {
         profilPage profilPage = new profilPage();
         profilPage.goToMyOrderPage();
-        WebElement elementLocater = Driver.getDriver().
+        WebElement elementLocater = Driver.getDriver("browser").
                 findElement(By.xpath("(//span[.='" + detayString + "'])[1]"));
         Assert.assertTrue(elementLocater.isDisplayed());
     }
@@ -332,7 +332,7 @@ public class profilPageTest {
     public void TC_22_38_39_40_41(String element) throws InterruptedException {
         profilPage profilPage = new profilPage();
         profilPage.goToMyRefunds();
-        WebElement elementLocater = Driver.getDriver().
+        WebElement elementLocater = Driver.getDriver("browser").
                 findElement(By.xpath("//th[.='" + element + "']"));
         Assert.assertTrue(elementLocater.isDisplayed());
     }
@@ -364,7 +364,7 @@ public class profilPageTest {
         profilPage.logout1.click();
         ReusableMethods.waitFor(3);
         ReusableMethods.takeScreenshot("TC_22_45_CikisYapilamiyor");
-       // Driver.getDriver().navigate().refresh();
+       // Driver.getDriver("browser").navigate().refresh();
         Assert.assertTrue(profilPage.loginLogout.isDisplayed());
     }
 

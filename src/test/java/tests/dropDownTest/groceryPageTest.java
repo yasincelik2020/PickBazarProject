@@ -28,7 +28,7 @@ public class groceryPageTest {
     @Description("Shelf dropdown menu tiklandigi ve Grocery secildigi dogrulanir.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_01() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
@@ -73,7 +73,7 @@ public class groceryPageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_08_10() throws IOException {
         homePage homePage = new homePage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
 
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.PAGE_DOWN).perform();
@@ -89,14 +89,14 @@ public class groceryPageTest {
         ReusableMethods.takeScreenshot("Grocery urun isimleri");
 
         softAssert.assertAll();
-        Driver.getDriver().close();
+        Driver.getDriver("browser").close();
     }
     @Severity(SeverityLevel.NORMAL)
     @Description("Scroll down yapildiginda ekranin sag tarafinda ürünler 'Grocery' secili oldugu icin Grocery fiyatlari geldigi dogrulanmalidir.")
     @Test(groups = {"Regression", "No role"})
     public void TC_08_10_01() throws InterruptedException, IOException {
         homePage homePage = new homePage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
 
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.PAGE_DOWN).perform();
@@ -112,7 +112,7 @@ public class groceryPageTest {
         ReusableMethods.takeScreenshot("Grocery urun fiyatlari");
 
         softAssert.assertAll();
-        Driver.getDriver().close();
+        Driver.getDriver("browser").close();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -124,16 +124,16 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.fruitandVegetablesbutton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.fruitsAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.fruitsAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.fruitsAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.fruitsAltBaslik);
         softAssert.assertEquals(groceryPage.fruitsAltBaslik.getText(),"Fruits");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.vegetablesAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.vegetablesAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.vegetablesAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.vegetablesAltBaslik);
         softAssert.assertEquals(groceryPage.vegetablesAltBaslik.getText(),"Vegetables");
 
        // Driver.closeDriver();
@@ -149,16 +149,16 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.meatandFishbutton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.freshFishAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.freshFishAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.freshFishAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.freshFishAltBaslik);
         softAssert.assertEquals(groceryPage.freshFishAltBaslik.getText(),"Fresh Fish");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.meatAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.meatAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.meatAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.meatAltBaslik);
         softAssert.assertEquals(groceryPage.meatAltBaslik.getText(),"Meat");
 
         // Driver.closeDriver();
@@ -176,32 +176,32 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.snacksButton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.nutsAndBiscuitsAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.nutsAndBiscuitsAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.nutsAndBiscuitsAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.nutsAndBiscuitsAltBaslik);
         softAssert.assertEquals(groceryPage.nutsAndBiscuitsAltBaslik.getText(),"Nuts & Biscuits");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.chokolatesAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.chokolatesAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.chokolatesAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.chokolatesAltBaslik);
         softAssert.assertEquals(groceryPage.chokolatesAltBaslik.getText(),"Chocolates");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.crispsAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.crispsAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.crispsAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.crispsAltBaslik);
         softAssert.assertEquals(groceryPage.crispsAltBaslik.getText(),"Crisps");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.noodlesAndPastaAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.noodlesAndPastaAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.noodlesAndPastaAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.noodlesAndPastaAltBaslik);
         softAssert.assertEquals(groceryPage.noodlesAndPastaAltBaslik.getText(),"Noodles & Pasta");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.sauceAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.sauceAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.sauceAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.sauceAltBaslik);
         softAssert.assertEquals(groceryPage.sauceAltBaslik.getText(),"Sauce");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.soupAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.soupAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.soupAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.soupAltBaslik);
         softAssert.assertEquals(groceryPage.soupAltBaslik.getText(),"Soup");
 
         // Driver.closeDriver();
@@ -217,20 +217,20 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.petCareButton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.catFoodAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.catFoodAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.catFoodAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.catFoodAltBaslik);
         softAssert.assertEquals(groceryPage.catFoodAltBaslik.getText(),"Cat Food");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.dogFoodAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.dogFoodAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.dogFoodAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.dogFoodAltBaslik);
         softAssert.assertEquals(groceryPage.dogFoodAltBaslik.getText(),"Dog Food");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.accessoriesAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.accessoriesAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.accessoriesAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.accessoriesAltBaslik);
         softAssert.assertEquals(groceryPage.accessoriesAltBaslik.getText(),"Accessories");
         // Driver.closeDriver();
         softAssert.assertAll();
@@ -246,24 +246,24 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.homeAndCleaningButton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.airFreshnerAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.airFreshnerAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.airFreshnerAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.airFreshnerAltBaslik);
         softAssert.assertEquals(groceryPage.airFreshnerAltBaslik.getText(),"Air Freshner");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.cleaningProductsdAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.cleaningProductsdAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.cleaningProductsdAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.cleaningProductsdAltBaslik);
         softAssert.assertEquals(groceryPage.cleaningProductsdAltBaslik.getText(),"Cleaning Products");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.kitchenAccessoriesAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.kitchenAccessoriesAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.kitchenAccessoriesAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.kitchenAccessoriesAltBaslik);
         softAssert.assertEquals(groceryPage.kitchenAccessoriesAltBaslik.getText(),"Kitchen Accessories");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.laundryAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.laundryAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.laundryAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.laundryAltBaslik);
         softAssert.assertEquals(groceryPage.laundryAltBaslik.getText(),"Laundry");
         // Driver.closeDriver();
         softAssert.assertAll();
@@ -278,24 +278,24 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.dairyButton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.milkAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.milkAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.milkAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.milkAltBaslik);
         softAssert.assertEquals(groceryPage.milkAltBaslik.getText(),"Milk");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.butterAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.butterAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.butterAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.butterAltBaslik);
         softAssert.assertEquals(groceryPage.butterAltBaslik.getText(),"Butter");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.eggAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.eggAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.eggAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.eggAltBaslik);
         softAssert.assertEquals(groceryPage.eggAltBaslik.getText(),"Egg");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.yogurtAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.yogurtAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.yogurtAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.yogurtAltBaslik);
         softAssert.assertEquals(groceryPage.yogurtAltBaslik.getText(),"Yogurt");
         // Driver.closeDriver();
         softAssert.assertAll();
@@ -310,24 +310,24 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.cookingButton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.oilAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.oilAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.oilAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.oilAltBaslik);
         softAssert.assertEquals(groceryPage.oilAltBaslik.getText(),"Oil");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.riceAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.riceAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.riceAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.riceAltBaslik);
         softAssert.assertEquals(groceryPage.riceAltBaslik.getText(),"Rice");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.saltAndSugarAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.saltAndSugarAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.saltAndSugarAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.saltAndSugarAltBaslik);
         softAssert.assertEquals(groceryPage.saltAndSugarAltBaslik.getText(),"Salt & Sugar");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.spicesAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.spicesAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.spicesAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.spicesAltBaslik);
         softAssert.assertEquals(groceryPage.spicesAltBaslik.getText(),"Spices");
         // Driver.closeDriver();
         softAssert.assertAll();
@@ -342,20 +342,20 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.berakfastButton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.breadAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.breadAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.breadAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.breadAltBaslik);
         softAssert.assertEquals(groceryPage.breadAltBaslik.getText(),"Bread");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.cerealAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.cerealAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.cerealAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.cerealAltBaslik);
         softAssert.assertEquals(groceryPage.cerealAltBaslik.getText(),"Cereal");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.jamAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.jamAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.jamAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.jamAltBaslik);
         softAssert.assertEquals(groceryPage.jamAltBaslik.getText(),"Jam");
 
         // Driver.closeDriver();
@@ -371,28 +371,28 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.beverageButton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.coffeeAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.coffeeAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.coffeeAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.coffeeAltBaslik);
         softAssert.assertEquals(groceryPage.coffeeAltBaslik.getText(),"Coffee");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.energyDrinksAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.energyDrinksAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.energyDrinksAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.energyDrinksAltBaslik);
         softAssert.assertEquals(groceryPage.energyDrinksAltBaslik.getText(),"Energy Drinks");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.juiceAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.juiceAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.juiceAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.juiceAltBaslik);
         softAssert.assertEquals(groceryPage.juiceAltBaslik.getText(),"Juice");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.fizzyDrinksAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.fizzyDrinksAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.fizzyDrinksAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.fizzyDrinksAltBaslik);
         softAssert.assertEquals(groceryPage.fizzyDrinksAltBaslik.getText(),"Fizzy Drinks");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.teaAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.teaAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.teaAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.teaAltBaslik);
         softAssert.assertEquals(groceryPage.teaAltBaslik.getText(),"Tea");
 
         // Driver.closeDriver();
@@ -408,32 +408,32 @@ public class groceryPageTest {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
         groceryPage.healthAndBeautyButton.click();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.bathAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.bathAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.bathAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.bathAltBaslik);
         softAssert.assertEquals(groceryPage.bathAltBaslik.getText(),"Bath");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.creamAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.creamAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.creamAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.creamAltBaslik);
         softAssert.assertEquals(groceryPage.creamAltBaslik.getText(),"Cream");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.deodorantAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.deodorantAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.deodorantAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.deodorantAltBaslik);
         softAssert.assertEquals(groceryPage.deodorantAltBaslik.getText(),"Deodorant");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.faceCareAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.faceCareAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.faceCareAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.faceCareAltBaslik);
         softAssert.assertEquals(groceryPage.faceCareAltBaslik.getText(),"Face Care");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.oralCareAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.oralCareAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.oralCareAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.oralCareAltBaslik);
         softAssert.assertEquals(groceryPage.oralCareAltBaslik.getText(),"Oral Care");
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),groceryPage.shavingNeedsAltBaslik);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),groceryPage.shavingNeedsAltBaslik);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),groceryPage.shavingNeedsAltBaslik);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),groceryPage.shavingNeedsAltBaslik);
         softAssert.assertEquals(groceryPage.shavingNeedsAltBaslik.getText(),"Shaving Needs");
 
         // Driver.closeDriver();
@@ -446,7 +446,7 @@ public class groceryPageTest {
 
     public void TC_08_27() {
         SoftAssert softAssert = new SoftAssert();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         groceryPage groceryPage = new groceryPage();
         homePage.homePageDropDownMenu.click();

@@ -9,7 +9,7 @@ import utilities.Driver;
 
 public class dailyneedsPage {
     public dailyneedsPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver("browser"), this);
     }
 
     //"You deserve to eat fresh" yazisi görüntülenir.
@@ -23,13 +23,6 @@ public class dailyneedsPage {
     //"Search" secenegi olan frame görüntülenir.
     @FindBy(id = "search")
     public WebElement dailyNeedsWeSearchFrame;
-
-    public void dailyNeedsPageGit() {// page methodu
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
-        homePage homePage = new homePage();
-        homePage.homePageDropDownMenu.click();
-        homePage.dailyNeedsDropDownMenu.click();
-    }
 
     //Arama yapmak icin  "Search" butonu görülür,
     @FindBy(xpath = "//button[contains(text(),'Search')]")

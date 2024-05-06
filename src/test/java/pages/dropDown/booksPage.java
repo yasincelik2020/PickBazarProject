@@ -17,11 +17,14 @@ import java.util.List;
 
 public class booksPage {
     public booksPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver("browser"), this);
     }
 
     @FindBy(xpath = "//span[.='Books']")
     public WebElement booksDropDown;
+
+    @FindBy(xpath = "//div[@class='flex items-center justify-between mb-7 ']")
+    public List<WebElement> booksBasliklar ;
 
     @FindBy(xpath = "//h3[.='Popular Products']")
     public WebElement popularProducts;

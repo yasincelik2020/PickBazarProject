@@ -25,7 +25,7 @@ public class ReusableMethods {
         //WebDriverManager.firefoxdriver().setup();
         //driver = new ChromeDriver();
         // TakesScreenshot is an interface of selenium that takes the screenshot
-        driver=Driver.getDriver();
+        driver=Driver.getDriver("browser");
 
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
@@ -145,7 +145,7 @@ public class ReusableMethods {
 
     //======Fluent Wait====//
     public static WebElement fluentWait(final WebElement webElement, int timeout) {
-        //FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver()).withTimeout(timeinsec, TimeUnit.SECONDS).pollingEvery(timeinsec, TimeUnit.SECONDS);
+        //FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver("browser")).withTimeout(timeinsec, TimeUnit.SECONDS).pollingEvery(timeinsec, TimeUnit.SECONDS);
         FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(3))//Wait 3 second each time
                 .pollingEvery(Duration.ofSeconds(1));//Check for the element every 1 second

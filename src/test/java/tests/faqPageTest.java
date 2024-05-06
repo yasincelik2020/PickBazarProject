@@ -42,6 +42,7 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_01() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         faqPage faqPage = new faqPage();
         homePage.faqButon.click();
@@ -55,10 +56,11 @@ public class faqPageTest {
     @Test(dataProvider = "dataSorular", groups = {"Regression", "No role"})
 
     public void TC_06_01(String soru) {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.faqButon.click();
 
-        WebElement sorularLocater = Driver.getDriver().
+        WebElement sorularLocater = Driver.getDriver("browser").
                 findElement(By.xpath("//h2[.='" + soru + "']"));
         System.out.println(sorularLocater.getText());
         SoftAssert softAssert = new SoftAssert();
@@ -71,6 +73,7 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_03() throws InterruptedException {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         SoftAssert softAssert = new SoftAssert();
@@ -78,7 +81,7 @@ public class faqPageTest {
         WebElement faqSorular;
 
         for (int i = 1; i < 5; i++) {
-            faqSorular = Driver.getDriver().findElement(By.xpath("(//*[@class='flex-shrink-0 stroke-2'])[" + i + "]"));
+            faqSorular = Driver.getDriver("browser").findElement(By.xpath("(//*[@class='flex-shrink-0 stroke-2'])[" + i + "]"));
             softAssert.assertTrue(faqSorular.isDisplayed());
             faqSorular.click();
             Thread.sleep(2000);
@@ -92,8 +95,12 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_02() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
+//        Actions actions = new Actions(Driver.getDriver("browser"));
+//        actions.click(homePage.faqButon)
+//                .click(faqPage.faqilkSoruIsareti).perform();
         homePage.faqButon.click();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(faqPage.faqilkSoru.isDisplayed());
@@ -105,8 +112,12 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_04() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
+//        Actions actions = new Actions(Driver.getDriver("browser"));
+//        actions.click(homePage.faqButon)
+//                .click(faqPage.faqilkSoruIsareti).perform();
         homePage.faqButon.click();
         faqPage.faqilkSoruIsareti.click();
         SoftAssert softAssert = new SoftAssert();
@@ -119,6 +130,7 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_05() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
@@ -132,6 +144,7 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_07() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
@@ -146,6 +159,7 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_08() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
@@ -159,6 +173,7 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_10() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
@@ -174,6 +189,7 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_11() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();
@@ -187,6 +203,7 @@ public class faqPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_06_13() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage();
         homePage homePage = new homePage();
         homePage.faqButon.click();

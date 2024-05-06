@@ -37,7 +37,7 @@ public class homePageTest {
 
     @BeforeMethod (groups = {"Smoke", "Regression","No role","US_15"})
     public void beforeMethod() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
     }
 
 
@@ -45,7 +45,7 @@ public class homePageTest {
     @Test (groups ={ "Smoke","No role"})
     public void TC_01_01() {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(),ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(),ConfigReader.getProperty("pickUrl"));
 
         homePage homePage=new homePage();
        Assert.assertTrue( homePage.pickBazarButonHomePage.isDisplayed());
@@ -60,7 +60,7 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_02() {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.dropDownGroceryMain.isDisplayed());
@@ -72,7 +72,7 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_03() {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.shopsButtonHomePage.isDisplayed());
@@ -84,7 +84,7 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_04() {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.offersButtonHomePage.isDisplayed());
@@ -96,7 +96,7 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_05() {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.faqButtonHomePage.isDisplayed());
@@ -109,7 +109,7 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_06() {
 
-       Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+       Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.becomeASellerButtonHomePage.isDisplayed());
@@ -120,7 +120,7 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_07() {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.joinButtonHomePage.isDisplayed());
@@ -135,9 +135,9 @@ public class homePageTest {
 
         homePage homePage = new homePage();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.expressDeliveryFrameHomePage);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.expressDeliveryFrameHomePage);
 
         Assert.assertTrue(homePage.expressDeliveryFrameHomePage.isDisplayed());
 
@@ -151,7 +151,7 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_10() throws IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.cashOnDeliveryFrameHomePage.isDisplayed());
@@ -166,7 +166,7 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_12() throws IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.giftVoucherFrameHomePage.isDisplayed());
@@ -182,9 +182,9 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_14() throws IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
-        Actions actions = new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver("browser"));
         actions.sendKeys(Keys.PAGE_DOWN).perform(); // Bir sayfa aşağı kaydır
 
         homePage homePage = new homePage();
@@ -205,9 +205,9 @@ public class homePageTest {
     @Test(groups = {"Smoke", "No role"})
     public void TC_01_15() throws IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
-        Actions actions = new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver("browser"));
         actions.sendKeys(Keys.PAGE_DOWN).perform();
 
         homePage homePage = new homePage();
@@ -231,7 +231,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(),ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(),ConfigReader.getProperty("pickUrl"));
 
         homePage homePage=new homePage();
         Assert.assertTrue( homePage.pickBazarButonHomePage.isDisplayed());
@@ -247,7 +247,7 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.dropDownGroceryMain.isDisplayed());
@@ -262,7 +262,7 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.shopsButtonHomePage.isDisplayed());
@@ -277,7 +277,7 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.offersButtonHomePage.isDisplayed());
@@ -292,7 +292,7 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.faqButtonHomePage.isDisplayed());
@@ -307,7 +307,7 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.becomeASellerButtonHomePage.isDisplayed());
@@ -322,7 +322,7 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.joinButtonHomePage.isDisplayed());
@@ -337,11 +337,11 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
 
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.expressDeliveryFrameHomePage);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.expressDeliveryFrameHomePage);
 
         Assert.assertTrue(homePage.expressDeliveryFrameHomePage.isDisplayed());
 
@@ -358,10 +358,10 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.cashOnDeliveryFrameHomePage);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.cashOnDeliveryFrameHomePage);
         Assert.assertTrue(homePage.cashOnDeliveryFrameHomePage.isDisplayed());
 
         ReusableMethods.takeScreenshot("Cash On Delivery Frame");
@@ -377,10 +377,10 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.giftVoucherFrameHomePage);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.giftVoucherFrameHomePage);
         Assert.assertTrue(homePage.giftVoucherFrameHomePage.isDisplayed());
 
         ReusableMethods.takeScreenshot("Gift Voucher Frame");
@@ -397,9 +397,9 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
-        Actions actions = new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver("browser"));
         actions.sendKeys(Keys.PAGE_DOWN).perform(); // Bir sayfa aşağı kaydır
 
         homePage homePage = new homePage();
@@ -423,9 +423,9 @@ public class homePageTest {
         loginPage loginPage=new loginPage();
         loginPage.loginMethod();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
-        Actions actions = new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver("browser"));
         actions.sendKeys(Keys.PAGE_DOWN).perform();
 
         homePage homePage = new homePage();
@@ -447,9 +447,9 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_02_01() throws IOException, InterruptedException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
-       JavaScriptExecutorUtils.scrollDownByJS(Driver.getDriver());
+       JavaScriptExecutorUtils.scrollDownByJS(Driver.getDriver("browser"));
 
         homePage homePage = new homePage();
         homePage.pickBazarButonClickMethod();
@@ -461,7 +461,7 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_02_02() throws IOException, InterruptedException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.shopsButtonHomePage.click();
@@ -479,14 +479,14 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_02_03() throws IOException, InterruptedException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.offersButtonHomePage.click();
 
        ReusableMethods.waitForPageToLoad(3);
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("offers"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("offers"));
 
         homePage.pickBazarButonClickMethod();
 
@@ -497,7 +497,7 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_02_04() throws IOException, InterruptedException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.faqButtonHomePage.click();
@@ -515,7 +515,7 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_02_05() throws IOException, InterruptedException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.contactButtonHomePage.click();
@@ -537,9 +537,9 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
-        JavaScriptExecutorUtils.scrollDownByJS(Driver.getDriver());
+        JavaScriptExecutorUtils.scrollDownByJS(Driver.getDriver("browser"));
 
         homePage homePage = new homePage();
         homePage.pickBazarButonClickMethod();
@@ -555,7 +555,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.shopsButtonHomePage.click();
@@ -577,14 +577,14 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.offersButtonHomePage.click();
 
         ReusableMethods.waitForPageToLoad(3);
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("offers"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("offers"));
 
         homePage.pickBazarButonClickMethod();
 
@@ -599,7 +599,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.faqButtonHomePage.click();
@@ -623,7 +623,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.contactButtonHomePage.click();
@@ -641,7 +641,7 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_03_01() throws IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.dropDownGroceryMain.isDisplayed());
@@ -657,20 +657,20 @@ public class homePageTest {
 
         homePage homePage = new homePage();
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
         homePage.dropDownGroceryMain.click();
 
-      // JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.dropDownGroceryMain);
+      // JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.dropDownGroceryMain);
 
          //ReusableMethods.waitForVisibility(homePage.dropDownGroceryMainAlt,3);
         Thread.sleep(3000);
         homePage.dropDownGroceryMainAlt.click();
 
-        //JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.dropDownGroceryMainAlt);
+        //JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.dropDownGroceryMainAlt);
 
-        System.out.println(Driver.getDriver().getCurrentUrl());
+        System.out.println(Driver.getDriver("browser").getCurrentUrl());
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("grocery"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("grocery"));
         ReusableMethods.takeScreenshot("Grocery");
 
     }
@@ -681,14 +681,14 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_03_03() throws InterruptedException, IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.dropDownGroceryMain.click();
         Thread.sleep(3000);
         homePage.bakeryDropDownAltMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("bakery"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("bakery"));
         ReusableMethods.takeScreenshot("Bakery");
 
     }
@@ -699,14 +699,14 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_03_04() throws InterruptedException, IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.dropDownGroceryMain.click();
        Thread.sleep(3000);
         homePage.makeUpDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("makeup"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("makeup"));
         ReusableMethods.takeScreenshot("MakeUp");
 
     }
@@ -717,14 +717,14 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_03_05() throws InterruptedException, IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         Thread.sleep(3000);
         homePage.bagsDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("bags"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("bags"));
         ReusableMethods.takeScreenshot("Bags");
 
     }
@@ -735,14 +735,14 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_03_06() throws InterruptedException, IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         Thread.sleep(3000);
         homePage.clothingDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("clothing"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("clothing"));
         ReusableMethods.takeScreenshot("Clothing");
 
     }
@@ -753,14 +753,14 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_03_07() throws InterruptedException, IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         Thread.sleep(3000);
         homePage.furnitureDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("furniture"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("furniture"));
         ReusableMethods.takeScreenshot("Furniture");
 
     }
@@ -771,14 +771,14 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_03_08() throws InterruptedException, IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         Thread.sleep(3000);
         homePage.dailyNeedsDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("daily-needs"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("daily-needs"));
         ReusableMethods.takeScreenshot("Daily Needs");
 
     }
@@ -789,16 +789,16 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role"})
     public void TC_03_09() throws InterruptedException, IOException {
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         Thread.sleep(3000);
 
-        //JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.booksDropDownMenu);
+        //JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.booksDropDownMenu);
         homePage.booksDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("books"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("books"));
         ReusableMethods.takeScreenshot("Books");
 
     }
@@ -812,7 +812,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Assert.assertTrue(homePage.dropDownGroceryMain.isDisplayed());
@@ -830,14 +830,14 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         Thread.sleep(3000);
         homePage.dropDownGroceryMainAlt.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("grocery"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("grocery"));
         ReusableMethods.takeScreenshot("Grocery");
 
     }
@@ -852,14 +852,14 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.homePageDropDownMenu.click();
         Thread.sleep(3000);
         homePage.bakeryDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("bakery"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("bakery"));
         ReusableMethods.takeScreenshot("Bakery");
 
     }
@@ -874,14 +874,14 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.dropDownGroceryMain.click();
         Thread.sleep(3000);
         homePage.makeUpDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("makeup"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("makeup"));
         ReusableMethods.takeScreenshot("MakeUp");
 
     }
@@ -896,14 +896,14 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.dropDownGroceryMain.click();
         Thread.sleep(3000);
         homePage.bagsDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("bags"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("bags"));
         ReusableMethods.takeScreenshot("Bags");
 
     }
@@ -918,14 +918,14 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.dropDownGroceryMain.click();
         Thread.sleep(3000);
         homePage.clothingDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("clothing"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("clothing"));
         ReusableMethods.takeScreenshot("Clothing");
 
     }
@@ -940,14 +940,14 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.dropDownGroceryMain.click();
         Thread.sleep(3000);
         homePage.furnitureDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("furniture"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("furniture"));
         ReusableMethods.takeScreenshot("Furniture");
 
     }
@@ -962,14 +962,14 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.dropDownGroceryMain.click();
         Thread.sleep(3000);
         homePage.dailyNeedsDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("daily-needs"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("daily-needs"));
         ReusableMethods.takeScreenshot("Daily Needs");
 
     }
@@ -984,7 +984,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.dropDownGroceryMain.click();
@@ -993,7 +993,7 @@ public class homePageTest {
 
         homePage.booksDropDownMenu.click();
 
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("books"));
+        Assert.assertTrue(Driver.getDriver("browser").getCurrentUrl().contains("books"));
         ReusableMethods.takeScreenshot("Books");
 
     }
@@ -1007,7 +1007,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.shopsButtonHomePage.click();
@@ -1032,7 +1032,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.shopsButtonHomePage.click();
@@ -1060,7 +1060,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
        Thread.sleep(3000);
@@ -1092,7 +1092,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         Thread.sleep(3000);
@@ -1122,7 +1122,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.shopsButtonHomePage.click();
@@ -1150,7 +1150,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.shopsButtonHomePage.click();
@@ -1178,7 +1178,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.shopsButtonHomePage.click();
@@ -1205,7 +1205,7 @@ public class homePageTest {
         loginPage.loginMethod();
         ReusableMethods.takeScreenshot("Login");
 
-        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+        Assert.assertEquals(Driver.getDriver("browser").getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage();
         homePage.shopsButtonHomePage.click();
@@ -1225,7 +1225,7 @@ public class homePageTest {
     @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_01 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size() ; i++) {
             Assert.assertTrue(homePage.anasayfaUrunIsimList.get(i).isDisplayed());
@@ -1237,7 +1237,7 @@ public class homePageTest {
     @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_02 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaImgList.size() ; i++) {
             Assert.assertTrue(homePage.anasayfaImgList.get(i).isDisplayed());
@@ -1248,7 +1248,7 @@ public class homePageTest {
     @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_03 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaFiyatList.size() ; i++) {
             Assert.assertTrue(homePage.anasayfaFiyatList.get(i).isDisplayed());
@@ -1259,7 +1259,7 @@ public class homePageTest {
     @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_04 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIndirimOraniList.size() ; i++) {
             Assert.assertTrue(homePage.anasayfaUrunIndirimOraniList.get(i).isDisplayed());
@@ -1271,7 +1271,7 @@ public class homePageTest {
     @Test (groups ={ "Regression","No role","US_15"})
     public void TC_15_05 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         int urunsayisi = homePage.anasayfaUrunIsimList.size();
         System.out.println(urunsayisi);
@@ -1288,10 +1288,10 @@ public class homePageTest {
     @Test ( groups ={ "Regression","No role","US_15"})
     public void TC_15_13 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         Assert.assertTrue(homePage.loadMoreButton.isDisplayed());
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.loadMoreButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.loadMoreButton);
         Thread.sleep(2000);
 
         int urunsayisi = homePage.anasayfaUrunIsimList.size();
@@ -1308,7 +1308,7 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_16 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
             Assert.assertTrue(homePage.addButton.isDisplayed());
@@ -1320,7 +1320,7 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_17 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         int addSorasiilkSayi=0;
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
@@ -1331,8 +1331,8 @@ public class homePageTest {
             }
         }
         for (int j = 1; j < homePage.anasayfaUrunIsimList.size()+1; j++) {
-           WebElement plusElement = Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class,'flex overflow-hidden')]/button[2])["+j+"]"));
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), plusElement);
+           WebElement plusElement = Driver.getDriver("browser").findElement(By.xpath("(//div[starts-with(@class,'flex overflow-hidden')]/button[2])["+j+"]"));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), plusElement);
             int addSorasiIkinciSayi = Integer.parseInt(homePage.sepeteEklenenUrunSayisi.getText());
             Assert.assertTrue(addSorasiIkinciSayi>addSorasiilkSayi);
         }
@@ -1343,7 +1343,7 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_18 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
             if(homePage.anasayfaUrunIsimList.get(i).isDisplayed()) {
@@ -1352,15 +1352,15 @@ public class homePageTest {
         }
         int plusSonrasiSayi=0;
         for (int i = 1; i < homePage.anasayfaUrunIsimList.size()+1; i++) {
-            WebElement plusElement = Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class,'flex overflow-hidden')]/button[2])["+(i)+"]"));
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), plusElement);
+            WebElement plusElement = Driver.getDriver("browser").findElement(By.xpath("(//div[starts-with(@class,'flex overflow-hidden')]/button[2])["+(i)+"]"));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), plusElement);
             ReusableMethods.waitForVisibility(homePage.sepeteEklenenUrunSayisi,3);
             plusSonrasiSayi = Integer.parseInt(homePage.sepeteEklenenUrunSayisi.getText());
             Assert.assertEquals(plusSonrasiSayi, 2);
         }
         for (int i = 1; i < homePage.anasayfaUrunIsimList.size()+1; i++) {
-            WebElement minusButton = Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class,'flex overflow-hidden')]/button[1])["+(i)+"]"));
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(), minusButton);
+            WebElement minusButton = Driver.getDriver("browser").findElement(By.xpath("(//div[starts-with(@class,'flex overflow-hidden')]/button[1])["+(i)+"]"));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), minusButton);
             ReusableMethods.waitForVisibility(homePage.sepeteEklenenUrunSayisi,3);
             int minusSorasiIkinciSayi = Integer.parseInt(homePage.sepeteEklenenUrunSayisi.getText());
             Assert.assertEquals(minusSorasiIkinciSayi, 1);
@@ -1372,10 +1372,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_40 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_UrunImg.isDisplayed());
         }
     }
@@ -1385,10 +1385,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_41 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_UrunIsmi.isDisplayed());
         }
     }
@@ -1398,14 +1398,14 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_42 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
         int sayi = homePage.anasayfaUrunIsimList.size();
 
         for (int i = 0; i < sayi; i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.addToShoppingCartButton);
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.addToShoppingCartButton);
 
-            WebElement urunMiktari = Driver.getDriver().findElement(By.xpath("(//div[starts-with(@class,'flex flex-1 items-center')])["+(i+3)+"]"));
+            WebElement urunMiktari = Driver.getDriver("browser").findElement(By.xpath("(//div[starts-with(@class,'flex flex-1 items-center')])["+(i+3)+"]"));
             Assert.assertTrue(urunMiktari.isDisplayed());
 
         }
@@ -1416,10 +1416,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_43 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_UrunFiyati.isDisplayed());
         }
     }
@@ -1429,10 +1429,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_44 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIndirimOraniList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIndirimOraniList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIndirimOraniList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_UrunIndirimOrani.isDisplayed());
         }
     }
@@ -1442,19 +1442,19 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_45 () throws InterruptedException, IOException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < 1; i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Thread.sleep(2000);
             ReusableMethods.takeScreenshot("TC_15_45 Ürün alt kartında secilen like butonu baslangicta bos");
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaAltkart_UrunLikeButtonu);
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaAltkart_UrunLikeButtonu);
             homePage.likeButtonuIcinLoginMethodu();
         }
         Thread.sleep(2000);
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaAltkart_UrunLikeButtonu);
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaAltkart_UrunLikeButtonu);
 
             Assert.assertTrue(homePage.anasayfaAltkart_UrunLikeButtonu.isDisplayed());
         }
@@ -1465,11 +1465,11 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_46 () throws InterruptedException, IOException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
 
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
 
             try {
                 Assert.assertTrue(homePage.anasayfaAltkart_UrunAciklamasi.isDisplayed());
@@ -1485,10 +1485,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_47 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_AvailableUrunSayisi.isDisplayed());
         }
     }
@@ -1498,10 +1498,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_48 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_UrunKategoriBilgisi.isDisplayed());
         }
     }
@@ -1511,10 +1511,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_49 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_UrunSaticiBilgileri.isDisplayed());
         }
     }
@@ -1524,10 +1524,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_50 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_DetailsKismindaUrunDetaylari.isDisplayed());
         }
     }
@@ -1537,10 +1537,10 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_51 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
 
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_UrunPuani.isDisplayed());
             System.out.println(homePage.anasayfaAltkart_UrunIsmi.getText());
         }
@@ -1551,9 +1551,9 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_52 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerImgList.get(1).isDisplayed());
             Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerFiyatList.get(1).isDisplayed());
             Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerEklemeButtonuList.get(1).isDisplayed());
@@ -1565,12 +1565,12 @@ public class homePageTest {
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_53 () throws InterruptedException {
         homePage homePage = new homePage();
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(),homePage.groceryApples);
+        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver("browser"),homePage.groceryApples);
         for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.anasayfaUrunIsimList.get(i));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.anasayfaUrunIsimList.get(i));
             Assert.assertTrue(homePage.anasayfaAltkart_UrunFiyati.isDisplayed());
 
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(),homePage.altkartdanHomePageGecis);
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.altkartdanHomePageGecis);
             Assert.assertTrue(homePage.anasayfaUrunIsimList.get(1).isDisplayed());
 
         }

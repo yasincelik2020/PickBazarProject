@@ -33,11 +33,11 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_01() throws InterruptedException {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         homePage.contactButon.click();
-        String currentUrl = Driver.getDriver().getCurrentUrl();
         Thread.sleep(2000);
-
+        String currentUrl = Driver.getDriver("browser").getCurrentUrl();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(currentUrl.contains("contact"));
 
@@ -48,11 +48,18 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_02() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         contactPage contactPage = new contactPage();
         homePage.contactButon.click();
         contactPage.contactFormMethod();
 
+        Actions actions = new Actions(Driver.getDriver("browser"));
+        actions.sendKeys(contactPage.nameButton, "Nuray", Keys.TAB)
+                .sendKeys("nry@gmail.com", Keys.TAB)
+                .sendKeys("Sikayet", Keys.TAB)
+                .sendKeys("Hatali Kod", Keys.TAB)
+                .click(contactPage.submitButton).perform();
         SoftAssert softAssert = new SoftAssert();
          softAssert.assertTrue(contactPage.yazi.getText().contains("Thank"));
 
@@ -64,6 +71,7 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_04() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         contactPage contactPage = new contactPage();
         homePage.contactButon.click();
@@ -78,6 +86,7 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_05() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         contactPage contactPage = new contactPage();
         homePage.contactButon.click();
@@ -92,6 +101,7 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_06() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         contactPage contactPage = new contactPage();
         homePage.contactButon.click();
@@ -106,6 +116,7 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_07() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         contactPage contactPage = new contactPage();
         homePage.contactButon.click();
@@ -120,6 +131,7 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_08() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         contactPage contactPage = new contactPage();
         homePage.contactButon.click();
@@ -134,6 +146,7 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_09() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         contactPage contactPage = new contactPage();
         homePage.contactButon.click();
@@ -148,6 +161,7 @@ public class contactPageTest {
     @Test(groups = {"Regression", "No role"})
 
     public void TC_07_10() {
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage();
         contactPage contactPage = new contactPage();
         homePage.contactButon.click();

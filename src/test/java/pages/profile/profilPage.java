@@ -14,7 +14,7 @@ import java.util.List;
 
 public class profilPage {
     public profilPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver("browser"), this);
     }
 
     @FindBy(css = "img[alt=\"user name\"]")
@@ -141,7 +141,7 @@ public class profilPage {
     public void kasaApplesUrununuEkleme() throws InterruptedException {
         loginPage loginPage = new loginPage();
         profilPage profilPage = new profilPage();
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         loginPage.loginMethod();
         profilPage.applesAddButton.click();// elma eklendi
     }

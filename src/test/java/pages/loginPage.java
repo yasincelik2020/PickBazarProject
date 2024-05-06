@@ -10,7 +10,7 @@ import utilities.Driver;
 
 public class loginPage {
     public loginPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver("browser"), this);
     }
 
 
@@ -75,7 +75,7 @@ public class loginPage {
     public WebElement loginYazisi;
 
     public void loginMethod() throws InterruptedException {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
         Thread.sleep(3000);
         joinButton.click();
         eMail.sendKeys(ConfigReader.getProperty("eposta"));

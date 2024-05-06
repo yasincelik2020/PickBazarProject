@@ -20,7 +20,7 @@ import java.util.List;
 public class homePage {
 
     public homePage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver("browser"), this);
     }
 
     @FindBy(id = "headlessui-menu-button-1")
@@ -134,7 +134,7 @@ public class homePage {
 
 
     public void likeButtonuIcinLoginMethodu() {// page methodu
-        Actions actions = new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver("browser"));
         loginPage loginPage = new loginPage();
         loginPage.eMail.sendKeys("abc@gmail.com");
         loginPage.password.sendKeys("abc123");
@@ -341,7 +341,7 @@ public class homePage {
     @FindBy(xpath = "//span[starts-with(@class,'flex h-full flex-1 ')]")
     public WebElement checkoutButton;
     public void gohomePageUrl(){
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
     }
     @FindBy(xpath = "//span[starts-with(@class,'flex ltr')]")
     public WebElement itemsNumber;

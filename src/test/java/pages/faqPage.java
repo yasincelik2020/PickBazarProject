@@ -11,7 +11,7 @@ import java.util.List;
 
 public class faqPage {
     public faqPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver("browser"), this);
     }
     @FindBy(xpath = "//h1[.='FAQ']")
     public WebElement faqText;
