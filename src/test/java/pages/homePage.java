@@ -395,7 +395,7 @@ public class homePage {
     @FindBy(xpath = " (//span[.='No Address Found'])[2]")
     public WebElement shippingAddressNoAdressFound;
 
-    @FindBy(xpath = " (//div[@class='flag us']")
+    @FindBy(xpath = "//div[@class='flag us']")
     public WebElement flagIcon;
 
     @FindBy(xpath = " (//button[.='Add'])[2]")
@@ -406,6 +406,7 @@ public class homePage {
 
     @FindBy(xpath = " //input[@id='title']")
     public WebElement titleButton;
+
 
 
     @FindBy(xpath = " //p[@class='text-sm text-sub-heading']")
@@ -428,6 +429,104 @@ public class homePage {
 
     @FindBy(xpath = "//span[.='5.00 PM - 8.00 PM']")
     public WebElement evening;
+
+    @FindBy(xpath = "//button[.='Check Availability']")
+    public WebElement checkAvailability;
+
+    @FindBy(xpath = "//span[.='Cash On Delivery']")
+    public WebElement cashOnDelivery;
+
+    @FindBy(xpath = "//button[.='Place Order']")
+    public WebElement placeOrder;
+
+    @FindBy(xpath = "//span[.='Apples']")
+    public WebElement appleCheck;
+
+    @FindBy(xpath = "(//span[.='$1.60'])[2]")
+    public WebElement subTotalPrice;
+
+    @FindBy(xpath = "(//span[.='Calculated at checkout'])[1]")
+    public WebElement taxPrice;
+    @FindBy(xpath = "(//span[.='Calculated at checkout'])[2]")
+    public WebElement shippingPrice;
+
+    @FindBy(xpath = "(//span[.='$0.00'])[1]")
+    public WebElement taxPriceAfterCheckAvaibility;
+
+    @FindBy(xpath = "(//span[.='$0.00'])[2]")
+    public WebElement shippingPriceAfterCheckAvaibility;
+
+    @FindBy(xpath = "//p[@role='button']")
+    public WebElement doYouHaveCouponButton;
+
+    @FindBy(xpath = "//input[@id='code']")
+    public WebElement couponEntryArea;
+    @FindBy(xpath = "(//span[.='$1.60'])[3]")
+    public WebElement totalPrice;
+
+    @FindBy(xpath = "//span[.='Points']")
+    public WebElement walletPoints;
+
+    @FindBy(xpath = "(//span[.='$0.00'])[3]")
+    public WebElement walletCurrency;
+
+    @FindBy(xpath = "//input[@id='use_wallet']")
+    public WebElement doYouWantToUseWallet;
+
+    @FindBy(xpath = "//span[.='Cash On Delivery']")
+    public WebElement cashOnDeliveryYasin;
+
+    @FindBy(xpath = "//span[.='Please Pay After You Receive Your Goods!']")
+    public WebElement cashOnDeliveryText;
+
+    @FindBy(xpath = "//span[.='Order Received']")
+    public WebElement orderReceived;
+
+    @FindBy(xpath = "//p[.='CGG82oQZc4i8']")
+    public WebElement orderNumber;
+
+    @FindBy(xpath = "//p[.='January 12, 2022']")
+    public WebElement orderDate;
+    //p[.='$153.00']
+    @FindBy(xpath = "//p[.='$153.00']")
+    public WebElement totalPriceOrderPage;
+
+    @FindBy(xpath = "//p[.='CASH_ON_DELIVERY']")
+    public WebElement paymentMethod;
+
+    @FindBy(xpath = "//span[.='$150.00']")
+    public WebElement subTotalAmount;
+
+    @FindBy(xpath = "(//span[.='$0.00'])[1]")
+    public WebElement shippingCharge;
+
+    @FindBy(xpath = "//span[.='$3.00']")
+    public WebElement taxCharge;
+    @FindBy(xpath = "(//span[.='$0.00'])[2]")
+    public WebElement discountCharge;
+    @FindBy(xpath = "//span[.='$153.00']")
+    public WebElement totalAmount;
+    //span[.='1 Item']
+    @FindBy(xpath = "//span[.='1 Item']")
+    public WebElement totalItem;
+
+    @FindBy(xpath = "//span[.='Express Delivery']")
+    public WebElement deliveryTime;
+
+    @FindBy(xpath = "//span[.='ss, aaaa, aaa, 122, aaa']")
+    public WebElement billingAddress;
+
+    @FindBy(xpath = "//a[starts-with(@class,\"inline-block\")]")
+    public WebElement itemName;
+
+    @FindBy(xpath = "//button[.='Write a review']")
+    public WebElement writeAReview;
+
+    @FindBy(xpath = "//textarea[@id='comment']")
+    public WebElement textAreaComment;
+    //span[.='2148  Straford Park, KY, Winchester, 40391, United States']
+    @FindBy(xpath = "//span[.='2148  Straford Park, KY, Winchester, 40391, United States']")
+    public WebElement shippingAddress;
 
 
 

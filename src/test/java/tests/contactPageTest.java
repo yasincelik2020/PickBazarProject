@@ -182,13 +182,14 @@ public class contactPageTest {
     }
     @Description("Contact sekmesindeki form, isim yazilmadan gönderilmemelidir.")
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Test(groups = {"Regression", "No role", "Negatif Test"})
 
-    public void TC_07_11() throws IOException {
-        homePage homePage = new homePage();
-        contactPage contactPage = new contactPage();
+    public void TC_07_11(@Optional("chrome")String browser) throws IOException {
+        homePage homePage = new homePage(browser);
+        contactPage contactPage = new contactPage(browser);
         homePage.contactButon.click();
-        Actions actions = new Actions(Driver.getDriver());
+        Actions actions = new Actions(Driver.getDriver(browser));
         actions.sendKeys(contactPage.nameButton, Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("eposta"), Keys.TAB)
                 .sendKeys("Sikayet", Keys.TAB)
