@@ -3,13 +3,16 @@ package pages.dropDown;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.homePage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
 public class dailyneedsPage {
-    public dailyneedsPage() {
-        PageFactory.initElements(Driver.getDriver("browser"), this);
+    @Parameters("browser")
+    public dailyneedsPage(@Optional("chrome")String browser) {
+        PageFactory.initElements(Driver.getDriver(browser), this);
     }
 
     //"You deserve to eat fresh" yazisi görüntülenir.

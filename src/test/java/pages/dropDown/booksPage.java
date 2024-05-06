@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.profile.profilPage;
 import utilities.Driver;
@@ -16,8 +18,9 @@ import utilities.ReusableMethods;
 import java.util.List;
 
 public class booksPage {
-    public booksPage() {
-        PageFactory.initElements(Driver.getDriver("browser"), this);
+    @Parameters("browser")
+    public booksPage(@Optional("chrome")String browser) {
+        PageFactory.initElements(Driver.getDriver(browser), this);
     }
 
     @FindBy(xpath = "//span[.='Books']")

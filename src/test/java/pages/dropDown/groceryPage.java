@@ -3,6 +3,8 @@ package pages.dropDown;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.homePage;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -10,12 +12,15 @@ import utilities.Driver;
 import java.util.List;
 
 public class groceryPage {
-    public groceryPage() {
-        PageFactory.initElements(Driver.getDriver("browser"), this);
+    @Parameters("browser")
+    public groceryPage(@Optional("chrome")String browser) {
+        PageFactory.initElements(Driver.getDriver(browser), this);
     }
-    public void groceryPageGit() {// page methodu
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
-        homePage homePage = new homePage();
+
+    @Parameters("browser")
+    public void groceryPageGit(@Optional("chrome")String browser) {// page methodu
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+        homePage homePage = new homePage(petCareButton.getAccessibleName());
         homePage.homePageDropDownMenu.click();
         homePage.groceryDropDownMenu.click();
     }

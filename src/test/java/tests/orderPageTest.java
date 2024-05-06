@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.homePage;
@@ -31,11 +33,12 @@ public class orderPageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Anasayfada kücük ekranda sepet bilgisi gelmeli ")
+    @Parameters("browser")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_18_01() {
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
+    public void TC_18_01(@Optional("chrome")String browser) {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
+        homePage homePage = new homePage(browser);
         homePage.applesAddButton.click();
         sa.assertTrue(homePage.chartButtonAtrightItemCount.getText().contains("1"));
         sa.assertTrue(homePage.chartButtonAtrightPrice.getText().contains("1.60"));
@@ -44,15 +47,16 @@ public class orderPageTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Anasayfada kücük görüntüdeki sepet bilgilerinin ürün eklendiginde dogru bir sekilde güncellenmesi")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_18_02() throws InterruptedException {
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
+    public void TC_18_02(@Optional("chrome")String browser) throws InterruptedException {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
+        homePage homePage = new homePage(browser);
         Thread.sleep(2000);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.spinachAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.spinachAddButton);
         double total = homePage.valueEvuloation(homePage.applesPriceValue, homePage.spinachPriceValue);
         System.out.println(total);
         String strTotal = String.valueOf(total);
@@ -63,15 +67,16 @@ public class orderPageTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Anasayfada kücük görüntüdeki sepet bilgilerinin ürün cikarildiginda dogru bir sekilde güncellenmesi")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_18_03() {
+    public void TC_18_03(@Optional("chrome")String browser) {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.spinachAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButtonMinusSign);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.spinachAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButtonMinusSign);
         sa.assertTrue(homePage.chartButtonAtrightItemCount.getText().contains("1"));
         sa.assertTrue(homePage.chartButtonAtrightPrice.getText().contains(homePage.spinachPriceValue.getText()));
         sa.assertAll();
@@ -79,14 +84,15 @@ public class orderPageTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Anasayfadaki kücük sepet bilgisi ekraninin tiklanarak daha büyük bir görüntüde sepet ekrani acilmasi")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_18_04() {
+    public void TC_18_04(@Optional("chrome")String browser) {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         sa.assertTrue(homePage.checkoutButtonArea.isEnabled());
         sa.assertTrue(homePage.checkoutButtonArea.isDisplayed());
         sa.assertAll();
@@ -95,14 +101,15 @@ public class orderPageTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Anasayfadaki kücük sepet bilgisi ekraninin tiklanarak daha büyük bir görüntüde sepet ekrani acildiginda, en altta \"Checkout\" secenegi butonunun geldigi gorulmesi")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_18_05() {
+    public void TC_18_05(@Optional("chrome")String browser) {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
        
         ReusableMethods.waitForVisibility(homePage.checkoutButton, 3);
         sa.assertTrue(homePage.checkoutButton.isDisplayed());
@@ -111,12 +118,13 @@ public class orderPageTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Daily Needs ekraninda sepet ikonu gelmesi")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_18_06() throws InterruptedException {
+    public void TC_18_06(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
         homePage.groceryDropDownMenu.click();
         homePage.dailyNeedsDropDownMenu.click();
         ReusableMethods.waitForVisibility(homePage.dailyNeedsChartIkon, 3);
@@ -125,12 +133,13 @@ public class orderPageTest {
 
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Daily Needs ekraninda sepet ikonu tiklandiginda, sepet ekraninin sagda acilabilmesi")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_18_07() throws InterruptedException {
+    public void TC_18_07(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
         homePage.groceryDropDownMenu.click();
         homePage.dailyNeedsDropDownMenu.click();
         ReusableMethods.waitForVisibility(homePage.dailyNeedsChartIkon, 3);
@@ -140,12 +149,13 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Daily Needs ekraninda sepet ikonu tiklandiginda, sepet ekrani acildiginda, en altta \"Checkout\" secenegi butonunun geldiginin gorulmesi")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_18_08() throws InterruptedException {
+    public void TC_18_08(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
         homePage.groceryDropDownMenu.click();
         homePage.dailyNeedsDropDownMenu.click();
         ReusableMethods.waitForVisibility(homePage.dailyNeedsChartIkon, 3);
@@ -155,12 +165,13 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Contact Number alaninin (Zorunlu alan) default olarak bos geldigi gorulur")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_01() throws InterruptedException {
+    public void TC_19_01(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
         homePage.groceryDropDownMenu.click();
         homePage.dailyNeedsDropDownMenu.click();
         homePage.dailyNeedsChartIkon.click();
@@ -170,19 +181,20 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Contact Number alanininda (Zorunlu alan) contact number ekli ise eklenen numara görüntülenebilmelidir")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_02() throws InterruptedException {
+    public void TC_19_02(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
         homePage.groceryDropDownMenu.click();
         homePage.dailyNeedsDropDownMenu.click();
         homePage.dailyNeedsChartIkon.click();
         homePage.checkoutButton.click();
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver("browser"), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(browser), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(homePage.eMailBox));
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"),homePage.eMailBox);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.eMailBox);
         homePage.eMailBox.sendKeys(ConfigReader.getProperty("eposta"));
         homePage.passswordBox.click();
         homePage.passswordBox.sendKeys(ConfigReader.getProperty("password"));
@@ -192,28 +204,30 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Contact Number alaninin (Zorunlu alan) ülke alanin update bölümüne gidilmeden degistirilmesi gerekir")
     @Test(groups = {"Smoke", "No role", "Failed"})
-    public void TC_19_03() throws InterruptedException {
+    public void TC_19_03(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         sa.assertTrue(homePage.flagIcon.isEnabled());
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Billing Adres alaninin default olarak bos geldigi gorulur. ")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_04() throws InterruptedException {
+    public void TC_19_04(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.billingAddressNoAdressFound.click();
@@ -221,20 +235,21 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Billing Adres alaninina adres ekli ise eklenen adres görüntülenebilmelidir")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_05() throws InterruptedException {
+    public void TC_19_05(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.billingAddressAddButton.click();
         homePage.titleButton.click();
         homePage.titleButton.sendKeys(ConfigReader.getProperty("firmName"));
-        Actions action = new Actions(Driver.getDriver("browser"));
+        Actions action = new Actions(Driver.getDriver(browser));
         action
                 .sendKeys(Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("country"))
@@ -252,20 +267,21 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Billing Adres alanininda (Zorunlu alan), \"+ Add\" secenegi ile Billing Adres update edilebilmelidir")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_06() throws InterruptedException {
+    public void TC_19_06(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.billingAddressAddButton.click();
         homePage.titleButton.click();
         homePage.titleButton.sendKeys(ConfigReader.getProperty("firmName"));
-        Actions action = new Actions(Driver.getDriver("browser"));
+        Actions action = new Actions(Driver.getDriver(browser));
         action
                 .sendKeys(Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("country"))
@@ -303,14 +319,15 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Shipping Adres alani (Zorunlu alan), default olarak bos gelmelidir. ")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_07() throws InterruptedException {
+    public void TC_19_07(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.shippingAddressNoAdressFound.click();
@@ -318,20 +335,21 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Shipping Adres alanina (Zorunlu alan),  adres ekli ise eklenen adres görüntülenebilmelidir")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_08() throws InterruptedException {
+    public void TC_19_08(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         homePage.shippingAddressAddButton.click();
         homePage.titleButton.click();
         homePage.titleButton.sendKeys(ConfigReader.getProperty("firmName"));
-        Actions action = new Actions(Driver.getDriver("browser"));
+        Actions action = new Actions(Driver.getDriver(browser));
         action
                 .sendKeys(Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("country"))
@@ -349,28 +367,30 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasina sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Shipping Adres alanina (Zorunlu alan),  adres ekli ise eklenen adres görüntülenebilmelidir")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_09() throws InterruptedException {
+    public void TC_19_09(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         sa.assertTrue(homePage.telefonNumberBox.getText().isEmpty());
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasinda, sepet ekranindaki \"Checkout\" butonundan ulasilmalidir. Delivery Schedule alaninda (Zorunlu alan), uygun zaman araliklari kullaniciya sunulmalidir.")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_10() throws InterruptedException {
+    public void TC_19_10(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
         sa.assertTrue(homePage.expressDelivery.getText().contains("90 min"));
@@ -381,14 +401,15 @@ public class orderPageTest {
         sa.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("Checkout sayfasinda, Delivery Schedule alaninda (Zorunlu alan), uygun zaman araliklari kullaniciya sunulmalidir. Kullanici bunlar arasinda secim yapmalidir.")
     @Test(groups = {"Smoke", "No role"})
-    public void TC_19_11() throws InterruptedException {
+    public void TC_19_11(@Optional("chrome")String browser) throws InterruptedException {
         SoftAssert sa = new SoftAssert();
-        homePage homePage = new homePage();
-        homePage.gohomePageUrl();
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.applesAddButton);
-        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver("browser"), homePage.chartButtonAtrightPrice);
+        homePage homePage = new homePage(browser);
+        homePage.gohomePageUrl(browser);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.applesAddButton);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.chartButtonAtrightPrice);
         homePage.checkoutButton.click();
         homePage.checkoutAsGuestButton.click();
 //        homePage.contactNumberAddButton.click();
@@ -397,7 +418,7 @@ public class orderPageTest {
         homePage.shippingAddressAddButton.click();
         homePage.titleButton.click();
         homePage.titleButton.sendKeys(ConfigReader.getProperty("firmName"));
-        Actions action = new Actions(Driver.getDriver("browser"));
+        Actions action = new Actions(Driver.getDriver(browser));
         action
                 .sendKeys(Keys.TAB)
                 .sendKeys(ConfigReader.getProperty("country"))

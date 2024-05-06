@@ -6,13 +6,14 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Optional;
 import pages.profile.profilPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
 public class offersPage {
-    public offersPage(){
-        PageFactory.initElements(Driver.getDriver("browser"),this);
+    public offersPage(@Optional("chrome")String browser){
+        PageFactory.initElements(Driver.getDriver(browser),this);
     }
 
     //"We source the best healthy foods for you." locater
@@ -54,17 +55,17 @@ public class offersPage {
     @FindBy(xpath = "(//span[@class='text-sm text-body'])[8]")
     public WebElement discount;
 
-    public static  void offersGiris() {
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
+    public static  void offersGiris(@Optional("chrome")String browser) {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
 
-        homePage homePage = new homePage();
+        homePage homePage = new homePage(browser);
         homePage.offersButon.click();//offers gidildi
 
     }
-    public void sepetUrunEkleme() throws InterruptedException {
+    public void sepetUrunEkleme(@Optional("chrome")String browser) throws InterruptedException {
 
 
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         chickenBreastAddButton.click();//sepete ürün eklendi
         breefSteakAddButton.click();
 
@@ -75,7 +76,7 @@ public class offersPage {
 //        doYouHaveCouponButton.click();
 //        enterCouponCodeButton.click();
 //        applyButton.click();
-//        Actions actions = new Actions(Driver.getDriver("browser"));
+//        Actions actions = new Actions(Driver.getDriver(browser));
 //        actions.click(chickenBreastAddButton)
 //                .click(breefSteakAddButton).perform();
 //                .click(itemButton)
@@ -86,8 +87,8 @@ public class offersPage {
 //                .click(enterCouponCodeButton)
 //                .click(applyButton)
     }
-    public void kuponKullanma() throws InterruptedException {
-        Actions actions = new Actions(Driver.getDriver("browser"));
+    public void kuponKullanma(@Optional("chrome")String browser) throws InterruptedException {
+        Actions actions = new Actions(Driver.getDriver(browser));
 //        actions.click(itemButton)
 //                .click(checkoutButton)
 //                .click(checkoutAsQuestButton)

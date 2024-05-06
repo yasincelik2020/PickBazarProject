@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import org.testng.Assert;
+import org.testng.annotations.Optional;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
@@ -19,8 +20,8 @@ import java.util.List;
 
 public class homePage {
 
-    public homePage() {
-        PageFactory.initElements(Driver.getDriver("browser"), this);
+    public homePage(@Optional("chrome")String browser) {
+        PageFactory.initElements(Driver.getDriver(browser), this);
     }
 
     @FindBy(id = "headlessui-menu-button-1")
@@ -133,9 +134,9 @@ public class homePage {
 
 
 
-    public void likeButtonuIcinLoginMethodu() {// page methodu
-        Actions actions = new Actions(Driver.getDriver("browser"));
-        loginPage loginPage = new loginPage();
+    public void likeButtonuIcinLoginMethodu(@Optional("chrome")String browser) {// page methodu
+        Actions actions = new Actions(Driver.getDriver(browser));
+        loginPage loginPage = new loginPage(browser);
         loginPage.eMail.sendKeys("abc@gmail.com");
         loginPage.password.sendKeys("abc123");
         loginPage.loginButton.click();
@@ -340,8 +341,8 @@ public class homePage {
     public WebElement checkoutButtonArea;
     @FindBy(xpath = "//span[starts-with(@class,'flex h-full flex-1 ')]")
     public WebElement checkoutButton;
-    public void gohomePageUrl(){
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
+    public void gohomePageUrl(@Optional("chrome")String browser){
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
     }
     @FindBy(xpath = "//span[starts-with(@class,'flex ltr')]")
     public WebElement itemsNumber;

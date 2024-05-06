@@ -4,14 +4,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import org.testng.annotations.Optional;
 import utilities.ConfigReader;
 import utilities.Driver;
 
 import java.util.List;
 
 public class faqPage {
-    public faqPage() {
-        PageFactory.initElements(Driver.getDriver("browser"), this);
+    public faqPage(@Optional("chrome")String browser) {
+        PageFactory.initElements(Driver.getDriver(browser), this);
     }
     @FindBy(xpath = "//h1[.='FAQ']")
     public WebElement faqText;

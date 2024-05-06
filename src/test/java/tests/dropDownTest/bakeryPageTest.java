@@ -9,6 +9,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.dropDown.bakeryPage;
@@ -23,14 +25,13 @@ import java.io.IOException;
 import static utilities.Driver.driver;
 
 public class bakeryPageTest {
-
-
+    @Parameters("browser")
     @Severity(SeverityLevel.NORMAL)
     @Description(" Shelf dropdown menu tiklanir ve \"Bakery\" secilir.")
     @Test(groups = {"Regression", "No role"})
-    public void TC_09_01(){
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
-        homePage homePage = new homePage();
+    public void TC_09_01(@Optional("chrome")String browser){
+      Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+        homePage homePage = new homePage(browser);
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
         SoftAssert softAssert = new SoftAssert();
@@ -39,23 +40,24 @@ public class bakeryPageTest {
         softAssert.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("\"Get Your Bakery Items Delivered\" yazisi görüntülenir ")
     @Test(groups = {"Regression", "No role"})
-    public void TC_09_02() throws InterruptedException {
-        bakeryPage bakeryPage = new bakeryPage();
-        bakeryPage.bakeryPageGit();
-        Thread.sleep(3000);
+    public void TC_09_02(@Optional("chrome")String browser) throws InterruptedException {
+        bakeryPage bakeryPage = new bakeryPage(browser);
+        bakeryPage.bakeryPageGit(browser);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(bakeryPage.bakeryGetYour.getText().contains("Get Your"));
         Driver.closeDriver();
         softAssert.assertAll();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description("\"Get your favorite bakery items baked and delivered to your doorsteps at any time\"")
     @Test(groups = {"Regression", "No role"})
-    public void TC_09_03() throws InterruptedException {
-        bakeryPage bakeryPage = new bakeryPage();
-        bakeryPage.bakeryPageGit();
+    public void TC_09_03(@Optional("chrome")String browser) throws InterruptedException {
+        bakeryPage bakeryPage = new bakeryPage(browser);
+        bakeryPage.bakeryPageGit(browser);
         Thread.sleep(3000);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(bakeryPage.bakeryGetYourFavorite.getText().contains("Get your favorite"));
@@ -65,11 +67,12 @@ public class bakeryPageTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Search secenegi olan frame görüntülenir.")
+    @Parameters("browser")
     @Test(groups = {"Regression", "No role"})
-    public void TC_09_04() throws InterruptedException {
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
-        bakeryPage bakeryPage = new bakeryPage();
-        bakeryPage.bakeryPageGit();
+    public void TC_09_04(@Optional("chrome")String browser) throws InterruptedException {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+        bakeryPage bakeryPage = new bakeryPage(browser);
+        bakeryPage.bakeryPageGit(browser);
         Thread.sleep(3000);
 
         SoftAssert softAssert = new SoftAssert();
@@ -81,11 +84,12 @@ public class bakeryPageTest {
 
 
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description ("Aranan ürün Bakery ile ilgili ise  ve sitede varsa geldigi dogrulanmalidir.")
     @Test(groups = {"Regression", "No role"})
-    public void TC_09_05() throws InterruptedException {
-        bakeryPage bakeryPage = new bakeryPage();
-        bakeryPage.bakeryPageGit();
+    public void TC_09_05(@Optional("chrome")String browser) throws InterruptedException {
+        bakeryPage bakeryPage = new bakeryPage(browser);
+        bakeryPage.bakeryPageGit(browser);
         Thread.sleep(3000);
         bakeryPage.bakeryWeSearchFrame.sendKeys("Raspberry Crumble Cookies", Keys.ENTER);
         SoftAssert softAssert = new SoftAssert();
@@ -95,12 +99,13 @@ public class bakeryPageTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description ("NEGATIF TEST: Aranan ürün Bakery ile ilgili değil ise ve sitede yoksa gelmedigi dogrulanmalidir")
     @Test(groups = {"Regression", "No role"})
-    public void TC_09_06() throws InterruptedException {
-        homePage homePage = new homePage();
-        bakeryPage bakeryPage = new bakeryPage();
-        bakeryPage.bakeryPageGit();
+    public void TC_09_06(@Optional("chrome")String browser) throws InterruptedException {
+        homePage homePage = new homePage(browser);
+        bakeryPage bakeryPage = new bakeryPage(browser);
+        bakeryPage.bakeryPageGit(browser);
         Thread.sleep(3000);
         bakeryPage.bakeryWeSearchFrame.sendKeys("Pears", Keys.ENTER);
         SoftAssert softAssert = new SoftAssert();
@@ -111,11 +116,12 @@ public class bakeryPageTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description ("Scroll down yapildiginda ekranin sag tarafinda ürünler 'Bakery' secili oldugu icin Bakery ürünleri geldigi dogrulanmalidir.")
     @Test(groups = {"Regression", "No role"})
-    public void TC_09_07() throws IOException, InterruptedException {
-        homePage homePage = new homePage();
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
+    public void TC_09_07(@Optional("chrome")String browser) throws IOException, InterruptedException {
+        homePage homePage = new homePage(browser);
+      Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
         Thread.sleep(3000);
@@ -134,14 +140,15 @@ public class bakeryPageTest {
         ReusableMethods.takeScreenshot("Bakery urun isimleri");
 
         softAssert.assertAll();
-        Driver.getDriver("browser").close();
+      Driver.getDriver(browser).close();
     }
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Description ("Scroll down yapildiginda ekranin sag tarafinda ürünler 'Bakery' secili oldugu icin Bakery fiyatlari geldigi dogrulanmalidir.")
     @Test(groups = {"Regression", "No role"})
-    public void TC_09_07_01() throws IOException, InterruptedException {
-        homePage homePage = new homePage();
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
+    public void TC_09_07_01(@Optional("chrome")String browser) throws IOException, InterruptedException {
+        homePage homePage = new homePage(browser);
+      Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
         Thread.sleep(3000);
@@ -160,7 +167,7 @@ public class bakeryPageTest {
         ReusableMethods.takeScreenshot("Bakery urun fiyatlari");
 
         softAssert.assertAll();
-        Driver.getDriver("browser").close();
+      Driver.getDriver(browser).close();
     }
 
 

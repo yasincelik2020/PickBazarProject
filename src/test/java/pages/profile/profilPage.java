@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.loginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -13,8 +15,9 @@ import java.time.Duration;
 import java.util.List;
 
 public class profilPage {
-    public profilPage() {
-        PageFactory.initElements(Driver.getDriver("browser"), this);
+    @Parameters("browser")
+    public profilPage(@Optional("chrome") String browser) {
+        PageFactory.initElements(Driver.getDriver(browser), this);
     }
 
     @FindBy(css = "img[alt=\"user name\"]")
@@ -137,71 +140,82 @@ public class profilPage {
     @FindBy(xpath = "//button[.='Login']")
     public WebElement loginLogout;
 
-
-    public void kasaApplesUrununuEkleme() throws InterruptedException {
-        loginPage loginPage = new loginPage();
-        profilPage profilPage = new profilPage();
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
-        loginPage.loginMethod();
+    @Parameters("browser")
+    public void kasaApplesUrununuEkleme(@Optional("chrome") String browser) throws InterruptedException {
+        loginPage loginPage = new loginPage(browser);
+        profilPage profilPage = new profilPage(browser);
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+        loginPage.loginMethod(browser);
         profilPage.applesAddButton.click();// elma eklendi
     }
 
-    public void goToMyRefunds() throws InterruptedException {
-        loginPage loginPage = new loginPage();
-        profilPage profilPage = new profilPage();
-        loginPage.loginMethod();
+    @Parameters("browser")
+    public void goToMyRefunds(@Optional("chrome") String browser) throws InterruptedException {
+        loginPage loginPage = new loginPage(browser);
+        profilPage profilPage = new profilPage(browser);
+        loginPage.loginMethod(browser);
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
         profilPage.myRefundsKategorisi.click();
     }
 
-    public void goToProfilPage() throws InterruptedException {
-        profilPage profilPage = new profilPage();
-        loginPage loginPage = new loginPage();
-        loginPage.loginMethod();
+    @Parameters("browser")
+
+    public void goToProfilPage(@Optional("chrome") String browser) throws InterruptedException {
+        profilPage profilPage = new profilPage(browser);
+        loginPage loginPage = new loginPage(browser);
+        loginPage.loginMethod(browser);
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
     }
 
-    public void goToMyOrderPage() throws InterruptedException {
-        loginPage loginPage = new loginPage();
-        profilPage profilPage = new profilPage();
-        loginPage.loginMethod();
+    public void goToMyOrderPage(@Optional("chrome") String browser) throws InterruptedException {
+        loginPage loginPage = new loginPage(browser);
+        profilPage profilPage = new profilPage(browser);
+        loginPage.loginMethod(browser);
         profilPage.profilFotoSekmesi.click();
         profilPage.myOrderKategorisi.click();
     }
 
-    public void goToDownloadsPage() throws InterruptedException {
-        loginPage loginPage = new loginPage();
-        profilPage profilPage = new profilPage();
-        loginPage.loginMethod();
+    @Parameters("browser")
+
+    public void goToDownloadsPage(@Optional("chrome") String browser) throws InterruptedException {
+        loginPage loginPage = new loginPage(browser);
+        profilPage profilPage = new profilPage(browser);
+        loginPage.loginMethod(browser);
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
         profilPage.downloadsKategorisi.click();
     }
 
-    public void goToMyWishLists() throws InterruptedException {
-        loginPage loginPage = new loginPage();
-        profilPage profilPage = new profilPage();
-        loginPage.loginMethod();
+    @Parameters("browser")
+
+    public void goToMyWishLists(@Optional("chrome") String browser) throws InterruptedException {
+        loginPage loginPage = new loginPage(browser);
+        profilPage profilPage = new profilPage(browser);
+        loginPage.loginMethod(browser);
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
         profilPage.myWishlistsKategorisi.click();
     }
 
-    public void goToMyReports() throws InterruptedException {
-        loginPage loginPage = new loginPage();
-        profilPage profilPage = new profilPage();
-        loginPage.loginMethod();
+    @Parameters("browser")
+
+    public void goToMyReports(@Optional("chrome") String browser) throws InterruptedException {
+        loginPage loginPage = new loginPage(browser);
+        profilPage profilPage = new profilPage(browser);
+        loginPage.loginMethod(browser);
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
         profilPage.myReportsKategorisi.click();
     }
 
-    public void goToNeedHelp() throws InterruptedException {
-        loginPage loginPage = new loginPage();
-        profilPage profilPage = new profilPage();
-        loginPage.loginMethod();
+    @Parameters("browser")
+
+    public void goToNeedHelp(@Optional("chrome") String browser) throws InterruptedException {
+        loginPage loginPage = new loginPage(browser);
+        profilPage profilPage = new profilPage(browser);
+        loginPage.loginMethod(browser);
         profilPage.profilFotoSekmesi.click();
         profilPage.profileKategorisi.click();
         profilPage.needHelpKategorisi.click();
