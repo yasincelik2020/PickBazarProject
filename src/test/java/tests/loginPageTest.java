@@ -10,6 +10,7 @@ import pages.homePage;
 import pages.loginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 public class loginPageTest {
     @Parameters("browser")
@@ -74,6 +75,8 @@ public class loginPageTest {
 
         SoftAssert softassert= new SoftAssert();
         softassert.assertFalse(loginPage.errorYazisi.isDisplayed());
+        ReusableMethods.takeScreenshot("Login Olunmuyor  ");
+        ReusableMethods.waitFor(1);
 
     }
     @Description("Müsteri cep telefonu numarasi ile login olunabilmeli")

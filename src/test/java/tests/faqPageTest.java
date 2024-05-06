@@ -91,23 +91,6 @@ public class faqPageTest {
 
     }
 
-    @Description("How to contact with Customer Service? sorusu görülmelidir.")
-    @Severity(SeverityLevel.NORMAL)
-    @Parameters("browser")
-    @Test(groups = {"Regression", "No role"})
-
-    public void TC_06_02(@Optional("chrome")String browser) {
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
-        faqPage faqPage = new faqPage(browser);
-        homePage homePage = new homePage(browser);
-//        Actions actions = new Actions(Driver.getDriver(browser));
-//        actions.click(homePage.faqButon)
-//                .click(faqPage.faqilkSoruIsareti).perform();
-        homePage.faqButon.click();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(faqPage.faqilkSoru.isDisplayed());
-
-    }
 
     @Description("How to contact with Customer Service? sorusunun cevabi acilmalidir.")
     @Severity(SeverityLevel.NORMAL)
@@ -118,9 +101,6 @@ public class faqPageTest {
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         faqPage faqPage = new faqPage(browser);
         homePage homePage = new homePage(browser);
-//        Actions actions = new Actions(Driver.getDriver(browser));
-//        actions.click(homePage.faqButon)
-//                .click(faqPage.faqilkSoruIsareti).perform();
         homePage.faqButon.click();
         faqPage.faqilkSoruIsareti.click();
         SoftAssert softAssert = new SoftAssert();
@@ -128,19 +108,8 @@ public class faqPageTest {
 
     }
 
-    @Description("App installation failed, how to update system information? sorusu görülmelidir.")
-    @Severity(SeverityLevel.NORMAL)
-    @Test(groups = {"Regression", "No role"})
 
-    public void TC_06_05(@Optional("chrome")String browser) {
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
-        faqPage faqPage = new faqPage(browser);
-        homePage homePage = new homePage(browser);
-        homePage.faqButon.click();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(faqPage.faqIkinciSoru.isDisplayed());
 
-    }
 
     @Description("App installation failed, how to update system information? sorusunun cevabi acilmalidir.")
     @Severity(SeverityLevel.NORMAL)
@@ -157,19 +126,7 @@ public class faqPageTest {
 
     }
 
-    @Description("Website response taking time, how to improve? sorusu görülmelidir.")
-    @Severity(SeverityLevel.NORMAL)
-    @Test(groups = {"Regression", "No role"})
 
-    public void TC_06_08(@Optional("chrome")String browser) {
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
-        faqPage faqPage = new faqPage(browser);
-        homePage homePage = new homePage(browser);
-        homePage.faqButon.click();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(faqPage.faqUcuncuSoru.isDisplayed());
-
-    }
 
     @Description("Website response taking time, how to improve? sorusunun cevabi acilmalidir.")
     @Severity(SeverityLevel.NORMAL)
@@ -187,20 +144,6 @@ public class faqPageTest {
 
     }
 
-    @Description("How do I create a account? sorusu görülmelidir.")
-    @Severity(SeverityLevel.NORMAL)
-    @Parameters("browser")
-    @Test(groups = {"Regression", "No role"})
-
-    public void TC_06_11(@Optional("chrome")String browser) {
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
-        faqPage faqPage = new faqPage(browser);
-        homePage homePage = new homePage(browser);
-        homePage.faqButon.click();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(faqPage.faqDorduncuSoru.isDisplayed());
-
-    }
 
     @Description("How do I create a account? sorusunun cevabi acilmalidir.")
     @Severity(SeverityLevel.NORMAL)

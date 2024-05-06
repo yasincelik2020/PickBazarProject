@@ -12,6 +12,9 @@ import pages.homePage;
 import pages.contactPage;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
+
+import java.io.IOException;
 
 public class contactPageTest {
     @Parameters("browser")
@@ -98,7 +101,7 @@ public class contactPageTest {
 
     }
 
-    @Description("Contact sekmesindeki webseiteBilgileri görülmelidir.")
+    @Description("Contact sekmesindeki Webseite Bilgileri görülmelidir.")
     @Parameters("browser")
     @Severity(SeverityLevel.NORMAL)
     @Test(groups = {"Regression", "No role"})
@@ -175,6 +178,27 @@ public class contactPageTest {
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(contactPage.instagramButton.isDisplayed());
+
+    }
+    @Description("Contact sekmesindeki form, isim yazilmadan gönderilmemelidir.")
+    @Severity(SeverityLevel.NORMAL)
+    @Test(groups = {"Regression", "No role", "Negatif Test"})
+
+    public void TC_07_11() throws IOException {
+        homePage homePage = new homePage();
+        contactPage contactPage = new contactPage();
+        homePage.contactButon.click();
+        Actions actions = new Actions(Driver.getDriver());
+        actions.sendKeys(contactPage.nameButton, Keys.TAB)
+                .sendKeys(ConfigReader.getProperty("eposta"), Keys.TAB)
+                .sendKeys("Sikayet", Keys.TAB)
+                .sendKeys("Hatali Kod", Keys.TAB)
+                .click(contactPage.submitButton).perform();
+
+        ReusableMethods.takeScreenshot("Uyari Yazisi ");
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(contactPage.nameUyariYazisi.isDisplayed());
 
     }
 }
