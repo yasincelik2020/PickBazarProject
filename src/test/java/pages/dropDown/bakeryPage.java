@@ -23,15 +23,12 @@ public class bakeryPage {
         homePage.homePageDropDownMenu.click();
         homePage.bakeryDropDownMenu.click();
     }
-    //Get Your Bakery Items Delivered
     @FindBy(xpath = "//h1[.=\"Get Your Bakery Items Delivered\"]")
     public WebElement bakeryGetYour;
 
-    //Get your favorite bakery items baked and delivered to your doorsteps at any time
     @FindBy(xpath = "//p[.=\"Get your favorite bakery items baked and delivered to your doorsteps at any time\"]")
     public WebElement bakeryGetYourFavorite;
 
-    //"Search" secenegi olan frame görüntülenir.
     @FindBy(id = "search")
     public WebElement bakeryWeSearchFrame;
 
@@ -43,9 +40,5 @@ public class bakeryPage {
 
     @FindBy(xpath = "//h3[.=\"Pears\"]")
     public WebElement pearsUrunu;
-
-
-
-
 
 }
