@@ -40,3 +40,4 @@ build/
 .DS_Store
 /allure-results/
 /test-output/
+/orderPageTest.xml
