@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.homePage;
@@ -25,14 +26,14 @@ public class offersPageTest {
     @Description("Kayitsiz kullanici offers bolumunde indirim kuponunlarini \"Copy\" secenegi ile kopyalayabilmelidir.")
     @Severity(SeverityLevel.NORMAL)
     @Test(groups = {"Regression", "No role"})
-    public void TC_05_01() throws InterruptedException {
-        offersPage.offersGiris();
+    public void TC_05_01(@Optional("chrome")String browser) throws InterruptedException {
+        offersPage.offersGiris(browser);
         SoftAssert softAssert = new SoftAssert();
         for (int i = 1; i < 11; i++) {
             if (i == 2 || i == 5 || i == 8) {
                 continue;
             }
-            WebElement offersCpoiedKupons = Driver.getDriver("browser").findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
+            WebElement offersCpoiedKupons = Driver.getDriver(browser).findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
             offersCpoiedKupons.click();
             Thread.sleep(3000);
             System.out.println("text : " + offersCpoiedKupons.getText());
@@ -45,10 +46,10 @@ public class offersPageTest {
     @Description("Kayitsiz kullanici offers bolumunde kopyaladigi indirim kuponunlarini  kullanabilmelidir.")
     @Severity(SeverityLevel.NORMAL)
     @Test(groups = {"Regression", "No role", "Failed"})
-    public void TC_05_11() throws InterruptedException {
+    public void TC_05_11(@Optional("chrome")String browser) throws InterruptedException {
 
-        offersPage offersPage = new offersPage();
-        offersPage.sepetUrunEkleme();
+        offersPage offersPage = new offersPage(browser);
+        offersPage.sepetUrunEkleme(browser);
 
         SoftAssert softAssert = new SoftAssert();
 
@@ -56,12 +57,12 @@ public class offersPageTest {
                     if (i == 2 || i == 5 || i == 8) {
                         continue;
                     }
-                    offersPage.offersGiris();
-                    WebElement offersCopiedKupons = Driver.getDriver("browser").findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
+                    offersPage.offersGiris(browser);
+                    WebElement offersCopiedKupons = Driver.getDriver(browser).findElement(By.xpath("(//div[starts-with(@class,'w-11/12')])[" + i + "]"));
                     
                 offersCopiedKupons.click();
 
-                offersPage.kuponKullanma();
+                offersPage.kuponKullanma(browser);
                 if (i == 1) {
                     softAssert.assertEquals(offersPage.discount.getText().substring(1), "2");
 

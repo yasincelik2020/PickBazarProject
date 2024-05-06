@@ -4,13 +4,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
 import utilities.Driver;
 
 public class loginPage {
-    public loginPage() {
-        PageFactory.initElements(Driver.getDriver("browser"), this);
+    public loginPage(@Optional("chrome")String browser) {
+        PageFactory.initElements(Driver.getDriver(browser), this);
     }
 
 
@@ -74,8 +75,8 @@ public class loginPage {
     @FindBy(xpath = "//p[.='Login with your email & password']")
     public WebElement loginYazisi;
 
-    public void loginMethod() throws InterruptedException {
-        Driver.getDriver("browser").get(ConfigReader.getProperty("pickUrl"));
+    public void loginMethod(@Optional("chrome")String browser) throws InterruptedException {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         Thread.sleep(3000);
         joinButton.click();
         eMail.sendKeys(ConfigReader.getProperty("eposta"));

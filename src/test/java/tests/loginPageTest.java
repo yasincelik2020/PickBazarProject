@@ -4,9 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pages.homePage;
 import pages.loginPage;
@@ -14,10 +12,11 @@ import utilities.ConfigReader;
 import utilities.Driver;
 
 public class loginPageTest {
+    @Parameters("browser")
 
     @BeforeMethod(groups = {"Smoke", "No role", "Costumer"})
-    public void beforeMethod() {
-        Driver.getDriver().get(ConfigReader.getProperty("pickUrl"));
+    public void beforeMethod(@Optional("chrome")String browser) {
+        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
     }
     @AfterMethod(groups = {"Smoke", "No role", "Costumer"})
     public void afterMethod() {
@@ -27,10 +26,11 @@ public class loginPageTest {
     }
     @Description("Kullanici register olabilmelidir")
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Test(groups = {"Smoke", "No role"})
 
-    public void TC_16_01() throws Exception {
-        loginPage loginPage = new loginPage();
+    public void TC_16_01(@Optional("chrome")String browser) throws Exception {
+        loginPage loginPage = new loginPage(browser);
         loginPage.registerMethod();
 
         SoftAssert softassert= new SoftAssert();
@@ -39,11 +39,12 @@ public class loginPageTest {
     }
     @Description("Müsteri login olabilmelidir")
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Test(groups = {"Smoke", "Costumer"})
 
-    public void TC_17_01() throws Exception {
-        loginPage loginPage = new loginPage();
-        loginPage.loginMethod();
+    public void TC_17_01(@Optional("chrome")String browser) throws Exception {
+        loginPage loginPage = new loginPage(browser);
+        loginPage.loginMethod(browser);
 
         SoftAssert softassert= new SoftAssert();
         softassert.assertTrue(loginPage.userAvatar.isDisplayed());
@@ -54,8 +55,8 @@ public class loginPageTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(groups = {"Smoke", "Costumer"})
 
-    public void TC_17_05() throws Exception {
-        loginPage loginPage = new loginPage();
+    public void TC_17_05(@Optional("chrome")String browser) throws Exception {
+        loginPage loginPage = new loginPage(browser);
         loginPage.passwordYenilemeMethod();
 
         SoftAssert softassert= new SoftAssert();
@@ -66,8 +67,8 @@ public class loginPageTest {
     @Severity(SeverityLevel.NORMAL)
     @Test(groups = {"Smoke", "Costumer"})
 
-    public void TC_17_07() throws Exception {
-        loginPage loginPage = new loginPage();
+    public void TC_17_07(@Optional("chrome")String browser) throws Exception {
+        loginPage loginPage = new loginPage(browser);
         loginPage.joinButton.click();
         loginPage.loginWithGoogleButon.click();
 
@@ -77,10 +78,11 @@ public class loginPageTest {
     }
     @Description("Müsteri cep telefonu numarasi ile login olunabilmeli")
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Test(groups = {"Smoke", "Costumer"})
 
-    public void TC_17_08() throws Exception {
-        loginPage loginPage = new loginPage();
+    public void TC_17_08(@Optional("chrome")String browser) throws Exception {
+        loginPage loginPage = new loginPage(browser);
        loginPage.loginWithMobileMethod();
 
         SoftAssert softassert= new SoftAssert();
@@ -89,11 +91,12 @@ public class loginPageTest {
     }
     @Description("Müsteri \"Register\" ekraninda(Already have an account?) \"Login\" butonu ile login ekranina yönlenmelidir.")
     @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
     @Test(groups = {"Smoke", "Costumer"})
 
-    public void TC_17_09() throws Exception {
+    public void TC_17_09(@Optional("chrome")String browser) throws Exception {
         Thread.sleep(3000);
-        loginPage loginPage = new loginPage();
+        loginPage loginPage = new loginPage(browser);
         loginPage.joinButton.click();
         loginPage.registerButton.click();
         loginPage.loginButton.click();
