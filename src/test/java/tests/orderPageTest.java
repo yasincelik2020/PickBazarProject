@@ -173,7 +173,7 @@ public class orderPageTest {
     public void TC_19_02() throws InterruptedException {
         SoftAssert sa = new SoftAssert();
         homePage homePage = new homePage();
-        homePage.chartAddFunctions();
+        homePage.gohomePageUrl();
         homePage.groceryDropDownMenu.click();
         homePage.dailyNeedsDropDownMenu.click();
         homePage.dailyNeedsChartIkon.click();
