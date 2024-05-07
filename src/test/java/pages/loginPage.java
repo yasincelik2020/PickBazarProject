@@ -27,6 +27,8 @@ public class loginPage {
 
     @FindBy(xpath = "//button[.=\"Login\"]")
     public WebElement loginButton;
+    @FindBy(xpath = "(//label[@for='password'])[2]")
+    public WebElement passwordVisible;
     @FindBy(xpath = "//button[.='Register']")
     public WebElement registerYazisi;
     @FindBy(xpath = "//input[starts-with(@class, 'flex w-full appearance-none items-center')]")

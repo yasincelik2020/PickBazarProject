@@ -29,10 +29,10 @@ public class faqPageTest {
 
     @DataProvider
     public static Object[][] dataSorular() {
-        return new Object[][]{{"How to contact with Customer Service?"},
-                {"App installation failed, how to update system information?"},
-                {"Website response taking time, how to improve?"},
-                {"How do I create a account?"},};
+        return new Object[][]{{"chrome","How to contact with Customer Service?"},
+                {"chrome","App installation failed, how to update system information?"},
+                {"chrome","Website response taking time, how to improve?"},
+                {"chrome","How do I create a account?"},};
     }
 
     @Description("FAQ sekmesine erisim saglanmalidir")
@@ -40,7 +40,7 @@ public class faqPageTest {
     @Parameters("browser")
     @Test(groups = {"Regression", "No role"})
 
-    public void TC_06_01(@Optional("chrome")String browser) {
+    public void TC_06_02(@Optional("chrome")String browser) {
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage(browser);
         faqPage faqPage = new faqPage(browser);
@@ -55,7 +55,7 @@ public class faqPageTest {
     @Parameters("browser")
     @Test(dataProvider = "dataSorular", groups = {"Regression", "No role"})
 
-    public void TC_06_01(@Optional("chrome")String browser,String soru) {
+    public void TC_06_02(@Optional("chrome") String browser, String soru) {
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
         homePage homePage = new homePage(browser);
         homePage.faqButon.click();
