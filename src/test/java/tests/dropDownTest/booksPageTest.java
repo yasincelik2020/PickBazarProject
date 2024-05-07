@@ -13,7 +13,6 @@ import org.testng.asserts.SoftAssert;
 import pages.dropDown.booksPage;
 import pages.homePage;
 import utilities.*;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +44,7 @@ public class booksPageTest {
         homePage.homePageDropDownMenu.click();
         booksPage booksPage = new booksPage(browser);
         booksPage.booksDropDown.click();
-        ReusableMethods.waitFor(1);
+        ReusableMethods.waitFor(3);
         Assert.assertTrue(Driver.getDriver(browser).getCurrentUrl().contains("books"));
     }
 

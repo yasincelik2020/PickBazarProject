@@ -3,13 +3,7 @@
 <suite name="Suite" parallel="methods" thread-count="3"> <!-- methods olarak düzenlendi -->
     <test name="Paralell test">
         <classes>
-            <class name="tests.profile.profilPageTest">
-                        <methods>
-                            <include name="TC_22_01"/>
-                            <include name="TC_22_02"/>
-                            <include name="TC_22_03"/>
-                        </methods>
-            </class>
+            <class name="tests.dropDownTest.booksPageTest"></class>
         </classes>
     </test>
 </suite>

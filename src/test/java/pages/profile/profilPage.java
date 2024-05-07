@@ -9,6 +9,7 @@ import org.testng.annotations.Parameters;
 import pages.loginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.JavaScriptExecutorUtils;
 import utilities.ReusableMethods;
 
 import java.time.Duration;
@@ -165,7 +166,9 @@ public class profilPage {
         profilPage profilPage = new profilPage(browser);
         loginPage loginPage = new loginPage(browser);
         loginPage.loginMethod(browser);
-        profilPage.profilFotoSekmesi.click();
+        Thread.sleep(3000);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),profilPage.profilFotoSekmesi);
+        ReusableMethods.waitForClickablility( profilPage.profileKategorisi,10);
         profilPage.profileKategorisi.click();
     }
 
