@@ -600,7 +600,8 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.shopsButtonHomePage.click();
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+
 
         Assert.assertTrue(homePage.allShopsTextShopsPage.isDisplayed());
 
@@ -1072,7 +1073,7 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.shopsButtonHomePage.click();
+       JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
 
         int i = 0;
 
@@ -1129,8 +1130,8 @@ public class homePageTest {
 
         homePage homePage = new homePage(browser);
         ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
-        homePage.shopsButtonHomePage.click();
-        SoftAssert softAssert = new SoftAssert();
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+        SoftAssert softAssert =new SoftAssert();
 
         for (int i = 0; i < homePage.allShopsShopsPage.size(); i++) {
             homePage.allShopsShopsPage.get(i).click();
