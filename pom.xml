@@ -115,12 +115,13 @@
                     </argLine>
                 </configuration>
             </plugin>
-                 <plugin>
-
-  <configuration>
-    <compilerArgument>--module-path=NONE</compilerArgument>
-  </configuration>
-</plugin>
+            <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <compilerArgument>--module-path=NONE</compilerArgument>
+                    </configuration>
+            </plugin>
         </plugins>
     </build>
 
