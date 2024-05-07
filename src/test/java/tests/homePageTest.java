@@ -8,10 +8,12 @@ import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -23,21 +25,20 @@ import utilities.JavaScriptExecutorUtils;
 import utilities.ReusableMethods;
 
 import java.io.IOException;
-
-import static utilities.Driver.driver;
-import static utilities.Driver.getDriver;
+import java.time.Duration;
 
 public class homePageTest {
 
 
 
-    @AfterMethod (groups = {"Smoke", "Regression","No role","US_15"})
+    @AfterMethod (groups = {"Smoke", "Regression","No role","US_15","US_02","US_03","US_04"})
+
     public void afterMethod() {
         Driver.closeDriver();
     }
     @Parameters("browser")
 
-    @BeforeMethod (groups = {"Smoke", "Regression","No role","US_15"})
+    @BeforeMethod (groups = {"Smoke", "Regression","No role","US_15","US_02","US_03","US_04"})
     public void beforeMethod(@Optional("chrome")String browser) {
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
     }
@@ -70,6 +71,7 @@ public class homePageTest {
         Assert.assertTrue(homePage.dropDownGroceryMain.isDisplayed());
 
     }
+
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("  Kayitsiz kullanici olarak ana sayfanin elementlerinin dogru sekilde geldigi görüntülenmelidir:" +
@@ -205,8 +207,8 @@ public class homePageTest {
 
         for (WebElement listElement : homePage.groceryUrunleriHomePage) {
             System.out.println(homePage.groceryUrunleriHomePage.get(k).getText());
-           Assert.assertTrue(listElement.isDisplayed());
-           k++;
+            Assert.assertTrue(listElement.isDisplayed());
+            k++;
         }
         ReusableMethods.takeScreenshot("Grocery ana sayfa urunleri");
 
@@ -232,7 +234,7 @@ public class homePageTest {
             Assert.assertTrue(listElement.isDisplayed());
             i++;
         }
-        ReusableMethods.takeScreenshot("Grocery alt menu" );
+        ReusableMethods.takeScreenshot("Grocery alt menu");
 
     }
 
@@ -242,14 +244,19 @@ public class homePageTest {
     @Test(groups = {"Smoke", "Customer"})
     public void TC_01_16(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
+
+        homePage homePage=new homePage(browser);
+
         loginPage loginPage=new loginPage(browser);
         loginPage.loginMethod(browser);
         ReusableMethods.takeScreenshot("Login");
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(),ConfigReader.getProperty("pickUrl"));
 
-        homePage homePage=new homePage(browser);
+
         Assert.assertTrue( homePage.pickBazarButonHomePage.isDisplayed());
+
+
 
     }
 
@@ -268,7 +275,11 @@ public class homePageTest {
         homePage homePage = new homePage(browser);
         Assert.assertTrue(homePage.dropDownGroceryMain.isDisplayed());
 
+
+
     }
+
+
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
@@ -284,6 +295,7 @@ public class homePageTest {
         homePage homePage = new homePage(browser);
         Assert.assertTrue(homePage.shopsButtonHomePage.isDisplayed());
 
+
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -293,6 +305,7 @@ public class homePageTest {
     public void TC_01_19(@Optional("chrome")String browser) throws InterruptedException {
 
         loginPage loginPage=new loginPage(browser);
+        Thread.sleep(2000);
         loginPage.loginMethod(browser);
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -432,6 +445,7 @@ public class homePageTest {
 
         for (WebElement listElement : homePage.groceryUrunleriHomePage) {
             System.out.println(homePage.groceryUrunleriHomePage.get(k).getText());
+            Thread.sleep(2000);
             Assert.assertTrue(listElement.isDisplayed());
             k++;
         }
@@ -459,19 +473,19 @@ public class homePageTest {
 
         for (WebElement listElement : homePage.groceryAltMenuUrunleriHomePage) {
             System.out.println(homePage.groceryAltMenuUrunleriHomePage.get(i).getText());
+            Thread.sleep(3000);
             Assert.assertTrue(listElement.isDisplayed());
             i++;
         }
-        ReusableMethods.takeScreenshot("Grocery alt menu" );
+        ReusableMethods.takeScreenshot("Grocery alt menu");
 
     }
-
 
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada  \"Pick Bazar\" butonunun calistigi görülmeli")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_02"})
     public void TC_02_01(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -486,7 +500,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ,\"PickBazar\" butonunun oldugu Shops sayfasinda  \"PickBazar\" butonu ana sayfa ekranina dönmemizi saglamali.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_02"})
     public void TC_02_02(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -505,7 +519,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ,\"PickBazar\" butonunun oldugu Offers sayfasinda  \"PickBazar\" butonu ana sayfa ekranina dönmemizi saglamali.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_02"})
     public void TC_02_03(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -513,7 +527,7 @@ public class homePageTest {
         homePage homePage = new homePage(browser);
         homePage.offersButtonHomePage.click();
 
-       ReusableMethods.waitForPageToLoad(3);
+        ReusableMethods.waitForPageToLoad(3);
 
         Assert.assertTrue(Driver.getDriver(browser).getCurrentUrl().contains("offers"));
 
@@ -524,7 +538,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ,\"PickBazar\" butonunun oldugu FAQ sayfasinda  \"PickBazar\" butonu ana sayfa ekranina dönmemizi saglamali.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_02"})
     public void TC_02_04(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -543,7 +557,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ,\"PickBazar\" butonunun oldugu Contact sayfasinda  \"PickBazar\" butonu ana sayfa ekranina dönmemizi saglamali.")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_02"})
     public void TC_02_05(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -562,7 +576,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana sayfada  \"Pick Bazar\" butonunun calistigi görülmeli")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_02"})
     public void TC_02_06(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         loginPage loginPage=new loginPage(browser);
@@ -581,7 +595,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ,\"PickBazar\" butonunun oldugu Shops sayfasinda  \"PickBazar\" butonu ana sayfa ekranina dönmemizi saglamali.")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_02"})
     public void TC_02_07(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         loginPage loginPage=new loginPage(browser);
@@ -604,7 +618,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ,\"PickBazar\" butonunun oldugu Offers sayfasinda  \"PickBazar\" butonu ana sayfa ekranina dönmemizi saglamali.")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_02"})
     public void TC_02_08(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         loginPage loginPage=new loginPage(browser);
@@ -614,7 +628,7 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.offersButtonHomePage.click();
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.offersButtonHomePage);
 
         ReusableMethods.waitForPageToLoad(3);
 
@@ -627,7 +641,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ,\"PickBazar\" butonunun oldugu FAQ sayfasinda  \"PickBazar\" butonu ana sayfa ekranina dönmemizi saglamali.")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_02"})
     public void TC_02_09(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         loginPage loginPage=new loginPage(browser);
@@ -637,7 +651,7 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.faqButtonHomePage.click();
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.faqButtonHomePage);
 
         Assert.assertTrue(homePage.faqTextFAQPage.isDisplayed());
 
@@ -648,11 +662,10 @@ public class homePageTest {
     }
 
 
-
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ,\"PickBazar\" butonunun oldugu Contact sayfasinda  \"PickBazar\" butonu ana sayfa ekranina dönmemizi saglamali.")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_02"})
     public void TC_02_10(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         loginPage loginPage=new loginPage(browser);
@@ -662,7 +675,7 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.contactButtonHomePage.click();
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.contactButtonHomePage);
 
         Assert.assertTrue(homePage.contactImgContactPage.isDisplayed());
 
@@ -675,7 +688,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana ekranda  Shelf dropdown menusü \"Grocery\" secenegi secili sekilde görüntülenmeli .")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_01(@Optional("chrome")String browser) throws IOException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -690,7 +703,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda " +
             " Grocery secenegi tiklanabilmeli, URL ' de Grocery yazisi görülmeli \n")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_02(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         homePage homePage = new homePage(browser);
@@ -700,13 +713,13 @@ public class homePageTest {
 
       // JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.dropDownGroceryMain);
 
-         //ReusableMethods.waitForVisibility(homePage.dropDownGroceryMainAlt,3);
+        //ReusableMethods.waitForVisibility(homePage.dropDownGroceryMainAlt,3);
         Thread.sleep(3000);
         homePage.dropDownGroceryMainAlt.click();
 
         //JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.dropDownGroceryMainAlt);
 
-        System.out.println(Driver.getDriver(browser).getCurrentUrl());
+
 
         Assert.assertTrue(Driver.getDriver(browser).getCurrentUrl().contains("grocery"));
         ReusableMethods.takeScreenshot("Grocery");
@@ -717,7 +730,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Bakery secenegi tiklanabilmeli, URL ' de Bakery  yazisi görülmeli ")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_03(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -736,14 +749,14 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " MakeUp secenegi tiklanabilmeli, URL ' de MakeUp  yazisi görülmeli ")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_04(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
         homePage.dropDownGroceryMain.click();
-       Thread.sleep(3000);
+        Thread.sleep(3000);
         homePage.makeUpDropDownMenu.click();
 
         Assert.assertTrue(Driver.getDriver(browser).getCurrentUrl().contains("makeup"));
@@ -755,7 +768,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Bags secenegi tiklanabilmeli, URL ' de Bags yazisi görülmeli ")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_05(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -774,7 +787,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Clothing secenegi tiklanabilmeli, URL ' de Clothing  yazisi görülmeli ")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_06(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -793,7 +806,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Furniture secenegi tiklanabilmeli, URL ' de Furniture  yazisi görülmeli ")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_07(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -812,7 +825,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             "  Daily Needs secenegi tiklanabilmeli, URL ' de  Daily Needs  yazisi görülmeli ")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_08(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -831,7 +844,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitsiz kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Books secenegi tiklanabilmeli, URL ' de Books  yazisi görülmeli")
-    @Test(groups = {"Regression", "No role"})
+    @Test(groups = {"Regression", "No role","US_03"})
     public void TC_03_09(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
@@ -851,7 +864,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana ekranda  Shelf dropdown menusü \"Grocery\" secenegi secili sekilde görüntülenmeli  ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_10(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -870,7 +883,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda \n" +
             " Grocery secenegi tiklanabilmeli, URL ' de Grocery yazisi görülmeli ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_11(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -893,7 +906,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Bakery secenegi tiklanabilmeli, URL ' de Bakery  yazisi görülmeli ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_12(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -916,7 +929,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " MakeUp secenegi tiklanabilmeli, URL ' de MakeUp  yazisi görülmeli ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_13(@Optional("chrome")String browser) throws IOException, InterruptedException {
 
         loginPage loginPage=new loginPage(browser);
@@ -938,7 +951,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Description("Kayitli kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Bags secenegi tiklanabilmeli, URL ' de Bags yazisi görülmeli ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_14(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -961,7 +974,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Clothing secenegi tiklanabilmeli, URL ' de Clothing  yazisi görülmeli  ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_15(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -984,7 +997,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Furniture secenegi tiklanabilmeli, URL ' de Furniture  yazisi görülmeli ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_16(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1007,7 +1020,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             "  Daily Needs secenegi tiklanabilmeli, URL ' de  Daily Needs  yazisi görülmeli  ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_17(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1030,7 +1043,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici olarak ana sayfada sol üstteki Shelf dropdown menu tiklanildiginda\n" +
             " Books secenegi tiklanabilmeli, URL ' de Books  yazisi görülmeli")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_03"})
     public void TC_03_18(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1054,7 +1067,7 @@ public class homePageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici shops bolumunu tikladiginda ,alisveris icin magaza seceneklerini gorebilmeli.")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_04"})
     public void TC_04_01(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1066,14 +1079,14 @@ public class homePageTest {
         homePage homePage = new homePage(browser);
         homePage.shopsButtonHomePage.click();
 
-        int i=0;
+        int i = 0;
 
         for (WebElement listElement : homePage.allShopsShopsPage) {
             System.out.println(homePage.allShopsShopsPage.get(i).getText());
             Assert.assertTrue(listElement.isDisplayed());
             i++;
         }
-        ReusableMethods.takeScreenshot("All Shops Shops Page" );
+        ReusableMethods.takeScreenshot("All Shops Shops Page");
 
     }
 
@@ -1081,7 +1094,7 @@ public class homePageTest {
     @Parameters("browser")
 
     @Description("Kayitli kullanici  shops bölümünde  herhangi bir magayaza tıkladiginda o magazaya ait magaza bilgisine erisebilmeli. ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_04"})
     public void TC_04_02(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1091,7 +1104,7 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.shopsButtonHomePage.click();
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
 
         for (int i = 0; i < homePage.allShopsShopsPage.size(); i++) {
             homePage.allShopsShopsPage.get(i).click();
@@ -1099,7 +1112,7 @@ public class homePageTest {
             for (int j = 0; j < homePage.shopsInformation.size(); j++) {
                 System.out.println(homePage.shopsInformation.get(j).getText());
                 Assert.assertTrue(homePage.shopsInformation.get(j).isDisplayed());
-                ReusableMethods.takeScreenshot("Shops Information Shops Page" );
+                ReusableMethods.takeScreenshot("Shops Information Shops Page");
             }
             homePage.shopsButtonHomePage.click();
         }
@@ -1110,7 +1123,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici  shops bölümünde  herhangi bir magayaza tıkladiginda o magazaya ait\n" +
             "facebook linki bilgisine erisebilmeli. ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_04"})
     public void TC_04_03(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1120,30 +1133,37 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-       Thread.sleep(3000);
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
         homePage.shopsButtonHomePage.click();
-        SoftAssert sa =new SoftAssert();
+        SoftAssert softAssert =new SoftAssert();
 
         for (int i = 0; i < homePage.allShopsShopsPage.size(); i++) {
             homePage.allShopsShopsPage.get(i).click();
+            Thread.sleep(2000);
 
-            sa.assertTrue(homePage.facebookIcon.isDisplayed());
+            try{
+             if (Driver.getDriver(browser).findElement(By.xpath("//a[@href='https://www.facebook.com/']")).getAttribute("href").contains("face") ){
+                 System.out.println(Driver.getDriver(browser).getCurrentUrl()+"facebook iconu var");
+             }
 
-            ReusableMethods.takeScreenshot("Facebook Information Shops Page" );
+            }catch (NoSuchElementException e){
 
-            homePage.shopsButtonHomePage.click();
+             ReusableMethods.takeScreenshot("Facebook Information");
+          softAssert.assertTrue(false);
+            }
+
+         homePage.shopsButtonHomePage.click();
 
         }
-       // sa.assertAll();
+       softAssert.assertAll();
 
-
-    }
+   }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici shops bölümünde  herhangi bir magayaza tıkladiginda o magazaya ait\n" +
             "instagram linki bilgisine erisebilmeli. ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_04"})
     public void TC_04_04(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1153,20 +1173,29 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        Thread.sleep(3000);
-        homePage.shopsButtonHomePage.click();
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+        SoftAssert softAssert = new SoftAssert();
 
         for (int i = 0; i < homePage.allShopsShopsPage.size(); i++) {
             homePage.allShopsShopsPage.get(i).click();
-            System.out.println(homePage.instagramIcon.size());
+            Thread.sleep(2000);
 
-            for (int j = 0; j < homePage.instagramIcon.size(); j++) {
+            try{
+                if (Driver.getDriver(browser).findElement(By.xpath("//a[@href='https://www.instagram.com/']")).getAttribute("href").contains("instagram") ){
+                    System.out.println(Driver.getDriver(browser).getCurrentUrl()+"instagram iconu var");
+                }
 
-                Assert.assertTrue(homePage.instagramIcon.get(j).isDisplayed());
-                ReusableMethods.takeScreenshot("Instagram Information Shops Page" );
+            }catch (NoSuchElementException e){
+
+                ReusableMethods.takeScreenshot("Instagram Information");
+                softAssert.assertTrue(false);
             }
+
             homePage.shopsButtonHomePage.click();
+
         }
+        softAssert.assertAll();
 
     }
 
@@ -1174,7 +1203,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici  shops bölümünde  herhangi bir magayaza tıkladiginda o magazaya ait\n" +
             "Address bilgisine erisebilmeli.  ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_04"})
     public void TC_04_05(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1184,18 +1213,27 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.shopsButtonHomePage.click();
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+        SoftAssert softAssert = new SoftAssert();
 
         for (int i = 0; i < homePage.allShopsShopsPage.size(); i++) {
             homePage.allShopsShopsPage.get(i).click();
+            Thread.sleep(2000);
 
-         /*   for (int j = 0; j < homePage.facebookIcon.size(); j++) {
+            try{
+                if (Driver.getDriver(browser).findElement(By.xpath("//div[@class='p-7']")).getText().contains("Address") ){
+                    System.out.println(Driver.getDriver(browser).getCurrentUrl()+"adres bilgisi var");
+                }
+            }catch (NoSuchElementException e){
 
-                Assert.assertTrue(homePage.facebookIcon.get(j).isDisplayed());
-                ReusableMethods.takeScreenshot("Facebook Information Shops Page" );
-            }*/
+                ReusableMethods.takeScreenshot("Adress Information");
+                softAssert.assertTrue(false);
+            }
+
             homePage.shopsButtonHomePage.click();
         }
+        softAssert.assertAll();
 
     }
 
@@ -1203,7 +1241,7 @@ public class homePageTest {
     @Parameters("browser")
     @Description("Kayitli kullanici  shops bölümünde  herhangi bir magayaza tıkladiginda o magazaya ait\n" +
             "telefon bilgisine erisebilmeli. ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_04"})
     public void TC_04_06(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1213,26 +1251,34 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.shopsButtonHomePage.click();
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+        SoftAssert softAssert = new SoftAssert();
 
         for (int i = 0; i < homePage.allShopsShopsPage.size(); i++) {
             homePage.allShopsShopsPage.get(i).click();
+            Thread.sleep(2000);
 
-//            for (int j = 0; j < homePage.facebookIcon.size(); j++) {
-//
-//                Assert.assertTrue(homePage.facebookIcon.get(j).isDisplayed());
-//                ReusableMethods.takeScreenshot("Facebook Information Shops Page" );
-//            }
+            try{
+                if (Driver.getDriver(browser).findElement(By.xpath("//div[@class='p-7']")).getText().contains("Phone") ){
+                    System.out.println(Driver.getDriver(browser).getCurrentUrl()+"telefon bilgisi var");
+                }
+            }catch (NoSuchElementException e){
+
+                ReusableMethods.takeScreenshot("Phone Information");
+                softAssert.assertTrue(false);
+            }
+
             homePage.shopsButtonHomePage.click();
         }
-
+        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici shops bölümünde  herhangi bir magayaza tıkladiginda o magazaya ait\n" +
             "site adresi bilgisine erisebilmeli. ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_04"})
     public void TC_04_07(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1242,25 +1288,34 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.shopsButtonHomePage.click();
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+        SoftAssert softAssert = new SoftAssert();
 
         for (int i = 0; i < homePage.allShopsShopsPage.size(); i++) {
             homePage.allShopsShopsPage.get(i).click();
+            Thread.sleep(2000);
 
-//            for (int j = 0; j < homePage.facebookIcon.size(); j++) {
-//
-//                Assert.assertTrue(homePage.facebookIcon.get(j).isDisplayed());
-//                ReusableMethods.takeScreenshot("Facebook Information Shops Page" );
-//            }
+            try{
+                if (Driver.getDriver(browser).findElement(By.xpath("//a[.='Visit This Site']")).getText().contains("Visit") ){
+                    System.out.println(Driver.getDriver(browser).getCurrentUrl()+"internet sitesi bilgisi var");
+                }
+            }catch (NoSuchElementException e){
+
+                ReusableMethods.takeScreenshot("Website Information");
+                softAssert.assertTrue(false);
+            }
+
             homePage.shopsButtonHomePage.click();
         }
+        softAssert.assertAll();
 
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kayitli kullanici Shops bolumunde herhangi magaza secenegini tıkladiktan sonra herhangi bir  urunu  sepete ekleme islemini yapabilmeli ")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer","US_04"})
     public void TC_04_08(@Optional("chrome")String browser) throws InterruptedException, IOException {
 
         loginPage loginPage=new loginPage(browser);
@@ -1270,14 +1325,165 @@ public class homePageTest {
         Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
 
         homePage homePage = new homePage(browser);
-        homePage.shopsButtonHomePage.click();
-
-        for (int i = 0; i < homePage.allShopsShopsPage.size(); i++) {
-            homePage.allShopsShopsPage.get(i).click();
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
 
 
-            homePage.shopsButtonHomePage.click();
+        homePage.clothingShop.click();
+        Thread.sleep(2000);
+
+        for (int j = 0; j < homePage.urunResimleri.size(); j++) {
+
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.urunResimleri.get(j));
+            Thread.sleep(3000);
+            int itemIlk = Integer.parseInt(Driver.getDriver(browser).findElement(By.xpath("//span[starts-with(@class,'flex ltr')]")).getText().substring(0, 1));
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), Driver.getDriver(browser).findElement(By.xpath(" //span[.='Add To Shopping Cart']")));
+
+            int itemSon = Integer.parseInt(Driver.getDriver(browser).findElement(By.xpath("//span[starts-with(@class,'flex ltr')]")).getText().substring(0, 1));
+            Assert.assertTrue(itemSon > itemIlk);
+
+            ReusableMethods.takeScreenshot("Sepete Ekleme");
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),
+                    Driver.getDriver(browser).findElement(By.xpath("//button//span[.='minus']")));
         }
+
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), Driver.getDriver(browser).findElement(By.xpath("//a[.='Shops']")));
+
+
+    }
+
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Kayitli kullanici Shops bolumunde herhangi magaza secenegini tıkladiktan sonra  sectigi urunun  miktarinda guncelleme islemini yapabilmeli")
+    @Test(groups = {"Regression", "Customer","US_04"})
+    public void TC_04_09(@Optional("chrome")String browser) throws InterruptedException, IOException {
+
+        loginPage loginPage = new loginPage(browser);
+        loginPage.loginMethod(browser);
+        ReusableMethods.takeScreenshot("Login");
+
+        Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+
+        homePage homePage = new homePage(browser);
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+
+        homePage.makeupShop.click();
+        Thread.sleep(2000);
+
+        for (int j = 0; j < homePage.urunResimleri.size(); j++) {
+
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.urunResimleri.get(j));
+
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), Driver.getDriver(browser).findElement(By.xpath("(//span[.='Add To Shopping Cart'])[2]")));
+            Thread.sleep(2000);
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), Driver.getDriver(browser).findElement(By.xpath("(//span[.='plus'])[3]")));
+
+            String urunFiyat = Driver.getDriver(browser).findElement(By.xpath("//ins[starts-with(@class,'text-2xl font-semibold')]")).getText().substring(1);
+            double urunFiyatDouble = Double.parseDouble(urunFiyat);
+
+            String guncelUrunMiktari = Driver.getDriver(browser).findElement(By.xpath("(//div[starts-with(@class,'flex flex-1 items-center')])[3]")).getText();
+            double guncelUrunMiktariInt = Double.parseDouble(guncelUrunMiktari);
+
+            String expected = Driver.getDriver(browser).findElement
+                    (By.xpath("//span[starts-with(@class,'bg-light rounded')]")).getText().substring(1, 6);
+            double expectedDouble = Double.parseDouble(expected);
+
+            Assert.assertEquals(urunFiyatDouble * guncelUrunMiktariInt, expectedDouble);
+            Thread.sleep(2000);
+
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),
+                    Driver.getDriver(browser).findElement(By.xpath("//button//span[.='minus']")));
+            Thread.sleep(2000);
+
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),
+                    Driver.getDriver(browser).findElement(By.xpath("//button//span[.='minus']")));
+
+
+        }
+    }
+
+
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Kayitli kullanici Shops bolumunde herhangi magaza secenegini tıkladiktan sonra  sectigi urunun  miktarinda guncelleme islemini yapabilmeli")
+    @Test(groups = {"Regression", "Customer","US_04"})
+    public void TC_04_10(@Optional("chrome")String browser) throws InterruptedException, IOException {
+
+        loginPage loginPage = new loginPage(browser);
+        loginPage.loginMethod(browser);
+        ReusableMethods.takeScreenshot("Login");
+
+        Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+
+        homePage homePage = new homePage(browser);
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+
+        homePage.bagsShop.click();
+        Thread.sleep(2000);
+
+        for (int j = 0; j < homePage.urunResimleri.size(); j++) {
+
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.urunResimleri.get(j));
+
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), Driver.getDriver(browser).findElement(By.xpath("(//span[.='Add To Shopping Cart'])[2]")));
+            Thread.sleep(2000);
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), Driver.getDriver(browser).findElement(By.xpath("(//span[.='plus'])[3]")));
+
+            String urunFiyat = Driver.getDriver(browser).findElement(By.xpath("//ins[starts-with(@class,'text-2xl font-semibold')]")).getText().substring(1);
+            double urunFiyatDouble = Double.parseDouble(urunFiyat);
+
+            String guncelUrunMiktari = Driver.getDriver(browser).findElement(By.xpath("(//div[starts-with(@class,'flex flex-1 items-center')])[3]")).getText();
+            double guncelUrunMiktariInt = Double.parseDouble(guncelUrunMiktari);
+
+            String expected=Driver.getDriver(browser).findElement
+                    (By.xpath("//span[starts-with(@class,'bg-light rounded')]")).getText().substring(1,5);
+            double expectedDouble= Double.parseDouble(expected);
+
+            Assert.assertEquals(urunFiyatDouble * guncelUrunMiktariInt,expectedDouble );
+
+            Thread.sleep(2000);
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),
+                    Driver.getDriver(browser).findElement(By.xpath("//button//span[.='minus']")));
+            Thread.sleep(2000);
+
+            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),
+                    Driver.getDriver(browser).findElement(By.xpath("//button//span[.='minus']")));
+
+        }
+
+    }
+
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Kayitli kullanici  Shops bolumunde herhangi magaza secenegini tıkladiktan sonra odeme sonlandirma  islemini yapabilmeli")
+    @Test(groups = {"Regression", "Customer","US_04"})
+    public void TC_04_11(@Optional("chrome")String browser) throws InterruptedException, IOException {
+
+        loginPage loginPage = new loginPage(browser);
+        loginPage.loginMethod(browser);
+        ReusableMethods.takeScreenshot("Login");
+
+        Assert.assertEquals(Driver.getDriver(browser).getCurrentUrl(), ConfigReader.getProperty("pickUrl"));
+
+        homePage homePage = new homePage(browser);
+        ReusableMethods.waitForVisibility(homePage.shopsButtonHomePage, 3);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.shopsButtonHomePage);
+
+        homePage.furnitureShop.click();
+            Thread.sleep(2000);
+
+            for (int j = 0; j < homePage.urunResimleri.size(); j++) {
+
+                JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.urunResimleri.get(j));
+
+                JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), Driver.getDriver(browser).findElement(By.xpath("//span[.='Add To Shopping Cart']")));
+
+                JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.cartIcon);
+
+                Thread.sleep(3000);
+                Driver.getDriver(browser).findElement(By.xpath(" //button[starts-with(@class,'flex h-12 w-full')]")).click();
+               Assert.assertTrue(homePage.checkAvaibility.isDisplayed());
+            }
+            homePage.shopsButtonHomePage.click();
 
     }
 
@@ -1307,6 +1513,7 @@ public class homePageTest {
             Assert.assertTrue(homePage.anasayfaImgList.get(i).isDisplayed());
         }
     }
+
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Kullanici anasayfada Shelf dropdown menudeki seceneklerden birini sectiginde ürün fiyati görüntülenmeli")
@@ -1605,62 +1812,61 @@ public class homePageTest {
     @Description("Ürün alt kartında secilen \"Details\" kisminda ürün detay bilgileri dogru gelmelidir.")
     @Test(groups = {"Regression", "No role","US_15"})
     public void TC_15_50 (@Optional("chrome")String browser) throws InterruptedException {
-        homePage homePage = new homePage(browser);
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),homePage.groceryApples);
+            homePage homePage = new homePage(browser);
+            JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser), homePage.groceryApples);
 
-        for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.anasayfaUrunIsimList.get(i));
-            Assert.assertTrue(homePage.anasayfaAltkart_DetailsKismindaUrunDetaylari.isDisplayed());
+                for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
+                    JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.anasayfaUrunIsimList.get(i));
+                    Assert.assertTrue(homePage.anasayfaAltkart_DetailsKismindaUrunDetaylari.isDisplayed());
+                }
+            }
+
+            @Severity(SeverityLevel.NORMAL)
+            @Parameters("browser")
+            @Description("Ürün alt kartında secilen ürün puani  bilgileri dogru gelmelidir.")
+            @Test(groups = {"Regression", "No role", "US_15"})
+            public void TC_15_51 (@Optional("chrome") String browser) throws InterruptedException {
+                homePage homePage = new homePage(browser);
+                JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser), homePage.groceryApples);
+
+                for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
+                    JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.anasayfaUrunIsimList.get(i));
+                    Assert.assertTrue(homePage.anasayfaAltkart_UrunPuani.isDisplayed());
+                    System.out.println(homePage.anasayfaAltkart_UrunIsmi.getText());
+                }
+            }
+
+            @Severity(SeverityLevel.NORMAL)
+            @Parameters("browser")
+            @Description("Ürün alt kartında secilen ürün bilgilerinden \"Related Products\" kisminda ürünle ilgili diger ürünler image leri, fiyati ve ekleme butonu dogru gelmelidir;")
+            @Test(groups = {"Regression", "No role", "US_15"})
+            public void TC_15_52 (@Optional("chrome") String browser) throws InterruptedException {
+                homePage homePage = new homePage(browser);
+                JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser), homePage.groceryApples);
+                for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
+                    JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.anasayfaUrunIsimList.get(i));
+                    Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerImgList.get(1).isDisplayed());
+                    Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerFiyatList.get(1).isDisplayed());
+                    Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerEklemeButtonuList.get(1).isDisplayed());
+
+                }
+            }
+            @Severity(SeverityLevel.NORMAL)
+            @Parameters("browser")
+            @Description("Ürün alt kartında cikis yapabilmek icin, ana sayfa alanina tiklamak gereklidir.")
+            @Test(groups = {"Regression", "No role", "US_15"})
+            public void TC_15_53 (@Optional("chrome") String browser) throws InterruptedException {
+                homePage homePage = new homePage(browser);
+                JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser), homePage.groceryApples);
+                for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
+                    JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.anasayfaUrunIsimList.get(i));
+                    Assert.assertTrue(homePage.anasayfaAltkart_UrunFiyati.isDisplayed());
+
+                    JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser), homePage.altkartdanHomePageGecis);
+                    Assert.assertTrue(homePage.anasayfaUrunIsimList.get(1).isDisplayed());
+
+                }
+            }
+
+
         }
-    }
-
-    @Severity(SeverityLevel.NORMAL)
-    @Parameters("browser")
-    @Description("Ürün alt kartında secilen ürün puani  bilgileri dogru gelmelidir.")
-    @Test(groups = {"Regression", "No role","US_15"})
-    public void TC_15_51 (@Optional("chrome")String browser) throws InterruptedException {
-        homePage homePage = new homePage(browser);
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),homePage.groceryApples);
-
-        for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.anasayfaUrunIsimList.get(i));
-            Assert.assertTrue(homePage.anasayfaAltkart_UrunPuani.isDisplayed());
-            System.out.println(homePage.anasayfaAltkart_UrunIsmi.getText());
-        }
-    }
-
-    @Severity(SeverityLevel.NORMAL)
-    @Parameters("browser")
-    @Description("Ürün alt kartında secilen ürün bilgilerinden \"Related Products\" kisminda ürünle ilgili diger ürünler image leri, fiyati ve ekleme butonu dogru gelmelidir;")
-    @Test(groups = {"Regression", "No role","US_15"})
-    public void TC_15_52 (@Optional("chrome")String browser) throws InterruptedException {
-        homePage homePage = new homePage(browser);
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),homePage.groceryApples);
-        for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.anasayfaUrunIsimList.get(i));
-            Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerImgList.get(1).isDisplayed());
-            Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerFiyatList.get(1).isDisplayed());
-            Assert.assertTrue(homePage.anasayfaAltkart_IlgiliDigerUrunlerEklemeButtonuList.get(1).isDisplayed());
-
-        }
-    }
-    @Severity(SeverityLevel.NORMAL)
-    @Parameters("browser")
-    @Description("Ürün alt kartında cikis yapabilmek icin, ana sayfa alanina tiklamak gereklidir.")
-    @Test(groups = {"Regression", "No role","US_15"})
-    public void TC_15_53 (@Optional("chrome")String browser) throws InterruptedException {
-        homePage homePage = new homePage(browser);
-        JavaScriptExecutorUtils.scrollIntoViewJS(Driver.getDriver(browser),homePage.groceryApples);
-        for (int i = 0; i < homePage.anasayfaUrunIsimList.size(); i++) {
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.anasayfaUrunIsimList.get(i));
-            Assert.assertTrue(homePage.anasayfaAltkart_UrunFiyati.isDisplayed());
-
-            JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),homePage.altkartdanHomePageGecis);
-            Assert.assertTrue(homePage.anasayfaUrunIsimList.get(1).isDisplayed());
-
-        }
-    }
-
-
-
-}
