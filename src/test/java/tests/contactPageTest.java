@@ -182,6 +182,27 @@ public class contactPageTest {
     }
     @Description("Contact sekmesindeki form, isim yazilmadan gönderilmemelidir.")
     @Severity(SeverityLevel.NORMAL)
+    @Test(groups = {"Regression", "No role", "Negatif Test"})
+
+    public void TC_07_11(@Optional("chrome")String browser) throws IOException {
+        homePage homePage = new homePage(browser);
+        contactPage contactPage = new contactPage(browser);
+        homePage.contactButon.click();
+        Actions actions = new Actions(Driver.getDriver(browser));
+        actions.sendKeys(contactPage.nameButton, Keys.TAB)
+                .sendKeys(ConfigReader.getProperty("eposta"), Keys.TAB)
+                .sendKeys("Sikayet", Keys.TAB)
+                .sendKeys("Hatali Kod", Keys.TAB)
+                .click(contactPage.submitButton).perform();
+
+        ReusableMethods.takeScreenshot("Uyari Yazisi ");
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(contactPage.nameUyariYazisi.isDisplayed());
+
+    }
+    @Description("Contact sekmesindeki form, isim yazilmadan gönderilmemelidir.")
+    @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Test(groups = {"Regression", "No role", "Negatif Test"})
 

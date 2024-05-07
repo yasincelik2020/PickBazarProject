@@ -18,12 +18,13 @@ public class loginPageTest {
     @BeforeMethod(groups = {"Smoke", "No role", "Costumer"})
     public void beforeMethod(@Optional("chrome")String browser) {
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
+
     }
     @AfterMethod(groups = {"Smoke", "No role", "Costumer"})
     public void afterMethod() {
         Driver.closeDriver();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertAll();
+
+
     }
     @Description("Kullanici register olabilmelidir")
     @Severity(SeverityLevel.NORMAL)
@@ -36,6 +37,26 @@ public class loginPageTest {
 
         SoftAssert softassert= new SoftAssert();
         softassert.assertTrue(loginPage.allreadyHaveYazisi.isDisplayed());
+        softassert.assertAll();
+
+    }
+    @Description("Kullanici password görebilmelidir")
+    @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
+    @Test(groups = {"Smoke", "No role"})
+
+    public void TC_16_02(@Optional("chrome")String browser) throws Exception {
+        loginPage loginPage = new loginPage(browser);
+        loginPage.joinButton.click();
+        loginPage.registerYazisi.click();
+        loginPage.nameRegister.sendKeys(ConfigReader.getProperty("username"));
+        loginPage.eMail.sendKeys(ConfigReader.getProperty("eposta"));
+        loginPage.password.sendKeys(ConfigReader.getProperty("password"));
+        loginPage.passwordVisible.click();
+
+        SoftAssert softassert= new SoftAssert();
+        softassert.assertTrue(loginPage.password.isDisplayed());
+        softassert.assertAll();
 
     }
     @Description("Müsteri login olabilmelidir")
@@ -49,7 +70,23 @@ public class loginPageTest {
 
         SoftAssert softassert= new SoftAssert();
         softassert.assertTrue(loginPage.userAvatar.isDisplayed());
+        softassert.assertAll();
+    }
+    @Description("Müsteri password görebilmelidir")
+    @Severity(SeverityLevel.NORMAL)
+    @Parameters("browser")
+    @Test(groups = {"Smoke", "Costumer"})
 
+    public void TC_17_02(@Optional("chrome")String browser) throws Exception {
+        loginPage loginPage = new loginPage(browser);
+        loginPage.joinButton.click();
+        loginPage.eMail.sendKeys(ConfigReader.getProperty("eposta"));
+        loginPage.password.sendKeys(ConfigReader.getProperty("password"));
+        loginPage.passwordVisible.click();
+
+        SoftAssert softassert= new SoftAssert();
+        softassert.assertTrue(loginPage.password.isDisplayed());
+        softassert.assertAll();
     }
 
     @Description("Müsteri password degistirebilmelidir")
@@ -62,7 +99,7 @@ public class loginPageTest {
 
         SoftAssert softassert= new SoftAssert();
         softassert.assertTrue(loginPage.passwordChangeSuccessful.isDisplayed());
-
+        softassert.assertAll();
     }
     @Description("Müsteri google accountu ile login olunabilmeli")
     @Severity(SeverityLevel.NORMAL)
@@ -77,7 +114,7 @@ public class loginPageTest {
         softassert.assertFalse(loginPage.errorYazisi.isDisplayed());
         ReusableMethods.takeScreenshot("Login Olunmuyor  ");
         ReusableMethods.waitFor(1);
-
+        softassert.assertAll();
     }
     @Description("Müsteri cep telefonu numarasi ile login olunabilmeli")
     @Severity(SeverityLevel.NORMAL)
