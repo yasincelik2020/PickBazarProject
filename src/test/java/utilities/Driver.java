@@ -35,7 +35,7 @@ public class Driver {
     }
     // create getDriver method to create and initiate the driver instance
     @Parameters("browser")
-    public static WebDriver getDriver(@Optional("chrome") String browser) {
+    public static synchronized WebDriver getDriver(@Optional("chrome") String browser) {
         if (driver == null) {
             //bu şekilde sadece bir driver object üretilmesini garantiliyoruz. daha önce driver üretilmişse null olmayacaktır ve
             //bu if bloğu çalışmayacak ve yeni driver üretilmeyecektir. Var olan (daha önce üretilmiş olan) driverı return edecektir.

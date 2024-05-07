@@ -9,6 +9,8 @@ import pages.homePage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.util.List;
+
 public class dailyneedsPage {
     @Parameters("browser")
     public dailyneedsPage(@Optional("chrome")String browser) {
@@ -34,6 +36,7 @@ public class dailyneedsPage {
     //Search alaninda DailyNeds kategorisinden bir ürün aranmdi
     @FindBy(xpath = "//span[.=\"Sekka grain rice 2lb\"]")
     public WebElement sekkaGrainRiceUrunu;
+
 }
 
 

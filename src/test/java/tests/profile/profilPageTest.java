@@ -44,7 +44,7 @@ public class profilPageTest {
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Available kac puana sahip oldugu görüntülenmeli")
-    @Test(groups = {"Regression", "Customer"})
+    @Test(groups = {"Regression", "Customer"} )
     public void TC_22_03(@Optional("chrome")String browser) throws InterruptedException {
         profilPage profilPage = new profilPage(browser);
         profilPage.goToProfilPage(browser);
@@ -135,7 +135,6 @@ public class profilPageTest {
     }
 
     @Severity(SeverityLevel.NORMAL)
-
     @Description("New Password alani görüntülenir")
     @Parameters("browser")
     @Test(groups = {"Regression", "Customer"})
@@ -210,15 +209,15 @@ public class profilPageTest {
     @DataProvider
     public static Object[][] data() {
         return new Object[][]{
-                {"Order Received"},
-                {"Shipping Address"},
-                {"Billing Address"},
-                {"Sub Total"},
-                {"Discount"},
-                {"Delivery Fee"},
-                {"Tax"},
-                {"Total"},
-                {"Item"}};
+                {"chrome","Order Received"},
+                {"chrome","Shipping Address"},
+                {"chrome","Billing Address"},
+                {"chrome","Sub Total"},
+                {"chrome","Discount"},
+                {"chrome","Delivery Fee"},
+                {"chrome","Tax"},
+                {"chrome","Total"},
+                {"chrome","Item"}};
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -346,10 +345,10 @@ public class profilPageTest {
     @DataProvider
     public static Object[][] data38_39_40_41() {
         return new Object[][]{
-                {"Tracking Number"},
-                {"Amount"},
-                {"Date"},
-                {"Details"}};
+                {"chrome","Tracking Number"},
+                {"chrome","Amount"},
+                {"chrome","Date"},
+                {"chrome","Details"}};
     }
 
     @Severity(SeverityLevel.NORMAL)

@@ -8,6 +8,7 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 public class loginPage {
     public loginPage(@Optional("chrome")String browser) {
@@ -77,7 +78,7 @@ public class loginPage {
 
     public void loginMethod(@Optional("chrome")String browser) throws InterruptedException {
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
-        Thread.sleep(3000);
+        ReusableMethods.waitForVisibility(joinButton,10);
         joinButton.click();
         eMail.sendKeys(ConfigReader.getProperty("eposta"));
         password.sendKeys(ConfigReader.getProperty("password"));
