@@ -77,11 +77,8 @@ public class groceryPageTest {
     @Parameters("browser")
     @Description("Scroll down yapildiginda ekranin sag tarafinda ürünler 'Grocery' secili oldugu icin Grocery ürünleri geldigi dogrulanmalidir.")
     @Test(groups = {"Regression", "No role"})
-    public void TC_08_10(@Optional("chrome")String browser) throws IOException {
+    public void TC_08_10(@Optional("chrome")String browser)  {
         homePage homePage = new homePage(browser);
-        Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
-
-        SoftAssert softAssert = new SoftAssert();
 
         int i=0;
         for (WebElement listElement : homePage.anasayfaGroceryUrunIsimList) {
@@ -89,21 +86,15 @@ public class groceryPageTest {
             Assert.assertTrue(listElement.isDisplayed());
             i++;
         }
-        ReusableMethods.takeScreenshot("Grocery urun isimleri");
 
-        softAssert.assertAll();
-        Driver.getDriver(browser).close();
     }
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Scroll down yapildiginda ekranin sag tarafinda ürünler 'Grocery' secili oldugu icin Grocery fiyatlari geldigi dogrulanmalidir.")
     @Test(groups = {"Regression", "No role"})
-    public void TC_08_10_01(@Optional("chrome")String browser) throws InterruptedException, IOException {
+    public void TC_08_10_01(@Optional("chrome")String browser) {
         homePage homePage = new homePage(browser);
         Driver.getDriver(browser).get(ConfigReader.getProperty("pickUrl"));
-
-
-        SoftAssert softAssert = new SoftAssert();
 
         int i=0;
         for (WebElement listElement : homePage.anasayfaGrocerFiyatList) {
@@ -111,17 +102,14 @@ public class groceryPageTest {
             Assert.assertTrue(listElement.isDisplayed());
             i++;
         }
-        ReusableMethods.takeScreenshot("Grocery urun fiyatlari");
 
-        softAssert.assertAll();
-        Driver.getDriver(browser).close();
     }
 
     @Severity(SeverityLevel.NORMAL)
     @Parameters("browser")
     @Description("Fruits & Vegetables dropdown menu button,Fruits ve Vegetables alt basliklari geldigi doğrulanmalıdır.")
     @Test(groups = {"Regression", "No role"})
-    public void TC_08_11(@Optional("chrome")String browser) throws InterruptedException {
+    public void TC_08_11(@Optional("chrome")String browser) {
         SoftAssert softAssert = new SoftAssert();
         homePage homePage = new homePage(browser);
         groceryPage groceryPage = new groceryPage(browser);
