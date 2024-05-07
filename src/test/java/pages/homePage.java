@@ -10,9 +10,12 @@ import org.openqa.selenium.support.PageFactory;
 
 import org.testng.Assert;
 import org.testng.annotations.Optional;
+import utilities.*;
+import utilities.*;
+import utilities.*;
 import utilities.ConfigReader;
-import utilities.Driver;
-import utilities.ReusableMethods;
+import org.testng.asserts.SoftAssert;
+import utilities.ConfigReader;
 
 import java.io.IOException;
 import java.util.List;
@@ -251,6 +254,21 @@ public class homePage {
     @FindBy(xpath = "//div[@class='relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300']")
     public List<WebElement> allShopsShopsPage;
 
+    @FindBy(xpath = "//span[.='Furniture Shop']")
+    public WebElement furnitureShop;
+    @FindBy(xpath = "//span[.='Clothing Shop']")
+    public WebElement clothingShop;
+    @FindBy(xpath = "//span[.='Bags Shop']")
+    public WebElement bagsShop;
+    @FindBy(xpath = "//span[.='Makeup Shop']")
+    public WebElement makeupShop;
+    @FindBy(xpath = "//span[.='Bakery Shop']")
+    public WebElement bakeryShop;
+    @FindBy(xpath = "//span[.='Grocery Shop']")
+    public WebElement groceryShop;
+    @FindBy(xpath = "//span[.='Books Shop']")
+    public WebElement booksShop;
+
     @FindBy(xpath = "(//div[@role='menuitem'])[2]")
     public WebElement bakeryDropDownAltMenu;
 
@@ -263,11 +281,72 @@ public class homePage {
     @FindBy(xpath = "//p[@class='mb-2 text-sm leading-relaxed text-center text-body']")
     public List <WebElement> shopsInformation;
 
-    @FindBy(linkText = "https://www.facebook.com/")   //a[@href='https://www.facebook.com/']
+    @FindBy(xpath = "//a[@href='https://www.facebook.com/']")   //a[@href='https://www.facebook.com/'] //a[@href='https://www.facebook.com/']
     public WebElement facebookIcon;
 
     @FindBy(xpath = "//*[@data-name='Group 96']")   //a[@href='https://www.facebook.com/']
     public List <WebElement> instagramIcon;
+
+    @FindBy(xpath = "(//span[@class='text-sm text-body'])[1]")
+    public WebElement adressInformation;
+
+    @FindBy(xpath = "//span[.='Product Image']")
+    public List  <WebElement> urunResimleri;
+
+    @FindBy(xpath = "//span[.='Add To Shopping Cart']")
+    public WebElement addToShoppingCart;
+
+    @FindBy(xpath = "//span[@class='flex ltr:ml-2 rtl:mr-2']")
+    public WebElement cartIcon;
+
+    @FindBy(xpath = "//button[.=\"Join\"]")
+    public WebElement joinButton;
+
+    @FindBy(id = "email")
+    public WebElement eMail;
+
+    @FindBy(id = "password")
+    public WebElement password;
+
+    @FindBy(xpath = "//button[.=\"Login\"]")
+    public WebElement loginButton;
+
+    public void loginMethod(@Optional("chrome")String browser) throws InterruptedException {
+
+        Thread.sleep(3000);
+        JavaScriptExecutorUtils.clickElementByJS(Driver.getDriver(browser),joinButton);
+        eMail.sendKeys(ConfigReader.getProperty("eposta"));
+        password.sendKeys(ConfigReader.getProperty("password"));
+        loginButton.click();
+
+    }
+
+    @FindBy(xpath = "(//span[.='plus'])[3]")
+    public WebElement plusButtonUrunCart;
+
+    @FindBy(xpath = "//span[.='minus']")
+    public WebElement minusButtonUrunCart;
+
+    @FindBy (xpath = "//div[@class='min-h-full text-center md:p-5']")
+    public WebElement urunCartArkasiBosluk;
+
+    @FindBy(xpath = "//span[.='Checkout']")
+    public WebElement checkoutButtonCart;
+
+    @FindBy(xpath = "//div[@class='flex flex-col my-auto']")
+    public WebElement loginSayfasi;
+
+    @FindBy(xpath = "(//div[@class='flex flex-1 items-center justify-center px-3 text-sm font-semibold'])[3]")
+    public WebElement urunMiktariniGosterenButton;
+
+    @FindBy(xpath = "//ins[@class='text-2xl font-semibold text-accent no-underline md:text-3xl'] ")  //ins[.='$40.00'])[2]
+    public WebElement urunFiyati;
+
+    @FindBy(xpath = "//span[@class='bg-light rounded w-full py-2 px-2 text-accent mt-3']")
+    public WebElement sepetIconundakiUrunFiyati;
+
+    @FindBy(xpath = "//button[starts-with(@class,'inline-flex items')]")
+    public WebElement checkAvaibility;
 
 
 
@@ -376,9 +455,6 @@ public class homePage {
 
     @FindBy(xpath = "//input[@id='password']")
     public WebElement passswordBox;
-
-    @FindBy(xpath = "//button[.=\"Login\"]")
-    public WebElement loginButton;
 
     @FindBy(xpath = "//button[@class='flex items-center text-sm font-semibold transition-colors duration-200 text-accent hover:text-accent-hover focus:text-accent-hover focus:outline-none']")
     public WebElement contactNumberAddButton;
