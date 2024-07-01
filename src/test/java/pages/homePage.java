@@ -248,8 +248,6 @@ public class homePage {
     @FindBy(xpath = "(//div[@role='menuitem'])[3]")   ////div[@id='headlessui-menu-item-39']
     public WebElement makeUpDropDownMenu;
 
-   /* @FindBy(xpath = "(//div[@role='menuitem'])[8]")   ////div[@id='headlessui-menu-item-39']
-    public WebElement booksDropDownMenu;*/
 
     @FindBy(xpath = "//div[@class='relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300']")
     public List<WebElement> allShopsShopsPage;
